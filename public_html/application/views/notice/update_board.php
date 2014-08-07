@@ -7,6 +7,12 @@
             <input type="text" class="form-control" name="subject" placeholder="제목" value="<?=$list['subject']?>">
         </div>
     </div>
+    <div class = "col-xs-2"><p class ="notice_detail_p">등록일</p></div>
+   		<div class = "col-xs-3"><p class ="notice_detail_p"><?echo substr(($list['reg_date']),0,10)?></p></div>
+   		<div class = "col-xs-2"><p class ="notice_detail_p">작성자</p></div>
+  		<div class = "col-xs-3"><p class ="notice_detail_p"> <?echo $login_data['user_name'];?></p></div>
+  	</br>
+  </br>
     <div class="form-group">
         <label for="text_body" class="col-xs-1 control-label">내용</label>
         <div class="col-xs-9">
@@ -17,7 +23,7 @@
         <div class="col-xs-offset-1 col-xs-9">
         	<input type="hidden" name='req_id' value="<?=$list['board_id'] ?>" />
             <button type="submit" class="write_button">수정</button>
-            <button class="modify_button" onclick="document.location.reload()">취소</button>
+            <button type="button" onclick="history.back()">취소</button>
         </div>
     </div>
 </form>

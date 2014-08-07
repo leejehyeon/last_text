@@ -14,15 +14,19 @@
 				게시물 리스트를 불러운 개수만큼 자동으로 반복해서 뿌려준다.
 			-->
 			<?
-			$id = $get_list_count;
-			foreach($get_list as $lt){
+			if($page<5){
+				$id = $get_list_count;
+			}else{
+				$id = $get_list_count-$page;
+			}
+			foreach($list as $lt){
 				?>
 				<tr>
 					<th scope="row">
 						<? echo $id;?>						
 					</th>
 					<td>
-						<a href="/index.php/notice/class_notice?req_id=<? echo $lt->board_id?>"><? echo $lt->subject;?></a>
+						<a href="/index.php/notice/class_notice/<?echo $this -> uri ->segment(3)?>?req_id=<? echo $lt->board_id?>"><? echo $lt->subject;?></a>
 					</td>
 					<td>
 						<? echo $lt->user_name;?>
@@ -38,12 +42,21 @@
 				$id--;
 				}
 			?>
+		</tbody>
+		<tfoot>
+			<tr>
+				<td>
+					<?echo $this -> pagination -> create_links();?>
+				</td>
+			</tr>
+			<?if($login_data['grade']==1){?>
 			<tr>
 				<td>
 					<a href="/index.php/notice/class_notice/write_board">글쓰기</a>
 				</td>
 			</tr>
-		</tbody>
+			<?}else{}?>
+		</tfoot>
 	</table>
 </div>
 </div>

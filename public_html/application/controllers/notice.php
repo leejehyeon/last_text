@@ -9,7 +9,6 @@ class Notice extends CI_Controller {
 		$this -> load -> model('ci_board');
 		$this -> load -> model('reply_ci_board');
 		$this -> load -> helper('alert');
-		$this -> load -> helper('url');
 		$this -> load -> library('pagination');		
 	}
 
@@ -118,7 +117,7 @@ class Notice extends CI_Controller {
 			
 			$board_type_array = array('board_type'=> $data['category_title']);
 			//페이징 처리
-			$config['base_url']= base_url()+'/index.php/notice/whole_notice/';
+			$config['base_url']= 'http://tutor.thecakehouse.co.kr/index.php/notice/whole_notice/';
 			$config['total_rows'] = $this -> ci_board -> get_board_all($board_type_array,$this -> uri -> segment(3), 'count');
 			$config['per_page'] = 5;
 			$config['num_links'] = 5;

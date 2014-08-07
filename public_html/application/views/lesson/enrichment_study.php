@@ -1,61 +1,73 @@
 <div class="col-xs-7">
-	<table>
-		<thead>
-			<tr>
-				<th scope="col" style="width:80px;">번호</th>
-				<th scope="col" style="width:200px;">제목</th>
-				<th scope="col" style="width:80px;">작성자</th>
-				<th scope="col" style="width:120px;">작성일</th>
-				<th scope="col">조회수</th> 
-			</tr>
-		</thead>
-		<tbody>
-			<!--
-				게시물 리스트를 불러운 개수만큼 자동으로 반복해서 뿌려준다.
-			-->
-			<?
-			if($get_list_count<5){
-				$id = $get_list_count;
-			}else{
-				$id = $get_list_count-$page;
-			}
-			foreach($list as $lt){
-				?>
-				<tr>
-					<th scope="row">
-						<? echo $id;?>
-					</th>
-					<td>
-						<a href="/index.php<?echo $view_name?>?req_id=<? echo $lt->board_id?>"><? echo $lt->subject_title;?></a>
-					</td>
-					<td>
-						<? echo $lt->user_name;?>
-					</td>
-					<td>
-						<? echo substr(($lt->reg_date),0,10);?>
-					</td>
-					<td>
-						<? echo $lt->hits;?>
-					</td>
-				</tr>
+	<div class="row">
+		<!-- 년도 드롭다운 -->
+		<div class="dropdown">
+			<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
 				<?
-				$id--;
-				}
-			?>
-			
-		</tbody>
-		<tfoot>
-			<tr>
-				<td>
-					<?echo $this -> pagination -> create_links();?>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<a href="/index.php<?echo $view_name?>/write_board">글쓰기</a>
-				</td>
-			</tr>
-		</tfoot>
-	</table>
-</div>
+					echo date("Y년");															//현재 년도 반환
+				?>
+				<span class="caret"></span>
+			</button>
+			<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+				<?
+					$year = array("2015", "2016", "2017", "2018");								//년도 저장
+					for($i=0; $i<count($year); $i++)											//드롭다운 리스트 출력 반복문
+						{
+							echo '<li role="presentation">
+									<a role="menuitem" tabindex="-1" href="#">';
+							echo $year[$i];														//과목 내용 출력
+							echo '	</a>
+								  </li>';
+						}										
+				?>
+			</ul>
+		</div>
+		
+		<!-- 월 드롭다운 -->
+		<div class="dropdown">
+			<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+				<?
+					echo date("m월");			//현재 달 반환
+				?>
+				<span class="caret"></span>
+			</button>
+			<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+				<?	
+					$month = array("1", "2", "3", "4", "5", "6", "7", "8");						//년도 저장
+					for($i=0; $i<count($month); $i++)											//드롭다운 리스트 출력 반복문
+						{
+							echo '<li role="presentation">
+									<a role="menuitem" tabindex="-1" href="#">';
+							echo $month[$i];													//과목 내용 출력
+							echo '	</a>
+								  </li>';
+						}										
+				?>			
+			</ul>
+		</div>
+	</div>
+	
+	<!-- 테이블 내부의 시작 -->
+	<div class="row">
+		<div>
+			<table width="100%" align="center" style="height:30" cellspacing="0">
 
+				<?
+					$tr_length = 5;
+					for ($i = 0; $i < $tr_length; $i++)
+						echo '<tr><td class="input-td"><a href="#">2014-07-04 보강신청</a></td></tr>';
+				?>
+			</table>
+		</div>
+	</div>
+
+	<!--버튼-->
+	<div class="row">
+		<div class="col-xs-2 col-xs-offset-10">
+			<button id="write" type='button'>
+				<a href="#">글쓰기</a>
+			</button>
+		</div>
+	</div>
+
+</div>

@@ -73,15 +73,7 @@ function daily_form(){
 	var tutortime = document.getElementById('time1').value+':'+document.getElementById('time2').value+'~'+document.getElementById('time3').value+':'+document.getElementById('time4').value
 	document.getElementById('date').value = date;
 	document.getElementById('tutor_time').value = tutortime;
-	day_form.submit();
-}
-
-function en_daily_form(){
-	var date = document.getElementById('year').value+'-'+document.getElementById('month').value+'-'+document.getElementById('day').value;
-	var time = document.getElementById('time1').value+':'+document.getElementById('time2').value+'~'+document.getElementById('time3').value+':'+document.getElementById('time4').value
-	document.getElementById('date').value = date;
-	document.getElementById('time').value = time;
-	day_form.submit();
+	journal_form.submit();
 }
 
 function sign_form(){
@@ -182,16 +174,42 @@ function getyear(date){
      window.location.href = url;
 }
 
-function journalgetmonth(date){
-	 var month = document.getElementById('month').value;
-	 var url = "/index.php/lesson/daily_journal_admin/"+date.value+"/"+month;
-     window.location.href = url;
+//보강신천 년도 선택시 해당 년도의 1월 1일로 select box 세팅
+function month_day_set(){
+  var set = document.day_form;
+  var date = new Date(set.year.value,set.month.value,0);
+  var lastDay = date.getDate();
+  makeOption('month',1,12,1);
+  makeOption('day',1,lastDay,1);
 }
 
-function journalgetyear(date){
-	 var year = document.getElementById('year').value;
-	 var url = "/index.php/lesson/daily_journal_admin/"+year+"/"+date.value;
-     window.location.href = url;
+//보강신청 월 선택시 해당 월의 1일로 select box 세팅
+function day_set(){
+  var set = document.day_form;
+  var date = new Date(set.year.value,set.month.value,0);
+  var lastDay = date.getDate();
+  makeOption('day',1,lastDay,1);
+}
+
+//보강신청 년, 월, 일 select box의 option list 생성
+function makeOption(list,first,last,init) {
+    var count = 0;
+    var set = document.day_form;
+    
+    set.elements[list].options.length=0;
+    var str='';
+    //해당 select box의 option text, value 설정
+    for ( var i=first; i<=last; i++){     
+      newItem = new Option(count);
+      set.elements[list].options[count]=newItem;
+      set.elements[list].options[count].text=i;
+      set.elements[list].options[count].value=i;
+      
+      if(i==init) {
+        set.elements[list].options[count].selected=true;
+      }
+      count++;
+    }  
 }
 
 function dailygetmonth(date){
@@ -265,231 +283,82 @@ function showtutee(subject){
 	  
 }
 
-// ajax 수업 -> 근무일지 관리
-function showdaily(subject){
-     var year = document.getElementById('year').value;
-	 var month = document.getElementById('month').value;
-	 var form_url = "/index.php/lesson/daily_journal_admin_tutorlist/"+year+"/"+month;
-	  if (subject=="") {
-	    document.getElementById("txtHint").innerHTML="";
-	    return;
-	  } 
-	  if (window.XMLHttpRequest) {
-	    // code for IE7+, Firefox, Chrome, Opera, Safari
-	    xmlhttp=new XMLHttpRequest();
-	  } else { // code for IE6, IE5
-	    xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-	  }
-	  xmlhttp.onreadystatechange=function() {
-	    if (xmlhttp.readyState==4 && xmlhttp.status==200) {
-	      document.getElementById("txtHint").innerHTML=xmlhttp.responseText;
-	    }
-	  }
-	  xmlhttp.open('POST',form_url,true);
-	  xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-	  xmlhttp.send("subject=" + subject);
-	  
-}
-
 //------------ ajax 수업 -> 출석부 기능
-
-
-function tutor_daily_journal(user_name){
-	var user_id = document.getElementById(user_name).value;
-	document.getElementById('user_id').value = user_id;
-	id_form.submit();
-}
-
 
 function register_form(attendance){
 	document.getElementById('attendance').value = attendance;
 	register.submit();
 }
 
-//------------ 튜티 지원서 확인
-	
-function confirming_tutee_application(){
 
-		var defaultIndex = 0;
-		//지원 과목 확인
-		var selIndex_subject = document.getElementById("user_subject").selectedIndex;
-		var selValue_subject = document.getElementById("user_subject").options[selIndex_subject].innerHTML;
-		var selValue_default_subject = document.getElementById("user_subject").options[defaultIndex].innerHTML;
+//------------ Menu 5ea로 Change
+/*
+function Change_menu(){
+	var changer;
+	var changer_child_ul;
+	changer = document.getElementById('Header_top_nav').children;
 
-		if ( selValue_subject == selValue_default_subject ){
-			alert('과목을 선택하세요');
-			return false;
-		}
-		//과목화인 후 분반 체크
-		else{
-			var selIndex_divide = document.getElementById("user_divide").selectedIndex;
-			var selValue_divide = document.getElementById("user_divide").options[selIndex_divide].innerHTML;
-			var selValue_default_divide = document.getElementById("user_divide").options[defaultIndex].innerHTML;
-
-			if ( selValue_divide == selValue_default_divide ){
-				alert('분반을 선택하세요');
-				return false;
-			}
-			//분반 체크 후 난이도 체크
-			else{
-				var selIndex_level = document.getElementById("user_level").selectedIndex;
-				var selValue_level = document.getElementById("user_level").options[selIndex_level].innerHTML;
-				var selValue_default_level = document.getElementById("user_level").options[defaultIndex].innerHTML;
-
-				if ( selValue_level == selValue_default_level ){
-					alert('난이도를 선택하세요');
-					return false;
-				}
-				//난이돋 체크 후 고등학교 구분 체크
-				else{
-					var selIndex_hs_division = document.getElementById("user_hs_division").selectedIndex;
-					var selValue_hs_division = document.getElementById("user_hs_division").options[selIndex_hs_division].innerHTML;
-					var selValue_default_hs_division = document.getElementById("user_hs_division").options[defaultIndex].innerHTML;
-					
-					if ( selValue_hs_division == selValue_default_hs_division ){
-						alert('고등학교 구분을 선택하세요');
-						return false;
-					}
-					//고등학교 구분 체크 후 고등학교 계열 체크
-					else{
-						var selIndex_hs_application = document.getElementById("user_hs_application").selectedIndex;
-						var selValue_hs_application = document.getElementById("user_hs_application").options[selIndex_hs_application].innerHTML;
-						var selValue_default_hs_application = document.getElementById("user_hs_application").options[defaultIndex].innerHTML;
-						if ( selValue_hs_application == selValue_default_hs_application ){
-							alert('고등학교 계열을 선택하세요');
-							return false;					
-						}
-						//고등학교 계열 체크 후 시간 체크
-						else {
-							var selIndex_time = document.getElementById("user_time").selectedIndex;
-							var selValue_time = document.getElementById("user_time").options[selIndex_time].innerHTML;
-							var selValue_default_time = document.getElementById("user_time").options[defaultIndex].innerHTML;						
-
-							if ( selValue_time == selValue_default_time ){
-								alert('튜티 시간을 선택하세요');
-								return false;
-							}
-							//시간 체크 후 글쓰기 박스 체크
-							else {
-								var user_content_application = document.getElementById('user_content_application').value;
-
-								if ( user_content_application == ""){
-									alert('지원동기 및 목표를 입력하세요')
-									return false;
-								}
-								else	
-									return true;
-							}
-						}		
-					}
-				}
-			}
-		}
-// Function 종료	
+	var changer_length =changer.length;
+	for(var i=1; i<changer_length; i++ ){
+		changer[i].className = "Change_menulength dropdown";
+	}
+}
+*/
+// dropdown-menu _ hover
+function image_hover(root) {
+             mainimage.src = root;
+            }
+   
+// map mouse_hover
+/*function init(){
+document.getElementsByTagName('area')[0].onmouseover=function(){
+document.getElementById('mapA').src='/static/img/main_tutor_image_hover.png';
+this.onmouseout=function() {
+document.getElementById('mapA').src='/static/img/main_tutor_image.png';
+}
+}
+document.getElementsByTagName('area')[1].onmouseover=function(){
+document.getElementById('mapA').src='/static/img/main_tutor_image_hover.png';
+this.onmouseout=function() {
+document.getElementById('mapA').src='/static/img/main_tutor_image.png';
+}
+}
+document.getElementsByTagName('area')[2].onmouseover=function(){
+document.getElementById('mapB').src='/static/img/main_tutee_image_hover.png';
+this.onmouseout=function() {
+document.getElementById('mapB').src='/static/img/main_tutee_image.png';
+}
+}
+document.getElementsByTagName('area')[3].onmouseover=function(){ 
+document.getElementById('mapA').src='/static/img/main_tutor_image_hover.png';
+this.onmouseout=function() {
+document.getElementById('mapA').src='/static/img/main_tutor_image.png';
+}
+}
 }
 
-//------------ 튜터 지원서 확인
-	
-function confirming_tutor_application(){
-		
-		var defaultIndex = 0;
-		//지원 과목 확인
-		var selIndex_subject = document.getElementById("user_subject").selectedIndex;
-		var selValue_subject = document.getElementById("user_subject").options[selIndex_subject].innerHTML;
-		var selValue_default_subject = document.getElementById("user_subject").options[defaultIndex].innerHTML;
-
-		if ( selValue_subject == selValue_default_subject ){
-			alert('과목을 선택하세요');
-		}
-		//지원 과목확인 후 지원 분야 체크
-		else{
-			var selIndex_subject1 = document.getElementById("user_subject1").selectedIndex;
-			var selValue_subject1 = document.getElementById("user_subject1").options[selIndex_subject1].innerHTML;
-			var selValue_default_subject1 = document.getElementById("user_subject1").options[defaultIndex].innerHTML;
-
-			if ( selValue_subject1 == selValue_default_subject1 ){
-				alert('지원 분야를 선택하세요');
-			}
-			//지원 분야 체크 후 성적 체크
-			else{
-				var selIndex_grade_choose1 = document.getElementById("user_grade_choose1").selectedIndex;
-				var selValue_grade_choose1 = document.getElementById("user_grade_choose1").options[selIndex_grade_choose1].innerHTML;
-				var selValue_default_grade_choose1 = document.getElementById("user_grade_choose1").options[defaultIndex].innerHTML;
-
-				if ( selValue_grade_choose1 == selValue_default_grade_choose1 ){
-					alert('지원 분야 성적을 선택하세요');
-				}
-				//성적 체크 후 시간 체크
-				else{
-					var selIndex_time = document.getElementById("user_time").selectedIndex;
-					var selValue_time = document.getElementById("user_time").options[selIndex_time].innerHTML;
-					var selValue_default_time = document.getElementById("user_time").options[defaultIndex].innerHTML;						
-
-					if ( selValue_time == selValue_default_time ){
-						alert('튜터 시간을 선택하세요');
-					}
-					//시간 체크 후 경력사항 체크
-					else{
-						var user_career = document.getElementById('user_career').value;
-
-						if ( user_career == ""){
-							alert('경력사항을 입력하세요')
-						}
-						//경력사항 체크 후 지원동기 체크
-						else {
-							var user_content_application = document.getElementById('user_content_application').value;
-	
-							if ( user_content_application == ""){
-								alert('지원동기를 입력하세요')
-							}
-							//Submit
-							else {
-								//rating() 함수 호출
-								rating();
-							}
-						}		
-					}
-				}
-			}
-		}
+if(window.addEventListener){
+window.addEventListener('load',init,false);
 }
-
-//보강신천 년도 선택시 해당 년도의 1월 1일로 select box 세팅
-function month_day_set(){
-  var set = document.day_form;
-  var date = new Date(set.year.value,set.month.value,0);
-  var lastDay = date.getDate();
-  makeOption('month',1,12,1);
-  makeOption('day',1,lastDay,1);
+else { 
+if(window.attachEvent){
+window.attachEvent('onload',init);
 }
-
-//보강신청 월 선택시 해당 월의 1일로 select box 세팅
-function day_set(){
-  var set = document.day_form;
-  var date = new Date(set.year.value,set.month.value,0);
-  var lastDay = date.getDate();
-  makeOption('day',1,lastDay,1);
 }
+*/
 
-//보강신청 년, 월, 일 select box의 option list 생성
-function makeOption(list,first,last,init) {
-    var count = 0;
-    var set = document.day_form;
-    
-    set.elements[list].options.length=0;
-    var str='';
-    //해당 select box의 option text, value 설정
-    for ( var i=first; i<=last; i++){     
-      newItem = new Option(count);
-      set.elements[list].options[count]=newItem;
-      set.elements[list].options[count].text=i;
-      set.elements[list].options[count].value=i;
-      
-      if(i==init) {
-        set.elements[list].options[count].selected=true;
-      }
-      count++;
-    }  
+// 08.04
+// Apply_image_change
+function hover_apply_icon_tutor(img){
+	img.src='/static/img/tutor_apply_icon_hover';
+	img.onmouseout=function(){
+		img.src='/static/img/tutor_apply_icon';
+	}
 }
-
-// Function 종료	
+function hover_apply_icon_tutee(img){
+	img.src='/static/img/tutee_apply_icon_hover';
+	img.onmouseout=function(){
+		img.src='/static/img/tutee_apply_icon';
+	}
+}
+}

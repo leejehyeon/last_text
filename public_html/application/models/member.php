@@ -77,12 +77,14 @@ class Member extends CI_Model {
 		return $this -> db -> get_where('tutee_application',$divide_array) -> result();
 	}
 	
-	public function subject_by_tutor_data($tutor_subject_array){
-		return $this -> db -> get_where('member',$tutor_subject_array) -> result();
-	}
-
-	public function user_id_get($get_id_array){
-		return $this -> db -> get_where('member',$get_id_array) -> row_array();
-	}
+	public function id_exist_check($form_id_array){
+		$form_array = array('form_id' => $form_id_array['form_id']);
+		$db_data = $this->db->get_where('member',array('user_id'=>$form_array['form_id']))->row();
+		if(($db_data != null)){
+			return TRUE;
+		}else{
+			return FALSE;
+		}
+	} 
 }
 ?>

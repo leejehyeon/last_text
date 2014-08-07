@@ -21,13 +21,13 @@ class Ci_board extends CI_Model {
 
 	}
 	//리스트 5개 끌어오기
-	public function get_list_title3() {
+	public function get_list_title5() {
 		$this->db->select('board_id,subject,reg_date');
 		$this->db->order_by("board_id", "desc");
-    	$list = $this->db->get_where('ci_board',array('board_type' => 'whole_notice'),5,0)->result();
+    	$list = $this->db->get_where('ci_board',array('board_type' => 'whole_notice'),3,0)->result();
 		return $list;
 	}
-	
+
 	public function get_all_board_count($board_type_array) {
 		$this -> db -> like('board_type',$board_type_array['board_type']);
 		$this -> db -> from('ci_board');
@@ -48,7 +48,7 @@ class Ci_board extends CI_Model {
 		}else{
 			$result = $board_list -> result();
 		}
-		return $result; 
+		return $result;
 	}
 	
 	public function update_hit($board_id_type_array) {

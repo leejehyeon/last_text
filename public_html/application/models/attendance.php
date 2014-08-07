@@ -29,26 +29,5 @@ class Attendance extends CI_Model {
 		$this -> db -> order_by("date", "asc");
 		return $this -> db -> get() -> result();
 	}
-	
-	function get_subject($data_get_subject){
-		$this -> db -> like($data_get_subject);
-		$this -> db -> from('subject');
-		return $this -> db -> get() -> row_array();
-	}
-	
-	function get_subject_all_data(){
-		return $this -> db -> get('subject') -> result();
-	}
-	
-	function get_data_id_date($data_update_by_date){
-		return $this -> db -> get_where('journal_board',$data_update_by_date) -> row_array();
-	}
-
-	function update_daily($update_daily_array,$user_id_array){
-		var_dump($update_daily_array);
-		var_dump($user_id_array);
-		$this -> db -> where($user_id_array);
-		return $this -> db -> update('journal_board',$update_daily_array);
-	}
 }
 ?>

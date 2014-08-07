@@ -1,21 +1,21 @@
-<div class="col-xs-7">
+<div class="each_page">
 	<?$i=1;?>
-<div>
+<!--8.5<div>-->
 	<!-- test table create -->
 	<form method="post" action="/index.php/">
 	<table cellpadding="0" cellspacing="0" id="test1" class="border" width="100%" style="font-size:12px">
 		<!-- Subject Line -->
-		<tr>
-			<td class="tuti_table">
+		<tr class="tutor_tr">
+			<td class="tuti_table year_number">
 				연번
 			</td>
-			<td class="tuti_table">
+			<td class="tuti_table application_subject">
 				지원과목
 			</td>
-			<td class="tuti_table">
+			<td class="tuti_table student_number">
 				학번
 			</td>
-			<td class="tuti_table">
+			<td class="tuti_table department">
 				학과
 			</td>
 			<td class="tuti_table">
@@ -50,9 +50,7 @@
 						<?echo $i?>
 					</td>
 					<td class="border">
-						<?foreach($get_subject as $it){?>
-						<?if(($lt -> subject_id) == ($it -> subject_id)){echo $it -> subject;}else{}?>
-						<?}?>
+						<?echo $lt->user_subject?>
 					</td>
 					<td class="border">
 						<?echo $lt->user_number?>
@@ -91,4 +89,5 @@
 	</table>
 	</form>
 	<input type='button' value="excel" id="write" onclick="tableToExcel('test1')" > <!-- Excel 파일 test 버튼-->
+</div>
 </div>

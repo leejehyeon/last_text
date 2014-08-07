@@ -13,8 +13,8 @@ class Main extends CI_Controller {
 			 $data['login_data'] = $login_data;
 		
 		$this->load->model('ci_board');
-		$notice_list = $this->ci_board->get_list_title3();
-		$data['notice_list3'] = $notice_list;
+		$notice_list = $this->ci_board->get_list_title5();
+		$data['notice_list5'] = $notice_list;
 		
 		$this->load->view('header', $data);
 		$this->load->view('main', $data);

@@ -14,30 +14,14 @@
     <div class = "col-xs-2"><p class ="notice_detail_p">내용</p></div>
     <div class = "col-xs-10"><p class ="notice_detail_p" style="height:300px"><?=$list['contents'] ?></p></div>
 </div>
-<div>
-	<?$id = $get_all_board_count;
-			foreach($get_list as $lt){
-				?>
-				<tr>
-					<td>
-						<? echo $lt->user_name;?>
-					</td>
-					<td>
-						<? echo substr(($lt->reg_date),0,10);?>
-					</td>
-					<td>
-						<? echo $lt->reply_contents;?>
-					</td>
-				</tr>
-				<?
-				$id--;
-				}
-			?>
-</div>
 <!--if user_id == admin -->
-<div class = "row">
-    <div class = "col-xs-offset-2"></div><div class="col-xs-9" style="margin-top: 1%; ">
+<div>
+	<a href="/index.php<?echo $view_name?>/<?echo $this -> uri -> segment(3);?>">목록</a>
 </div>
+<?if($login_data['grade'] == 1){?>
 <a href="/index.php<?echo $view_name?>/update_board?req_id=<?echo $list['board_id']?>">수정하기</a>
-<a href="/index.php<?echo $view_name?>/delete_board?req_id=<?echo $list['board_id']?>">삭제하기</a>
+<form name="delete_board" method="post" action="/index.php<?echo $view_name?>/delete_board?req_id=<?echo $list['board_id']?>">
+<input type="button" value="삭제하기" onclick="checkagain()"/>
+</form>
+<?}else{}?>
 </div>

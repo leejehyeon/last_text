@@ -6,7 +6,6 @@ class Administration extends CI_Controller {
 		parent::__construct();
 		$this -> load -> database();
 		$this -> load -> library('session');
-		$this -> load -> model('attendance');
 		$this -> load -> helper('alert');
 		$this -> load -> helper('url');
 	}
@@ -36,8 +35,6 @@ class Administration extends CI_Controller {
 		$data['get_subject_list'] = $get_subject_list;
 		$get_list = $this -> tutor_tutee -> tutee_list();
 		$data['get_list'] = $get_list;
-		
-		$data['get_subject'] = $this -> attendance -> get_subject_all_data();
 		$this -> load -> view($view_name, $data);
 	}
 	
@@ -47,11 +44,8 @@ class Administration extends CI_Controller {
 		$data['get_subject_list'] = $get_subject_list;
 		$get_list = $this -> tutor_tutee -> tutor_list();
 		$data['get_list'] = $get_list;
-		
-		$data['get_subject'] = $this -> attendance -> get_subject_all_data();
 		$this -> load -> view($view_name, $data);
 	}
-	
 	public function tutor_grade_up($view_name, $data){
 		$this -> load -> model('tutor_tutee');
 		alert_url('글이 등록되었습니다.', '/index.php', $data['view_name']);

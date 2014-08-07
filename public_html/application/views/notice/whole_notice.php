@@ -1,11 +1,11 @@
 <div class="col-xs-7">
-	<table>
+	<table class="whole_notice">
 		<thead>
 			<tr>
-				<th scope="col" style="width:80px;">번호</th>
-				<th scope="col" style="width:200px;">제목</th>
-				<th scope="col" style="width:80px;">작성자</th>
-				<th scope="col" style="width:120px;">작성일</th>
+				<th scope="col">번호</th>
+				<th scope="col">제목</th>
+				<th scope="col">작성자</th>
+				<th scope="col">작성일</th>
 				<th scope="col">조회수</th> 
 			</tr>
 		</thead>
@@ -14,7 +14,7 @@
 				게시물 리스트를 불러운 개수만큼 자동으로 반복해서 뿌려준다.
 			-->
 			<?
-			if($get_list_count<5){
+			if($page<5){
 				$id = $get_list_count;
 			}else{
 				$id = $get_list_count-$page;
@@ -22,11 +22,11 @@
 			foreach($list as $lt){
 				?>
 				<tr>
-					<th scope="row">
+					<td scope="row">
 						<? echo $id;?>
-					</th>
+					</td>
 					<td>
-						<a href="/index.php/notice/whole_notice?req_id=<? echo $lt->board_id?>"><? echo $lt->subject;?></a>
+						<a href="/index.php/notice/whole_notice/<?echo $this -> uri ->segment(3)?>?req_id=<?echo $lt->board_id?>"><?echo $lt->subject;?></a>
 					</td>
 					<td>
 						<? echo $lt->user_name;?>
@@ -44,18 +44,15 @@
 			?>
 			
 		</tbody>
-		<tfoot>
-			<tr>
-				<td>
-					<?echo $this -> pagination -> create_links();?>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<a href="/index.php/notice/whole_notice/write_board">글쓰기</a>
-				</td>
-			</tr>
-		</tfoot>
 	</table>
+	
+			<?if($login_data['grade']==1){?>
+				<div class="whole_notice_write">
+					<a href="/index.php/notice/whole_notice/write_board"><img src='/static/img/Notice_write_icon.png'></a>
+				</div>
+			<?}else{}?>
+				<div class="whole_notice_create_links">
+					<?echo $this -> pagination -> create_links();?>
+				</div>
 </div>
 </div>
