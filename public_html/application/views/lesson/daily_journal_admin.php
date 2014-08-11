@@ -1,80 +1,95 @@
-<!--<div class="col-xs-7">-->
+<!--<div class="col-xs-7">
+<form style="float: left;">
+<select onChange="journalgetmonth(this);">
+	<?for($i = 2013; $i <= 2017; $i++){?>
+		<?if($i == $this -> uri -> segment(3)){?>
+			<option value="<?echo $i;?>" selected><?echo $i;?>년</option>
+		<?}else{?>
+			<option value="<?echo $i;?>"><?echo $i;?>년</option>
+	<?
+		}	
+	}?>
+	<input type="hidden" id="year" value="<?echo $this -> uri -> segment(3);?>"/>
+	<input type="hidden" id="day" value="<?echo $this -> uri -> segment(5);?>"/>
+</select>
+</form>
+
+<form style="float: left;">
+<select onChange="journalgetyear(this);">
+	<?for($i = 1; $i <= 12; $i++){
+		$k = sprintf("%02d", $i);
+	?>
+		<?if($i == $this -> uri -> segment(4)){?>
+			<option value="<?echo $k;?>" selected><?echo $i;?>월</option>
+		<?}else{?>
+			<option value="<?echo $k;?>"><?echo $i;?>월</option>
+	<?
+		}	
+	}?>
+	<input type="hidden" id="month" value="<?echo $this -> uri -> segment(4);?>"/>
+	<input type="hidden" id="day" value="<?echo $this -> uri -> segment(5);?>"/>
+</select>
+</form>
+<form>
+<select onChange="showdaily(this.value);">
+	<?foreach($subject_list as $lt){?>
+		<option value="<?echo $lt -> subject_id?>"><?echo $lt -> subject?></option>
+	<?}?>
+	<input type="hidden" id="year" value="<?echo $this -> uri -> segment(3);?>" />
+	<input type="hidden" id="month" value="<?echo $this -> uri -> segment(4);?>" />
+</select>
+</form>
+	<div id="txtHint"><b>위에 설정을 해주세요.</b></div>	
+</div>
+여기까지 진우님-->
 <div class="daily_journal_admin_page">
-	<div class="row">
-		<!-- 년도 드롭다운 -->
-		<div class="dropdown">
-			<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
-				<?
-					echo date("Y년");															//현재 년도 반환
-				?>
-				<span class="caret"></span>
-			</button>
-			<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-				<?
-					$year = array("2015", "2016", "2017", "2018");								//년도 저장
-					for($i=0; $i<count($year); $i++)											//드롭다운 리스트 출력 반복문
-						{
-							echo '<li role="presentation">
-									<a role="menuitem" tabindex="-1" href="#">';
-							echo $year[$i];														//과목 내용 출력
-							echo '	</a>
-								  </li>';
-						}										
-				?>
-			</ul>
-		</div>
-		
-		<!-- 월 드롭다운 -->
-		<div class="dropdown">
-			<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
-				<?
-					echo date("m월");			//현재 달 반환
-				?>
-				<span class="caret"></span>
-			</button>
-			<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-				<?	
-					$month = array("1", "2", "3", "4", "5", "6", "7", "8");						//년도 저장
-					for($i=0; $i<count($month); $i++)											//드롭다운 리스트 출력 반복문
-						{
-							echo '<li role="presentation">
-									<a role="menuitem" tabindex="-1" href="#">';
-							echo $month[$i];													//과목 내용 출력
-							echo '	</a>
-								  </li>';
-						}										
-				?>			
-			</ul>
-		</div>
-		
-		<!-- 년도와 월을 받아서 출력 -->
-		<div class="col-xs-3 col-xs-offset-1">
-			<span class="recieve-year">
-				<?
-					echo date("Y년");															//현재 년도 반환
-				?>
-			</span>
-			<span class="recieve-month">
-				<?
-					echo date("m월");															//현재 년도 반환
-				?>
-			</span>
-		</div>
-		
-	</div>
-	
-	<!-- 본문작성 테이블 -->
-	<div class="row">
-		<div>
-			<table width="100%" align="center" style="height:30" cellspacing="0">
+	<p class="daily_journal_admin_infoText">* 다음 설정을 해주세요.</p>	
+<form style="float: left;">
+	<label>
+<select class="custom_select daily_journal_admin_year" onChange="journalgetmonth(this);">
+	<?for($i = 2013; $i <= 2017; $i++){?>
+		<?if($i == $this -> uri -> segment(3)){?>
+			<option value="<?echo $i;?>" selected><?echo $i;?></option>
+		<?}else{?>
+			<option value="<?echo $i;?>"><?echo $i;?></option>
+	<?
+		}	
+	}?>
+	<input type="hidden" id="year" value="<?echo $this -> uri -> segment(3);?>"/>
+	<input type="hidden" id="day" value="<?echo $this -> uri -> segment(5);?>"/>
+</select>
+</label>
+</form><p class="daily_journal_admin_middleText">년</p>
 
-				<?
-				$tr_length = 5;
-				for ($i = 0; $i < $tr_length; $i++)
-					echo '<tr><td class="input-td"><a href="/index.php/lesson/tutor_report">튜터 1</a></td></tr>';
-				?>
-			</table>
+<form style="float: left;">
+<label>
+<select class="custom_select daily_journal_admin_month" onChange="journalgetyear(this);">
+	<?for($i = 1; $i <= 12; $i++){
+		$k = sprintf("%02d", $i);
+	?>
+		<?if($i == $this -> uri -> segment(4)){?>
+			<option value="<?echo $k;?>" selected><?if($i < 10){echo "0".$i;}else{echo $i;}?></option>
+		<?}else{?>
+			<option value="<?echo $k;?>"><?if($i < 10){echo "0".$i;}else{echo $i;}?></option>
+	<?
+		}	
+	}?>
+	<input type="hidden" id="month" value="<?echo $this -> uri -> segment(4);?>"/>
+	<input type="hidden" id="day" value="<?echo $this -> uri -> segment(5);?>"/>
+</select>
+</label>
+</form><p class="daily_journal_admin_middleText">월</p>
+<form>
+<label>
+<select class="custom_select daily_journal_admin_subject" onChange="showdaily(this.value);">
+	<?foreach($subject_list as $lt){?>
+		<option value="<?echo $lt -> subject_id?>"><?echo $lt -> subject?></option>
+	<?}?>
+	<input type="hidden" id="year" value="<?echo $this -> uri -> segment(3);?>" />
+	<input type="hidden" id="month" value="<?echo $this -> uri -> segment(4);?>" />
+</select>
+</label>
+</form>
+</div>
 
-		</div>
-	</div>
 

@@ -6,6 +6,7 @@ class Tutor_tutee_application extends CI_Controller {
 	function __construct() {
 		parent::__construct();
 		$this -> load -> database();
+		$this -> load -> model('tutor_tutee');
 		$this -> load -> library('session');
 		$this -> load -> helper('alert');
 	}
@@ -29,7 +30,6 @@ class Tutor_tutee_application extends CI_Controller {
 	}
 
 	private function tutee($view_name, $data){
-		$this -> load -> model('tutor_tutee');
 		$get_list = $this -> tutor_tutee -> select_list();
 		$get_sub_list = $this -> tutor_tutee -> select_list_sub();
 		$data['get_list'] = $get_list;
@@ -38,29 +38,28 @@ class Tutor_tutee_application extends CI_Controller {
 	}
 
 	private function tutor($view_name, $data){
-		$this -> load -> model('tutor_tutee');
 		$get_list = $this -> tutor_tutee -> select_list();
 		$data['get_list'] = $get_list;
 		$this -> load -> view($view_name, $data);
 	}
 	
 	private function tutee_insert(){
-		$registration_array = array('user_number' => $this -> input -> post('user_number'), 
+		$registration_array = array('user_id' => $this -> input -> post('user_id'),
+									'user_number' => $this -> input -> post('user_number'), 
 									'user_department' => $this -> input -> post('user_department'), 
 									'user_name' => $this -> input -> post('user_name'), 
 									'user_year' => $this -> input -> post('user_year'),
 									'user_number' => $this -> input -> post('user_number'),
 									'user_phonenumber' => $this -> input -> post('user_phonenumber'),
 									'user_email' => $this -> input -> post('user_email'),
-									'user_subject' => $this -> input -> post('user_subject'),
+									'subject_id' => $this -> input -> post('user_subject'),
 									'user_divide' => $this -> input -> post('user_divide'),
 									'user_level' => $this -> input -> post('user_level'),
 									'user_hs_division' => $this -> input -> post('user_hs_division'),
 									'user_hs_application' => $this -> input -> post('user_hs_application'),
 									'user_time' => $this -> input -> post('user_time'),
-									'user_content_application' => $this -> input -> post('user_content_application'),
+									'user_content_application' => $this -> input -> post('user_content_application')
 									);
-		$this -> load -> model('tutor_tutee');
 		$this -> tutor_tutee ->tutee_registration($registration_array);
 		$update_application= array( 'user_number' => $this -> input -> post('user_number'),
 									'user_application_subject' => $this -> input -> post('user_application_subject')
@@ -70,7 +69,8 @@ class Tutor_tutee_application extends CI_Controller {
 	} 
 
 	private function tutor_insert(){
-		$registration_array = array('user_number' => $this -> input -> post('user_number'), 
+		$registration_array = array('user_id' => $this -> input -> post('user_id'),
+									'user_number' => $this -> input -> post('user_number'), 
 									'user_department' => $this -> input -> post('user_department'), 
 									'user_name' => $this -> input -> post('user_name'), 
 									'user_year' => $this -> input -> post('user_year'),
@@ -82,18 +82,61 @@ class Tutor_tutee_application extends CI_Controller {
 									'user_grade3' => $this -> input -> post('user_grade3'),
 									'user_grade4' => $this -> input -> post('user_grade4'),
 									'user_grade5' => $this -> input -> post('user_grade5'),
-									'user_subject' => $this -> input -> post('user_subject'),
+									'subject_id' => $this -> input -> post('user_subject'),
 									'user_time' => $this -> input -> post('user_time'),
 									'user_career' => $this -> input -> post('user_career'),
-									'user_content_application' => $this -> input -> post('user_content_application'),
+									'user_content_application' => $this -> input -> post('user_content_application')
 									);
-		$this -> load -> model('tutor_tutee');
 		$this -> tutor_tutee ->tutor_registration($registration_array);
 		$update_application= array( 'user_number' => $this -> input -> post('user_number'),
 									'user_application_subject' => $this -> input -> post('user_application_subject')
 									);
 		$this -> tutor_tutee ->update_user_application($update_application);
 		alert('글이 등록되었습니다.', '/index.php/');
+	}
+	
+	private function tutee_update(){
+		$update_array = array('user_id' => $this -> input -> post('user_id'),
+									'user_number' => $this -> input -> post('user_number'), 
+									'user_department' => $this -> input -> post('user_department'), 
+									'user_name' => $this -> input -> post('user_name'), 
+									'user_year' => $this -> input -> post('user_year'),
+									'user_number' => $this -> input -> post('user_number'),
+									'user_phonenumber' => $this -> input -> post('user_phonenumber'),
+									'user_email' => $this -> input -> post('user_email'),
+									'subject_id' => $this -> input -> post('user_subject'),
+									'user_divide' => $this -> input -> post('user_divide'),
+									'user_level' => $this -> input -> post('user_level'),
+									'user_hs_division' => $this -> input -> post('user_hs_division'),
+									'user_hs_application' => $this -> input -> post('user_hs_application'),
+									'user_time' => $this -> input -> post('user_time'),
+									'user_content_application' => $this -> input -> post('user_content_application')
+									);
+		$this -> tutor_tutee -> update_tutee($update_array);
+		alert('글이 업데이트 되었습니다.', '/index.php/');
+	}
+	
+	private function tutor_update(){
+		$update_array = array('user_id' => $this -> input -> post('user_id'),
+									'user_number' => $this -> input -> post('user_number'), 
+									'user_department' => $this -> input -> post('user_department'), 
+									'user_name' => $this -> input -> post('user_name'), 
+									'user_year' => $this -> input -> post('user_year'),
+									'user_number' => $this -> input -> post('user_number'),
+									'user_phonenumber' => $this -> input -> post('user_phonenumber'),
+									'user_email' => $this -> input -> post('user_email'),
+									'user_grade1' => $this -> input -> post('user_grade1'),
+									'user_grade2' => $this -> input -> post('user_grade2'),
+									'user_grade3' => $this -> input -> post('user_grade3'),
+									'user_grade4' => $this -> input -> post('user_grade4'),
+									'user_grade5' => $this -> input -> post('user_grade5'),
+									'subject_id' => $this -> input -> post('user_subject'),
+									'user_time' => $this -> input -> post('user_time'),
+									'user_career' => $this -> input -> post('user_career'),
+									'user_content_application' => $this -> input -> post('user_content_application')
+									);
+		$this -> tutor_tutee -> update_tutor($update_array);
+		alert('글이 업데이트 되었습니다.', '/index.php/');
 	}
 
 	private function change_application_on(){

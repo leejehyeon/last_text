@@ -1,4 +1,4 @@
-<form name="form" method="post" action="/index.php/tutor_tuti_application/tuti_insert">
+<form name="form" method="post" action="/index.php/tutor_tutee_application/tutee_insert">
 <div class="col-xs-12">
 	<div align="center" class = "row tutee_apply_Head" >
 		<p><img src="/static/img/tutee_apply_icon2.png"> 튜티지원서</p>
@@ -36,8 +36,8 @@
 							<?foreach($get_list as $lt){?>
 							<option value="<?echo $lt->subject_id;?>"><? echo $lt->subject;?>
 							<?}?>
-						</select>
-					</label> 					
+						</select> 					
+					</label>
 				</td>
 				<td >지원과목</br>수강분반</td>
 				<td >
@@ -52,7 +52,7 @@
 				<td >희망 난이도</td>
 				<td >
 					<label class="styled_select styled_select_user_time">
-						<select name="user_level">
+						<select name="user_level" id="user_level">
 							<option>선택하세요
 							<option>상
 							<option>중
@@ -90,16 +90,16 @@
 						<select name="user_time" id="user_time">
 							<option>선택하세요
 							<option>월수(18:30~20:00)
-							<option>월수(20:00-21:30)
-							<option>화목(18:30-20:00)
-							<option>화목(20:00-21:30)
+							<option>월수(20:00~21:30)
+							<option>화목(18:30~20:00)
+							<option>화목(20:00~21:30)
 						</select>
 					</label>
 				</td>
 			</tr>
 			<tr >
 				<td height="250px" >지원동기</br>및 목표</td>
-				<td colspan=5 ><input style="height:100%; width:100%;" type="text" name="user_content_application" id="user_content_application"></td>
+				<td colspan=5 ><textarea style="height:100%; width:100%;" type="text" name="user_content_application" id="user_content_application"></textarea></td>
 			</tr>
 		</table>
 	</div>
@@ -107,8 +107,9 @@
 	<!--버튼-->
 	<div class="row tutee_apply_footer" align="center">
 			<input type="button" value="뒤로가기" onclick="javascript:history.back();">
-			<input type="submit" value="작성완료">
+			<input type="submit" value="작성완료" onclick="return confirming_tutee_application();" >
 	</div>
+	<input type="hidden" name="user_id" value="<?=$login_data['user_id']?>" />
 	<input type="hidden" name="user_number" value="<?=$login_data['user_number']?>" />
 	<input type="hidden" name="user_department" value="<?=$login_data['user_department']?>" />
 	<input type="hidden" name="user_name" value="<?=$login_data['user_name']?>" />
@@ -116,6 +117,6 @@
 	<input type="hidden" name="user_number" value="<?=$login_data['user_number']?>" />
 	<input type="hidden" name="user_phonenumber" value="<?=$login_data['user_phonenumber']?>" />
 	<input type="hidden" name="user_email" value="<?=$login_data['user_email']?>" />
-	<input type="hidden" name="user_application_subject" value="tuti" />
+	<input type="hidden" name="user_application_subject" value="tutee" />
 </div>
 </form>	

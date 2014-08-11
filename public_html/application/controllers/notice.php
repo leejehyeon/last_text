@@ -9,6 +9,7 @@ class Notice extends CI_Controller {
 		$this -> load -> model('ci_board');
 		$this -> load -> model('reply_ci_board');
 		$this -> load -> helper('alert');
+		$this -> load -> helper('url');
 		$this -> load -> library('pagination');		
 	}
 
@@ -24,8 +25,9 @@ class Notice extends CI_Controller {
 			$data['category_title'] = $title;
 			$data['menu_title'] = "notice";	
 			$view_name = '/notice/' . $title;
-			
 			$data['view_name']=$view_name;
+			
+			
 		$this -> load -> view('header', $data);
 		$this -> load -> view('sidebar', $data);
 		/*
@@ -114,7 +116,7 @@ class Notice extends CI_Controller {
 			 * 게시판 번호, 제목, 작성자, 작성일, 조회수를 list형식으로 뿌려준다.
 			 */ 
 		}else{
-			
+
 			$board_type_array = array('board_type'=> $data['category_title']);
 			//페이징 처리
 			$config['base_url']= 'http://tutor.thecakehouse.co.kr/index.php/notice/whole_notice/';
@@ -122,6 +124,20 @@ class Notice extends CI_Controller {
 			$config['per_page'] = 5;
 			$config['num_links'] = 5;
 			$config['uri_segment'] = 3;
+			$config['use_page_numbers'] = TRUE;
+
+			//페이징 처리 수정 8_08 Jay
+			$config['prev_tag_open'] = '<div class="prev_tag_div">';
+			$config['prev_tag_close'] = '</div>';
+			$config['next_tag_open'] = '<div class="next_tag_div">';
+			$config['next_tag_close'] = '</div>';
+			$config['num_tag_open'] = '<div class="num_tag_open">';
+			$config['num_tag_close'] = '</div>';
+			$config['prev_link'] = '&nbsp&nbsp&nbsp&nbsp';
+			$config['next_link'] = '&nbsp&nbsp&nbsp&nbsp';
+			$config['cur_tag_open'] = '<div class="cur_tag_div">';
+			$config['cur_tag_close'] = '</div>';
+			////////////////////////////////////////////////
 			
 			$this -> pagination -> initialize($config); 
 			
@@ -132,7 +148,6 @@ class Notice extends CI_Controller {
 				$start = ($page-1) * $config['per_page'];
 			}
 			$limit = $config['per_page'];
-			
 			$data['page'] = $page;
 			$data['list'] = $this -> ci_board -> get_board_all($board_type_array,$this -> uri -> segment(3),'',$start,$limit);
 			$data['get_list_count'] = $config['total_rows'];
@@ -184,10 +199,41 @@ class Notice extends CI_Controller {
 		
 		}else{
 			$board_type_array = array('board_type'=> $data['category_title']);
-			$get_list = $this -> ci_board -> get_board_all($board_type_array);
-			$get_list_count = $this -> ci_board -> get_all_board_count($board_type_array);
-			$data['get_list'] = $get_list;
-			$data['get_list_count'] = $get_list_count;
+			//페이징 처리
+			$config['base_url']= 'http://tutor.thecakehouse.co.kr/index.php/notice/class_notice/';
+			$config['total_rows'] = $this -> ci_board -> get_board_all($board_type_array,$this -> uri -> segment(3), 'count');
+			$config['per_page'] = 5;
+			$config['num_links'] = 2;
+			$config['cur_page'] = 1;
+			$config['uri_segment'] = 3;
+			$config['first_link'] = TRUE;
+			$config['last_link'] = TRUE;
+
+			//페이징 처리 수정 8_08 Jay
+			$config['prev_tag_open'] = '<div class="prev_tag_div">';
+			$config['prev_tag_close'] = '</div>';
+			$config['next_tag_open'] = '<div class="next_tag_div">';
+			$config['next_tag_close'] = '</div>';
+			$config['num_tag_open'] = '<div class="num_tag_open">';
+			$config['num_tag_close'] = '</div>';
+			$config['prev_link'] = '&nbsp&nbsp&nbsp&nbsp';
+			$config['next_link'] = '&nbsp&nbsp&nbsp&nbsp';
+			$config['cur_tag_open'] = '<div class="cur_tag_div">';
+			$config['cur_tag_close'] = '</div>';
+			////////////////////////////////////////////////
+			
+			$this -> pagination -> initialize($config); 
+			
+			$page = $this -> uri -> segment(3,1);
+			if( $page > 1){
+				$start = (($page/$config['per_page'])) * $config['per_page'];
+			}else{
+				$start = ($page-1) * $config['per_page'];
+			}
+			$limit = $config['per_page'];
+			$data['page'] = $page;
+			$data['list'] = $this -> ci_board -> get_board_all($board_type_array,$this -> uri -> segment(3),'',$start,$limit);
+			$data['get_list_count'] = $config['total_rows'];
 			$this -> load -> view($view_name, $data);
 		}
 	}

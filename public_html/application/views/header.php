@@ -22,39 +22,18 @@
 		<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 	</head>
 	<body>
-		<script src="jquery.js"></script>
 		<div class="container">
-			<!--
+			
 			<div id="Header_div_first">
-				<div class="row">
-					<?if($this->session->userdata('login_data')!=NULL){?>
-					<div class="header_Topmenu_div">
-						<?echo $login_data['user_id']?>님 환영합니다!
-						<a href="/index.php/mypage/modify">
-						<input type="button" value="MY PAGE" class="Loginprocess_button">
-						</a>
-						<a href="/index.php/login_process/logout">
-						<input type="button" value="LOGOUT"/ class="Loginprocess_button">
-						</a>
-					</div>
-					<?}else{ ?>
-					<div class="header_Topmenu_div">
 
-						<form method="post" action="/index.php/login_process/login_id_pw_check">
-							<span>ID</span>
-							<input type="text" name="form_id" class="userdata_input_box">
-							<span>PW</span>
-							<input type="password" name="form_pw" class="userdata_input_box">
-							<input type="submit" value="LOGIN"/ class="Loginprocess_button">
-							<a href="/index.php/login_process/search_id_pwd">ID/PW 찾기</a>
-							<a href="/index.php/login_process/sign_up">회원가입</a>
-						</form>
-
+			<div class="header_Topmenu_div">
+						<p>
+							<a href='/index.php'>HOME</a><span>|</span>
+							<a href='http://tutor.thecakehouse.co.kr/index.php/login_process/login'>LOGIN</a><span>|</span>
+							<a href='http://tutor.thecakehouse.co.kr/index.php/mypage/modify'>MY PAGE</a>
+						</p>
 					</div>
-					<?} ?>
-				</div>
 			</div>
-		-->
 			<div id="Header_div_second">
 				<div class="row">
 					<div class="col-xs-2">
@@ -76,8 +55,18 @@
 									</li>
 								</ul>
 							</li>
+							<li>|</li>
 							<li class="dropdown">
-								<a href="/index.php/tutor_tuti_application/attendance.php" class="dropdown-toggle">CLASS
+								<a href="/index.php/lesson/
+								<?if(($this->session->userdata('login_data')!=NULL)){
+									if($login_data['grade']=='3'){?>
+										 my_attendance/<?echo date("Y/m")?>
+									<?}else if($login_data['grade']=='2'){?>
+										attendance_record/<?echo date("Y/m/d")?>
+									<?}else if($login_data['grade']=='1'){?>
+										attendance_record_admin/
+									<?}else{};
+								}?>" class="dropdown-toggle">CLASS
 								<p>
 									수업
 								</p></a>
@@ -87,9 +76,6 @@
 								<ul class="dropdown-menu">
 									<li>
 										<a href="/index.php/lesson/my_attendance/<?echo date("Y/m"); ?>">내 출결보기</a>
-									</li>
-									<li>
-										<a href="/index.php/lesson/my_question">내 질문보기</a>
 									</li>
 								</ul>
 								<?}else if($login_data['grade']=='2'){ ?>
@@ -119,8 +105,9 @@
 								<?}else{} ?>
 								<?}else{} ?>
 							</li>
+							<li>|</li>
 							<li class="dropdown">
-								<a href="/index.php/question_and_answer/questioning" class="dropdown-toggle">Q&A
+								<a href="/index.php/question_and_answer/questioning_and_answering" class="dropdown-toggle">Q&A
 								<p>
 									질의응답
 								</p></a>
@@ -129,28 +116,20 @@
 								?>
 								<ul class="dropdown-menu">
 									<li>
-										<a href="/index.php/question_and_answer/questioning">질문하기</a>
-									</li>
-									<li>
-										<a href="/index.php/question_and_answer/answering">답변하기</a>
+										<a href="/index.php/question_and_answer/questioning_and_answering">질문 및 답변하기</a>
 									</li>
 								</ul>
 								<?}else if($login_data['grade']=='2'){ ?>
 								<ul class="dropdown-menu">
 									<li>
-										<a href="/index.php/question_and_answer/questioning">질문하기</a>
-									</li>
-									<li>
-										<a href="/index.php/question_and_answer/answering">답변하기</a>
+										<a href="/index.php/question_and_answer/questioning_and_answering">질문 및 답변하기</a>
 									</li>
 								</ul>
 								<?}else if($login_data['grade']=='1'){ ?>
 								<ul class="dropdown-menu">
 									<li>
-										<a href="/index.php/question_and_answer/questioning">질문하기</a>
+										<a href="/index.php/question_and_answer/questioning_and_answering">질문 및 답변하기</a>
 									</li>
-									<li>
-										<a href="/index.php/question_and_answer/answering">답변하기</a>
 									</li>
 								</ul>
 								<?}else{} ?>
@@ -189,6 +168,9 @@
 							<?if($this->session->userdata('login_data')!=NULL){?>
 							<?if($login_data['grade']=='1'){?>
 							<!-- 메뉴 5ea로 변경될 때 CSS 수정부분 -->
+							<li>
+								<p>|</p>	
+							</li>
 							<li  class="dropdown">
 								<a href="/index.php/administration/tutee" class="dropdown-toggle">ADMIN
 								<p>
@@ -213,9 +195,10 @@
 				</div>
 			</div>
 		
-			<div id="Header_div_third">
+<!--			<div id="Header_div_third">
 				<div>
-					<a href='http://syjeon.ancle.kr/index.php/login_process/login'><input type='button' value="LOGIN"></a>	
-					<a href='http://syjeon.ancle.kr/index.php/mypage/modify'><input type='button' value="MY PAGE"></a>
+					<a href='http://tutor.thecakehouse.co.kr/index.php/login_process/login'><input type='button' value="LOGIN"></a>	
+					<a href='http://tutor.thecakehouse.co.kr/index.php/mypage/modify'><input type='button' value="MY PAGE"></a>
 				</div>	
 			</div>
+-->

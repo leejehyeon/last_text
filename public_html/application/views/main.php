@@ -19,7 +19,7 @@
 							<img src="/static/img/Notice_icon.png"></a>
 						</th>
 					</tr>
-					<?foreach($notice_list5 as $lt){?>
+					<?foreach($notice_list3 as $lt){?>
 						<tr>
 							<td>
 								<a href="http://tutor.thecakehouse.co.kr/index.php/notice/whole_notice?req_id=<?echo $lt -> board_id; ?>"><?echo $lt -> subject; ?></a>
@@ -39,15 +39,15 @@
 							<img src='/static/img/Notice_title_class.png'>
 						</th>
 						<th>
-							<a href="http://tutor.thecakehouse.co.kr/index.php/notice/whole_notice">
+							<a href="http://tutor.thecakehouse.co.kr/index.php/notice/class_notice">
 							<span>more</span>
 							<img src="/static/img/Notice_icon.png"></a>
 						</th>
 					</tr>
-					<?foreach($notice_list5 as $lt){?>
+					<?foreach($class_notice_list3 as $lt){?>
 						<tr>
 							<td>
-								<a href="http://tutor.thecakehouse.co.kr/index.php/notice/whole_notice?req_id=<?echo $lt -> board_id; ?>"><?echo $lt -> subject; ?></a> 
+								<a href="http://tutor.thecakehouse.co.kr/index.php/notice/class_notice?req_id=<?echo $lt -> board_id; ?>"><?echo $lt -> subject; ?></a> 
 							</td>
 							<td>
 								<?echo substr(($lt->reg_date),0,10);?>
@@ -71,7 +71,9 @@
 					학생이</p>
 					<p>선배에게 배웁니다.</p>  
 					<p>
-						<a href="http://syjeon.ancle.kr/index.php/tutor_tutee_application/tutee"><img src="/static/img/tutor_apply_icon.png" onMouseOver="this.src='/static/img/tutor_apply_icon_hover.png'" onMouseOut="this.src='/static/img/tutor_apply_icon.png'"></a>
+							<img src="/static/img/tutor_apply_icon2.png" <?if($this->session->userdata('login_data')==null){?> onclick="tutee();" 
+							<?}else if($login_data['grade'] == "1" || $login_data['grade'] == "2" || $login_data['grade'] == "3"){?>onclick="grade_isset('<?echo $login_data['grade'];?>')"  
+							<?}else{?> onclick="tutee_login('<?echo $login_data['user_application']?>','<?echo $login_data['user_application_subject']?>');"<?}?>  onMouseOver="this.src='/static/img/tutor_apply_icon2_hover.png'" onMouseOut="this.src='/static/img/tutor_apply_icon2.png'">
 					</p>
 				</div>
 			</div>
@@ -87,7 +89,9 @@
 					학습 도우미로서</p>
 					<p>이끌어 줍니다.</p>
 					<p>
-						<a href="http://syjeon.ancle.kr/index.php/tutor_tutee_application/tutor" ><img src="/static/img/tutor_apply_icon.png" onMouseOver="this.src='/static/img/tutor_apply_icon_hover.png'" onMouseOut="this.src='/static/img/tutor_apply_icon.png'"></a>
+							<img src="/static/img/tutor_apply_icon2.png" <?if($this->session->userdata('login_data')==null){?> onclick="tutor();" 
+							<?}else if($login_data['grade'] == "1" || $login_data['grade'] == "2" || $login_data['grade'] == "3"){?>onclick="grade_isset('<?echo $login_data['grade'];?>')"  
+							<?}else{?> onclick="tutor_login('<?echo $login_data['user_application']?>','<?echo $login_data['user_application_subject']?>');"<?}?> onMouseOver="this.src='/static/img/tutor_apply_icon2_hover.png'" onMouseOut="this.src='/static/img/tutor_apply_icon2.png'">
 					</p>
 				</div>			
 			</div>
@@ -107,9 +111,15 @@
 						</a>
 					</p>
 					<p>
-						<img src='/static/img/Main_row_loginicon_attendance.png'>
-						<img src='/static/img/Main_row_loginicon_working.png'>
-						<img src='/static/img/Main_row_loginicon_reinforce.png'>
+						<a href="/index.php/lesson/attendance_record_admin">
+							<img src='/static/img/Main_row_loginicon_attendance.png'>
+						</a>
+						<a href="/index.php/lesson/daily_journal_admin/<?echo date("Y/m");?>">
+							<img src='/static/img/Main_row_loginicon_working.png'>
+						</a>
+						<a href="/index.php/lesson/enrichment_study_admin">
+							<img src='/static/img/Main_row_loginicon_reinforce.png'>
+						</a>
 						<a href="/index.php/mypage/modify">
 							<img src='/static/img/Main_row_loginicon_mypage.png'>
 						</a>
@@ -128,9 +138,15 @@
 								</span>
 							</p>
 							<p>
-								<img src='/static/img/Main_row_loginicon_attendance.png'>
-								<img src='/static/img/Main_row_loginicon_working.png'>
-								<img src='/static/img/Main_row_loginicon_reinforce.png'>
+								<a href="/index.php/lesson/attendance_record/<?echo date("Y/m/d"); ?>">
+									<img src='/static/img/Main_row_loginicon_attendance.png'>
+								</a>
+								<a href="/index.php/lesson/daily_journal/<?echo date("Y/m"); ?>">
+									<img src='/static/img/Main_row_loginicon_working.png'>
+								</a>
+								<a href="/index.php/lesson/enrichment_study">
+									<img src='/static/img/Main_row_loginicon_reinforce.png'>
+								</a>
 								<a href="/index.php/mypage/modify">
 									<img src='/static/img/Main_row_loginicon_mypage.png'>
 								</a>
@@ -147,7 +163,9 @@
 								</a>
 							</p>
 							<p>
+								<a href="/index.php/lesson/my_attendance/<?echo date("Y/m"); ?>">
 								<img class="special_tutee_img" src='/static/img/Main_row_loginicon_attendance2.png'>
+								</a>
 								<a href="/index.php/mypage/modify">
 									<img src='/static/img/Main_row_loginicon_mypage.png'>
 								</a>
@@ -182,7 +200,20 @@
 			
 			<!--------- customer Part -------------------->
 			<div class="Main_row_custmoer">
-				<img src='/static/img/Main_row_Customer'>
+				<p>
+					<span>CUSTOMER</span> CENTER
+				</p>
+				<p>
+					<img src='/static/img/main_row_third_picture2.png'>
+					<span>이메일</span> skyb4@koreatech.ac.kr
+				</p>
+				<p>
+					<img src='/static/img/main_row_third_picture2.png'>
+					<span>문의전화</span> 041-640-8550~1
+				</p>
+				<p>
+					메일로 문의사항을 남겨주세요
+				</p>
 			</div>		
 		</div>
 		

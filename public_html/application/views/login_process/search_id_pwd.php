@@ -10,7 +10,7 @@
 			<div class='id_seach'>
 				<table>
 					<tr>
-						<td><p class="search_list_text">이름</p></td>
+						<td width="90px"><p class="search_list_text">이름</p></td>
 						<td><input class="search_list" type='text' name='form_name'/></td>
 					</tr>
 					<tr>
@@ -19,7 +19,7 @@
 					</tr>
 					<tr>
 						<td><p class="search_list_text">이메일</p></td>
-						<td><input class="search_list input_text_91" type='text' name='form_email1'/><p class="email_middle">@</p><input class="search_list input_text_140" type='text' name='form_email2'/></td>
+						<td><input class="search_list" type='text' name='form_email1' style="width: 90px;"/> @ <input type='text' name='form_email2' style="width: 138px;"/></td>
 						<!--<td rowspan='2'><input class="id_search_button" type='submit' value="아이디 찾기"></td>-->
 					</tr>
 				</table>
@@ -35,7 +35,7 @@
 			<div class='homepoldguide_input_style_public'>
 				<table>
 					<tr>
-						<td><p class="search_list_text">아이디</p></td>
+						<td width="110px"><p class="search_list_text">아이디</p></td>
 						<td><input class="search_list" type='text' name='form_id'/></td>
 					</tr>
 					<tr>
@@ -44,7 +44,7 @@
 					</tr>
 					<tr>
 						<td><p class="search_list_text">이메일</p></td>
-						<td><input class="search_list input_text_91" type='text' name='form_email1'/><p class="email_middle">@</p><input class="search_list input_text_140" type='text' name='form_email2'/></td>
+						<td><input class="search_list" type='text' name='form_email1' style="width: 91px;"/> @ <input type='text' name='form_email2' style="width: 138px;"/></td>
 						<!--<td rowspan='2'><input class="id_search_button" type='submit' value="비밀번호 찾기"></td>-->
 					</tr>
 				</table>

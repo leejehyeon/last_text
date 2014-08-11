@@ -1,11 +1,11 @@
-<div class="col-xs-7">
-	<table>
+<div class="col-xs-8">
+	<table class="whole_notice">
 		<thead>
 			<tr>
-				<th scope="col" style="width:80px;">번호</th>
-				<th scope="col" style="width:200px;">제목</th>
-				<th scope="col" style="width:80px;">작성자</th>
-				<th scope="col" style="width:120px;">작성일</th>
+				<th scope="col">번호</th>
+				<th scope="col">제목</th>
+				<th scope="col">작성자</th>
+				<th scope="col">작성일</th>
 				<th scope="col">조회수</th>
 			</tr>
 		</thead>
@@ -22,9 +22,9 @@
 			foreach($list as $lt){
 				?>
 				<tr>
-					<th scope="row">
+					<td scope="row">
 						<? echo $id;?>						
-					</th>
+					</td>
 					<td>
 						<a href="/index.php/notice/class_notice/<?echo $this -> uri ->segment(3)?>?req_id=<? echo $lt->board_id?>"><? echo $lt->subject;?></a>
 					</td>
@@ -43,20 +43,47 @@
 				}
 			?>
 		</tbody>
-		<tfoot>
-			<tr>
-				<td>
-					<?echo $this -> pagination -> create_links();?>
-				</td>
-			</tr>
-			<?if($login_data['grade']==1){?>
-			<tr>
-				<td>
-					<a href="/index.php/notice/class_notice/write_board">글쓰기</a>
-				</td>
-			</tr>
-			<?}else{}?>
-		</tfoot>
 	</table>
+			<?if($login_data['grade']==1){?>
+				<div class="whole_notice_write">
+					<a href="/index.php/notice/class_notice/write_board"><img src='/static/img/Notice_write_icon.png'></a>
+				</div>
+			<?}else{}?>
+				<div class="whole_notice_create_links">
+					<?echo $this -> pagination -> create_links();?>
+				</div>
+				<!-- pagination
+				<?	
+					if($this -> uri -> segment(3) == 0){
+						$k = 0;
+					}else{
+					$k = $this -> uri -> segment(3);
+					}
+					$j = 4;
+					$y = 20;
+				?>
+				<ul class="pagination pagination-sm">
+  					<li><a href="http://tutor.thecakehouse.co.kr/index.php/notice/class_notice/<?if($this -> uri -> segment(3)-5 == 0){}else if($this -> uri -> segment(3)-5 < 0){}else{echo $this -> uri -> segment(3)-5;}?>"><</a></li>
+  					<?
+  						for($i=$k;$i<=$j;$i++){
+  						if($i == 0){
+  							if($this -> uri -> segment(3) == ""){?>
+  								<li class="active"><a href="http://tutor.thecakehouse.co.kr/index.php/notice/class_notice/"><?echo $i+1;?></a></li>
+  							<?}else{?>
+  							<li><a href="http://tutor.thecakehouse.co.kr/index.php/notice/class_notice/"><?echo $i+1;?></a></li>
+  						<?}
+							}else{
+  							if($this -> uri -> segment(3) == $i*5){?>
+  								<li class="active"><a href="http://tutor.thecakehouse.co.kr/index.php/notice/class_notice/<?echo $i*5;?>"><?echo $i+1;?></a></li>
+  							<?}else{?>
+  								<li><a href="http://tutor.thecakehouse.co.kr/index.php/notice/class_notice/<?echo $i*5;?>"><?echo $i+1;?></a></li>
+  					<?}
+							}
+					}
+					?>
+					
+					<li><a href="http://tutor.thecakehouse.co.kr/index.php/notice/class_notice/<?echo $this -> uri -> segment(3)+5?>">></a></li>
+  					-->
+</ul>
 </div>
 </div>

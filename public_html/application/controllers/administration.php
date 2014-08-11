@@ -6,6 +6,9 @@ class Administration extends CI_Controller {
 		parent::__construct();
 		$this -> load -> database();
 		$this -> load -> library('session');
+		$this -> load -> model('attendance');
+		$this -> load -> model('tutor_tutee');
+		$this -> load -> model('member');
 		$this -> load -> helper('alert');
 		$this -> load -> helper('url');
 	}
@@ -30,24 +33,58 @@ class Administration extends CI_Controller {
 		$this -> load -> view('footer');
 	}
 	public function tutee($view_name, $data){
-		$this -> load -> model('tutor_tutee');
-		$get_subject_list = $this -> tutor_tutee -> get_subject_list();
-		$data['get_subject_list'] = $get_subject_list;
-		$get_list = $this -> tutor_tutee -> tutee_list();
-		$data['get_list'] = $get_list;
+		$get_tutee_list = $this -> member -> get_tutee_list();
+		$get_count_tutee = $this -> member -> get_count_tutee();
+		
+		$data['get_tutee_list'] = $this -> member -> get_tutee_list();
+		$data['get_count_tutee'] = $this -> member -> get_count_tutee();
+		$data['get_subject_list'] = $this -> tutor_tutee -> get_subject_list();
+		$data['get_list'] = $this -> tutor_tutee -> tutee_list();
+		$data['get_sub_list'] = $this -> tutor_tutee -> select_list_sub();
+		
+		$data['get_subject'] = $this -> attendance -> get_subject_all_data();
 		$this -> load -> view($view_name, $data);
 	}
 	
 	public function tutor($view_name, $data){
-		$this -> load -> model('tutor_tutee');
-		$get_subject_list = $this -> tutor_tutee -> get_subject_list();
-		$data['get_subject_list'] = $get_subject_list;
-		$get_list = $this -> tutor_tutee -> tutor_list();
-		$data['get_list'] = $get_list;
+		$get_tutor_list = $this -> member -> get_tutor_list();
+		$get_count_tutor = $this -> member -> get_count_tutor();
+		
+		$data['get_tutor_list'] = $this -> member -> get_tutor_list();
+		$data['get_count_tutor'] = $this -> member -> get_count_tutor();
+		$data['get_subject_list'] = $this -> tutor_tutee -> get_subject_list();
+		$data['get_list'] = $this -> tutor_tutee -> tutor_list();
+		$data['get_sub_list'] = $this -> tutor_tutee -> select_list_sub();
+		
+		$data['get_subject'] = $this -> attendance -> get_subject_all_data();
 		$this -> load -> view($view_name, $data);
 	}
+	
+	public function tutee_grade_up($view_name, $data){
+		$update_data = array('user_id' => $this -> input -> post('user_id'),
+							 'subject_id' => $this -> input -> post('user_subject'),
+							 'user_level' => $this -> input -> post('user_divide'),
+							 'user_application_subject' => $this -> input -> post('user_application_subject'),
+							 'grade' => "3"
+							);
+		$this -> member -> tutee_grade_up($update_data);
+		$delete_data = array('user_id' => $this -> input -> post('user_id')
+							);	
+		$this -> tutor_tutee -> tutee_delete($delete_data);
+		alert('등급을 올렸습니다.', '/index.php/administration/tutee');
+	}
+	
 	public function tutor_grade_up($view_name, $data){
-		$this -> load -> model('tutor_tutee');
-		alert_url('글이 등록되었습니다.', '/index.php', $data['view_name']);
+		$update_data = array('user_id' => $this -> input -> post('user_id'),
+							 'subject_id' => $this -> input -> post('user_subject'),
+							 'user_level' => $this -> input -> post('user_divide'),
+							 'user_application_subject' => $this -> input -> post('user_application_subject'),
+							 'grade' => "2"
+							);
+		$this -> member -> tutor_grade_up($update_data);
+		$delete_data = array('user_id' => $this -> input -> post('user_id')
+							);		
+		$this -> tutor_tutee -> tutor_delete($delete_data);
+		alert('등급을 올렸습니다.', '/index.php/administration/tutor');
 	}
 }

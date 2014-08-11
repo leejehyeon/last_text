@@ -1,6 +1,47 @@
-<div class="col-xs-7">
-<form class="form-horizontal" method="post" action="/index.php<?echo $view_name?>/update_ok?req_id=<?=$list['board_id']?>" style = "font-size: 13px">
-    <div class="form-group">
+<div class="col-xs-8">
+	<form class="form-horizontal" method="post" action="/index.php<?echo $view_name?>/update_ok?req_id=<?=$list['board_id']?>" style = "font-size: 13px">
+  	    <table class="notice_modify_board">
+	    	<tr>
+	    		<td>
+	    			제목
+	    		</td>
+	    		<td colspan=3>
+		            <input type="text" id="subject" name="subject" value="<?=$list['subject']?>">    			
+	    		</td>    		
+	    	</tr>
+	    	<tr>
+	    		<td>
+	    			작성자	
+	    		</td>
+	    		<td>
+	    			<?echo $login_data['user_name'];?>
+	    		</td>
+	    		<td>
+	    			등록일
+	    		</td>
+	    		<td>
+	    			<?echo substr(($list['reg_date']),0,10)?>
+	    		</td>
+	    	</tr>
+	    	<tr>
+	    		<td>
+	    			내용
+	    		</td>
+	    		<td colspan=3>
+	    			<textarea type="text" id = "text_body" name="contents" value="<?=$list['contents'] ?>"></textarea>
+	    		</td>    		
+	    	</tr>
+	    </table>
+	    <div class="notice_modify_footer">
+        	<input type="hidden" name='req_id' value="<?=$list['board_id'] ?>" />
+            <button type="button" onclick="history.back()">취소</button>
+            <button type="submit" class="write_button">수정완료</button>
+	    </div>    
+  
+  
+  
+  <!--
+    <table class="notice_modify_board">
         <label for="text_title" class="col-xs-1 control-label">제목</label>
         
         <div class="col-xs-9">
@@ -26,6 +67,7 @@
             <button type="button" onclick="history.back()">취소</button>
         </div>
     </div>
+   -->
 </form>
 </div>
 </div>

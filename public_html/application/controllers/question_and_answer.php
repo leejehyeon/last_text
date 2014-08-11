@@ -9,24 +9,23 @@ class Question_and_answer extends CI_Controller {
 		$this -> load -> library('session');
 		$this -> load -> helper('alert');
 		$this -> load -> helper('url');
+		$this -> load -> library('pagination');	
 	}
 
-	public function _remap($title, $name) {
+	public function _remap($title,$name) {
 		$req_id = $this -> input -> get('req_id');
-		$title_name = implode(",", $name);
+		$title_name= implode(",", $name);
 		$login_data = $this -> session -> userdata('login_data');
 
 		if (isset($login_data))
 			$data['login_data'] = $login_data;
-
 			$data['req_id'] = $req_id;
-
-		$data['name'] = $title_name;
-		$data['category_title'] = $title;
-		$data['menu_title'] = "question_and_answer";
-		$view_name = '/question_and_answer/' . $title;
-		$data['view_name'] = $view_name;
-
+			$data['category_title'] = $title;
+			$data['name']=$title_name;
+			$data['menu_title'] = "question_and_answer";
+			$view_name = '/question_and_answer/' . $title;
+			$data['view_name'] = $view_name;
+			
 		$this -> load -> view('header', $data);
 		$this -> load -> view('sidebar', $data);
 		/*
@@ -39,10 +38,7 @@ class Question_and_answer extends CI_Controller {
 		$this -> load -> view('footer');
 	}
 	
-	private function questioning($view_name,$data){
-		$this -> load -> view($view_name, $data);
-	}
-	private function answering($view_name,$data){
+	private function questioning_and_answering($view_name,$data){
 		if($data['req_id']!=NULL){
 			if($data['name']=="update_board"){
 				$board_id_type_array = array('board_type'=> $data['category_title'],'board_id' => $data['req_id']);
@@ -62,7 +58,8 @@ class Question_and_answer extends CI_Controller {
 				$this -> ci_board -> delete_board($board_id_type_array);
 				alert_url('글이 삭제되었습니다.', '/index.php', $data['view_name']);
 				
-			}else{
+			}
+			else{
 			$board_id_type_array = array('board_type'=> $data['category_title'],'board_id' => $data['req_id']);
 			$data['list']=$this -> ci_board -> update_hit($board_id_type_array);
 			$this -> load -> view('notice/view_board',$data);
@@ -79,7 +76,7 @@ class Question_and_answer extends CI_Controller {
 										 'user_name' => $this -> input -> post('user_name'));
 			$this -> ci_board -> insert_board($board_sign_up_array);
 			alert_url('글이 등록되었습니다.', '/index.php', $data['view_name']);
-		
+			
 		}else{
 			$board_type_array = array('board_type'=> $data['category_title']);
 			$get_list = $this -> ci_board -> get_board_all($board_type_array);

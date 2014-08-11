@@ -53,5 +53,31 @@ class Tutor_tutee extends CI_Model {
 		$this -> db -> where('user_number', $update_application['user_number']);
 		return $this -> db -> update('member', $update_appliation_subject);
 	}
-}
+	
+	public function select_tutee_by_id($login_array){
+		return $this -> db -> get_where('tutee_application',$login_array) -> row_array();
+	}
+	
+	public function select_tutor_by_id($login_array){
+		return $this -> db -> get_where('tutor_application',$login_array) -> row_array();
+	}
+	
+	public function update_tutee($update_array){
+		$this -> db -> where('user_id', $update_array['user_id']);
+		return $this -> db -> update('tutee_application', $update_array);
+	}
+	
+	public function update_tutor($update_array){
+		$this -> db -> where('user_id', $update_array['user_id']);
+		return $this -> db -> update('tutor_application', $update_array);
+	}
+	
+	public function tutee_delete($delete_data){
+		return $this -> db -> delete('tutee_application', $delete_data);
+	}
+
+	public function tutor_delete($delete_data){
+		return $this -> db -> delete('tutor_application', $delete_data);
+	}
+}	
 ?>

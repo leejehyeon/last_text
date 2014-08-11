@@ -1,4 +1,40 @@
-<!--<div class="col-xs-7">-->
+<script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$(".grade").each(function() {
+			$(this).wrap("<p class='grade_wrapper select-wrapper'></p>");
+			$(this).after("<p class='holder'></p>");
+		});
+		$(".grade").change(function() {
+			var selectedOption = $(this).find(":selected").text();
+			$(this).next(".holder").text(selectedOption);
+		}).trigger('change');
+		$(".specialty_list").each(function() {
+			$(this).wrap("<p class='specialty_wrapper select-wrapper'></p>");
+			$(this).after("<p class='holder'></p>");
+		});
+		$(".specialty_list").change(function() {
+			var selectedOption = $(this).find(":selected").text();
+			$(this).next(".holder").text(selectedOption);
+		}).trigger('change');
+		$(".phone_first").each(function() {
+			$(this).wrap("<p class='phone_wrapper select-wrapper'></p>");
+			$(this).after("<p class='holder'></p>");
+		});
+		$(".phone_first").change(function() {
+			var selectedOption = $(this).find(":selected").text();
+			$(this).next(".holder").text(selectedOption);
+		}).trigger('change');
+		$(".email_third").each(function() {
+			$(this).wrap("<p class='email_third_wrapper select-wrapper'></p>");
+			$(this).after("<p class='holder'></p>");
+		});
+		$(".email_third").change(function() {
+			var selectedOption = $(this).find(":selected").text();
+			$(this).next(".holder").text(selectedOption);
+		}).trigger('change');
+	})
+</script><!--<div class="col-xs-7">-->
 <!-- homepageguide detailpage join start -->
 <div class="sign_up_page">
 <!--<div class='join_member' style="font-family: '굴림'; ">-->
@@ -47,14 +83,12 @@
 								<option>4학년
 							</select>
 							</div>-->
-							<label>
-							<select class="student_grade" name="user_year">
+							<select class="custom_select grade" name="user_year">
 								<option>1학년
 								<option>2학년
 								<option>3학년
 								<option>4학년
 							</select>
-							</label>
 						</td>
 						<td><p class="help-block"><?php echo form_error("user_year"); ?></p></td>
 					</tr>
@@ -65,8 +99,7 @@
 					</tr>
 					<tr>
 						<td><p class="search_list_text">학과</p></td>
-						<td>
-							<label><select class="specialty_list"name="user_department">
+						<td><select class="custom_select specialty_list"name="user_department">
 								<option>기계공학부
 								<option>메카트로닉스공학부
 								<option>전기전자통신공학부
@@ -75,21 +108,19 @@
 								<option>건축공학부
 								<option>에너지신소재화학공학부
 								<option>산업경영학부
-							</select>
-							</label></td>
+							</select></td>
 					</tr>
 					<tr>
 						<td><p class="search_list_text">핸드폰 번호</p></td>
-						<td>
-							<label>
-							<select class="phone_first" name="user_phonenumber1" id="user_phonenumber1">
-								<option>010</option>
-								<option>011</option>
-								<option>016</option>
-								<option>018</option>
-								<option>019</option>
+						<td><label>
+							<select class="custom_select phone_first" name="user_phonenumber1" id="user_phonenumber1">
+								<option>010
+								<option>011
+								<option>016
+								<option>018
+								<option>019
 							</select>
-							</label><span class="phone_middle">―</span><input class="phone_second" type="text" name="user_phonenumber2" id="user_phonenumber2" maxlength="4" size="4"><span class="phone_middle">―</span><input class="phone_second"type="text" name="user_phonenumber3" id="user_phonenumber3" maxlength="4" size="4"></td>
+							</label><span class="style_none">―</span><input class="phone_second" type="text" name="user_phonenumber2" id="user_phonenumber2" maxlength="4" size="4"><span class="style_none">―</span><input class="phone_second"type="text" name="user_phonenumber3" id="user_phonenumber3" maxlength="4" size="4"></td>
 						<input type="hidden" id="user_phonenumber" name="user_phonenumber" value="">
 						<td><p class="help-block"><?php echo form_error("user_phonenumber"); ?></p></td>
 					</tr>
@@ -98,14 +129,12 @@
 						<td><input class="email_first" type="text" name="user_email1" id="user_email1" maxlength="9" size="9"><p class="email_middle">@</p><input class="email_second"type="text" name="user_email2" id="user_email2" value="직접입력" onFocus = "this.value=''">
 					<input type="hidden" name="nt_0004" value="직접입력">
 					 <input type="hidden" name="nt_0001" value="naver.com"> <input type="hidden" name="nt_0002" value="daum.net"> <input type="hidden" name="nt_0003" value="google.com">
-					 <label>
-					 <select class="email_third" onchange="selectMatch(this);">
+					 <select class="custom_select email_third" onchange="selectMatch(this);">
 						<option value="nt_0004">선택</option>
 						<option value="nt_0001">naver.com</option>
 						<option value="nt_0002">daum.net</option>
 						<option value="nt_0003">google.com</option>
 					 </select>
-					 </label>
 					 </td>
 					 <input type="hidden" id="user_email" name="user_email" value="">
 		
