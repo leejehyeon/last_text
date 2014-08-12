@@ -26,7 +26,16 @@
 						<? echo $id;?>						
 					</td>
 					<td>
-						<a href="/index.php/notice/class_notice/<?echo $this -> uri ->segment(3)?>?req_id=<? echo $lt->board_id?>"><? echo $lt->subject;?></a>
+						<a href="/index.php/notice/class_notice/<?echo $this -> uri ->segment(3)?>?req_id=<? echo $lt->board_id?>">
+							<?if((strlen($lt->subject))>40){
+									echo substr(($lt->subject), 0, 38);
+									echo "...";
+								}
+								else{
+									echo $lt->subject;
+								}
+							?>
+						</a>
 					</td>
 					<td>
 						<? echo $lt->user_name;?>
@@ -44,13 +53,19 @@
 			?>
 		</tbody>
 	</table>
-			<?if($login_data['grade']==1){?>
+			<?if(($this->session->userdata('login_data')!=NULL)){
+				if($login_data['grade']==1){?>
 				<div class="whole_notice_write">
 					<a href="/index.php/notice/class_notice/write_board"><img src='/static/img/Notice_write_icon.png'></a>
 				</div>
-			<?}else{}?>
-				<div class="whole_notice_create_links">
-					<?echo $this -> pagination -> create_links();?>
+				<?}else{}
+			}else{}
+			?>
+			
+				<div class="whole_notice_create_links" id='Pagination_class'>
+					<?echo $this -> pagination -> create_links();
+						echo("<script language='javascript'>Change_Pagination_class();</script>"); 					
+					?>
 				</div>
 				<!-- pagination
 				<?	

@@ -23,8 +23,8 @@
 	    		</td>
 	    	</tr>
 	    	<tr>
-	    		<td colspan=4>
-					<p><?=$list['contents'] ?></p>
+	    		<td colspan=4 class="view_board_textarea" >
+					<textarea readonly="readonly"><?=$list['contents'] ?></textarea>
 	    		</td>    		
 	    	</tr>
 	    </table>

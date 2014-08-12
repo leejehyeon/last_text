@@ -168,25 +168,6 @@
 	text-decoration: underline;
 }
 
-.page_title_area {
-	/*background:url('/static/img/page_title_square.png') no-repeat 29px 23px;*/
-	background: url('/static/img/tutee_apply_icon2.png') no-repeat 0px 13px;
-	/*border-top:1px solid #2eaae0;*/
-	/*border-bottom:1px solid #2eaae0;*/
-	border-bottom: 3px solid #bdbdbd;
-	/*color:#2eaae0;*/
-	color: #252525;
-	float: left;
-	font-size: 30px;
-	font-family: "NanumGothic-Bold" !important;
-	font-weight: bolder;
-	/*margin: 40px 0px 0px 50px;40 37*/
-	margin: 71px 0px 0px 50px;
-	/*padding: 9px 0px 11px 0px;11 14*/
-	padding: 0px 0px 11px 0px;
-	width: 777px;
-}
-
 .loginpage_title_area {
 	/*background:url('/static/img/page_title_square.png') no-repeat 29px 23px;*/
 	background: url('/static/img/sidebar_page_title_style.png') no-repeat 0px 13px;
@@ -200,31 +181,11 @@
 	font-family: "NanumGothic-Bold" !important;
 	font-weight: bolder;
 	/*margin: 40px 0px 0px 50px;40 37*/
-	margin: 71px 0px 0px 50px;
+	margin: 71px 0px 0px 54px;
 	/*padding: 9px 0px 11px 0px;11 14*/
 	padding: 0px 0px 11px 0px;
-	width: 777px;
+	width: 774px;
 }
-
-.loginpage_title_area_add {
-	/*background:url('/static/img/page_title_square.png') no-repeat 29px 23px;*/
-	background: url('/static/img/sidebar_page_title_style.png') no-repeat 0px 13px;
-	/*border-top:1px solid #2eaae0;*/
-	/*border-bottom:1px solid #2eaae0;*/
-	border-bottom: 3px solid #bdbdbd;
-	/*color:#2eaae0;*/
-	color: #252525;
-	float: left;
-	font-size: 30px;
-	font-family: "NanumGothic-Bold" !important;
-	font-weight: bolder;
-	/*margin: 40px 0px 0px 50px;40 37*/
-	margin: -80px 0px 0px -30px;
-	/*padding: 9px 0px 11px 0px;11 14*/
-	padding: 0px 0px 11px 0px;
-	width: 777px;
-}
-
 .page_title {
 	margin: 0px;
 	/*padding-left:60px;*/
@@ -471,8 +432,9 @@ a:-webkit-any-link {
 	float: left;
 	font-family: "NanumGothic-Bold" !important;
 	font-weight:bolder !important;
-	height: 620px;
-	margin: 30px 0px 54px 113px;
+	height: 679px;
+	/*margin: 30px 0px 54px 116px;*/
+	margin: 30px 0px 0px 116px;
 	width: 220px;
 }
 
@@ -548,19 +510,14 @@ a:-webkit-any-link {
 }
 
 .login_page {
-	float: left;
 	font-family: "NanumGothic-Regular" !important;
 	/*margin: 27px 0px 0px 50px;-*/
-	margin: 13px 0px 0px 50px;
+	margin-top: 13px !important;
 	/*padding: 0px 0px 0px 248px;*/
-	width: 790px;
 }
 
 .id_pw_search_page {
-	float: left;
-	margin: 30px 0px 0px 50px;
-	padding: 0px 0px 0px 30px;
-	width: 790px;
+	padding: 25px 30px 0px 30px;
 }
 
 .search_title {
@@ -572,29 +529,11 @@ a:-webkit-any-link {
 	font-weight: 900;
 	padding: 0px 0px 5px 0px;/*5 10*/
 }
-
 .search_list_text {
 	color: #252525;
 	font-family: "NanumGothic-Regular";
 	font-size: 14px;
 	width: 110px;
-	font-weight: bold;
-}
-
-.text_modify{
-	color: #252525;
-	font-family: "NanumGothic-Regular";
-	font-size: 14px;
-	margin-top: 227px !important;
-	margin-bottom: 0px;
-}
-
-.text_modify2{
-	color: #252525;
-	font-family: "NanumGothic-Regular";
-	font-size: 14px;
-	margin-top: 20px !important;
-	margin-bottom: 30px;
 }
 
 /*input_text_200*/
@@ -652,18 +591,7 @@ a:-webkit-any-link {
 	width: 110px;
 }
 
-.gray_button {
-	background: url('/static/img/gray_button.png');
-	border: 0px;
-	color: #8fc31f;
-	font-family: "Nanum Gothic";
-	font-size: 14px;
-	font-weight: bolder;
-	height: 37px;
-	margin: 72px 0px 0px 294px;
-	width: 110px;
-	text-align: center;
-}
+/*
 .gray_button:hover {
 	background: url('/static/img/gray_button_hover.png');
 	border: 0px;
@@ -676,32 +604,15 @@ a:-webkit-any-link {
 	margin: 72px 0px 0px 294px;
 	width: 110px;
 	text-align: center;
-}
+}*/
 
 .sign_up_page {
 	color: #252525;
 	font-family: "NanumGothic-Regular" !important;
 	font-size:14px;
-	font-weight:bold;
-	float: left;
-	margin: 25px 0px 0px 50px;
-	padding: 0px 0px 0px 30px;
-	width: 777px;
-}
-
-.student_grade {
-	background: url('/static/img/select_drop_down_image.png') no-repeat 52px;
-	height: 28px;
-	margin: 0px 0px 10px 0px;
-	width: 80px;
-	/*-moz-appearance: button;
-	 -moz-appearance: window;*/
-	overflow: hidden !important;
-	-moz-appearance: none !important;
-	text-indent: 0.01px !important;
-	text-overflow: ' ' !important;
-	-moz-background-position: -9999px -9999px !important;
-}
+	/*font-weight:bold;
+	margin-top:25px !important;
+	padding: 0px 0px 0px 30px;*/
 }
 
 /*.student_grade:hover {
@@ -713,13 +624,6 @@ a:-webkit-any-link {
 	-webkit-appearance: none;
 }*/
 
-.phone_first {
-	background: url('/static/img/select_drop_down_image.png') no-repeat 45px;
-	height: 28px;
-	margin: 0px 5px 10px 0px;
-	width: 73px;
-	-webkit-appearance: none;
-}
 /*.phone_first:hover {
 	background: url('/static/img/select_drop_down_image_hover.png') no-repeat 45px;
 	cursor: pointer;
@@ -737,7 +641,7 @@ a:-webkit-any-link {
 }
 
 .specialty_list {
-	background: url('/static/img/select_drop_down_image.png') no-repeat 172px;
+	/*background: url('/static/img/select_drop_down_image.png') no-repeat 172px;*/
 	height: 28px;
 	margin: 0px 0px 10px 0px;
 	width: 200px;
@@ -766,17 +670,10 @@ a:-webkit-any-link {
 	float: left;
 	height: 28px;
 	margin: 0px 10px 10px 5px;
-	width: 140px;
+	padding:0px 0px 0px 7px;
+	width: 133px;
 }
 
-.email_third {
-	float: left;
-	background: url('/static/img/select_drop_down_image.png') no-repeat 92px;
-	height: 28px;
-	margin: 0px 0px 10px 0px;
-	width: 120px;
-	-webkit-appearance: none;
-}
 /*.email_third:hover {
 	background: url('/static/img/select_drop_down_image_hover.png') no-repeat 92px;
 	cursor: pointer;
@@ -849,7 +746,6 @@ a:-webkit-any-link {
 .button_area {
 	margin: 70px 0px 0px 507px;
 }
-
 .custom_select {
 	background: url('/static/img/select_drop_down_image.png') no-repeat 30px;
 	-moz-appearance: none;
@@ -893,8 +789,9 @@ a:-webkit-any-link {
 
 .each_page {
 	float: left;
-	margin: 25px 0px 0px 50px;
-	width: 790px;
+	/*margin: 25px 0px 0px 54px;*/
+	margin: 0px 0px 54px 54px;
+	width: 774px;
 }
 
 /*select::-ms-expand {
@@ -1079,7 +976,7 @@ a:-webkit-any-link {
 .login_div {
 	background: url('/static/img/login_page_background.png') no-repeat;
 	height: 135px;
-	width: 790px;
+	width: 774px;
 }
 .login_table{
 	margin:15px 19px 0px 0px;
@@ -1158,20 +1055,11 @@ a:-webkit-any-link {
 	text-decoration:underline;
 }
 
-.modify_page{
-	float:left;
-	font-family:"NanumGothic-Regular";
-	font-weight:bold;
-	margin:37px 0px 0px 50px;
-	padding:0px 0px 0px 30px;
-}
 .delete_page{
 	color:#252525;	
 	float:left;
 	font-family:"NanumGothic-Regular";
-	font-weight:bold;
-	margin:16px 0px 0px 50px;
-	padding:0px 0px 0px 0px;
+	margin-top:16px !important;
 }
 .delete_info {
 	color: #626262;
@@ -1190,7 +1078,7 @@ a:-webkit-any-link {
 .delete_text{
 	/*font-family:"NanumGothic-Bold";*/
 	font-size:14px;
-	margin:0px 0px 12px 0px;
+	margin:0px 0px 0px 0px;
 	/*padding:11px 19px 11px 150px;*/
 	padding:5px 56px 11px 31px;
 }
@@ -1203,9 +1091,6 @@ a:-webkit-any-link {
 	font-family:"NanumGothic-Regular";
 	font-size: 10px;
 	padding-left:5px;
-}
-.delete_button_area{
-	margin-top:43px !important;
 }
 /*select {
     padding:3px;
@@ -1714,3 +1599,352 @@ margin:72px 0px 0px 489px;
     display:block;
 }
 /*제현 8.10 작업 끝*/
+/*제현 8.12 작업 시작*/
+.small_gray_button{
+	background: url('/static/img/small_gray_button.png');
+	border: 0px;
+	color: #8fc31f;
+	display: inline;
+	font-family: "NanumGothic-Bold";
+	font-size: 12px;
+	/*font-weight: bolder;*/
+	height:26px;
+	margin: 0px 10px 0px 0px;
+	text-align: center;
+	width: 46px;
+}
+.small_green_button{
+	background: url('/static/img/small_green_button.png');
+	border: 0px;
+	color: #ffffff;
+	display: inline;
+	font-family: "NanumGothic-Bold";
+	font-size: 12px;
+	/*font-weight: bolder;*/
+	height:26px;
+	margin: 0px 0px 0px 0px;
+	text-align: center;
+	width: 46px;
+}
+.styled_select9 {
+	position:relative !important; font-weight:normal !important; margin-bottom:0 !important;
+
+}
+.styled_select9:after {
+    content:url('/static/img/select_drop_down_image.png');
+    font-size:10.5pt;
+    color:#aaa;/*
+    -webkit-transform:rotate(90deg);
+    -moz-transform:rotate(90deg);
+    -ms-transform:rotate(90deg);
+    transform:rotate(90deg);*/
+    right:0px; top:0px;
+    padding:0px 0px 0px 0px;
+    /*border-bottom:1px solid #ddd;*/
+    position:absolute;
+    pointer-events:none;
+}
+.styled_select9:before {
+    content:'';
+    right:6px; top:0px;/*
+    width:17px; height:19px;*/
+    background:#ffffff;
+    position:absolute;
+    pointer-events:none;
+    display:block;
+}
+.student_grade {
+	/*background: url('/static/img/select_drop_down_image.png') no-repeat 52px;*/
+	height: 28px;
+	margin: 0px 0px 10px 0px;
+	width: 80px;
+	/*-moz-appearance: button;
+	 -moz-appearance: window;*/
+	/*overflow: hidden !important;
+	-moz-appearance: none !important;
+	text-indent: 0.01px !important;
+	text-overflow: ' ' !important;
+	-moz-background-position: -9999px -9999px !important;*/
+}
+.phone_first {
+	/*background: url('/static/img/select_drop_down_image.png') no-repeat 45px;*/
+	height: 28px;
+	margin: 0px 0px 10px 0px;
+	width: 73px;/*
+	overflow: hidden !important;
+	-moz-appearance: none !important;
+	text-indent: 0.01px !important;
+	text-overflow: ' ' !important;
+	-moz-background-position: -9999px -9999px !important;*/
+}
+.email_third {
+	float: left;
+	/*background: url('/static/img/select_drop_down_image.png') no-repeat 92px;*/
+	height: 28px;
+	margin: 0px 0px 10px 0px;
+	width: 120px;/*
+	-webkit-appearance: none;*/
+}
+
+.sign_up_button_area{
+	margin: 40px 0px 0px 618px;
+}
+.sign_up_text_list {
+	color: #252525;
+	font-family: "NanumGothic-Regular";
+	font-size: 14px;
+	padding:0px 0px 8px 0px;
+	margin:0px 28px 0px 0px;
+	width: 82px;/*
+	font-weight: bold;*/
+	text-align:right;
+}
+.margin_right_5{
+	margin-right:5px;
+}
+.search_button {
+	margin: -37px 0px 0px 668px;
+	position: absolute;
+}
+.search_back_button{
+	margin: 72px 0px 0px 294px;
+}
+.gray_button {
+	background: url('/static/img/gray_button.png');
+	border: 0px;
+	color: #8fc31f;
+	font-family: "NanumGothic-Bold";
+	font-size: 12px;
+	height: 26px;
+	margin: 72px 0px 0px 322px;
+	width: 68px;
+	text-align: center;
+}
+.delete_button_area{
+	margin:21px 0px 0px 668px;
+}
+.modify_page{
+	font-family:"NanumGothic-Regular";
+	padding:37px 30px 0px 30px;
+}
+.modify_button_area {
+	margin: 70px 0px 0px 608px;
+}
+.modify_button{
+	margin: -30px 0px 0px 669px;
+	position:absolute;
+}
+.modify_text_list {
+	color: #252525;
+	font-family: "NanumGothic-Regular";
+	font-size: 14px;
+	padding:0px 0px 8px 0px;
+	margin:0px 40px 0px 0px;
+	width: 70px;/*
+	font-weight: bold;*/
+	text-align:right;
+}
+.loginpage_title_area_add {
+	/*background:url('/static/img/page_title_square.png') no-repeat 29px 23px;*/
+	background: url('/static/img/sidebar_page_title_style.png') no-repeat 0px 13px;
+	/*border-top:1px solid #2eaae0;*/
+	/*border-bottom:1px solid #2eaae0;*/
+	border-bottom: 3px solid #bdbdbd;
+	/*color:#2eaae0;*/
+	color: #252525;
+	font-size: 30px;
+	font-family: "NanumGothic-Bold" !important;
+	font-weight: bolder;
+	/*margin: 40px 0px 0px 50px;40 37*/
+	margin: 37px 0px 0px -30px;
+	/*padding: 9px 0px 11px 0px;11 14*/
+	padding: 0px 0px 11px 0px;
+	width: 774px;
+}
+.text_modify{
+	color: #252525;
+	font-family: "NanumGothic-Regular";
+	font-size: 14px;
+	margin: 37px 0px 10px 0px;
+}
+.text_modify2{
+	color: #252525;
+	font-family: "NanumGothic-Regular";
+	font-size: 14px;
+	margin:0px 0px 0px 0px;
+}
+.page_title_area {
+	/*background:url('/static/img/page_title_square.png') no-repeat 29px 23px;*/
+	background: url('/static/img/tutee_apply_icon2.png') no-repeat 0px 13px;
+	/*border-top:1px solid #2eaae0;*/
+	/*border-bottom:1px solid #2eaae0;*/
+	border-bottom: 3px solid #bdbdbd;
+	/*color:#2eaae0;*/
+	color: #252525;
+	float: left;
+	font-size: 30px;
+	font-family: "NanumGothic-Bold" !important;
+	font-weight: bolder;
+	/*margin: 40px 0px 0px 50px;40 37*/
+	margin: 71px 0px 0px 54px;
+	/*padding: 9px 0px 11px 0px;11 14*/
+	padding: 0px 0px 11px 0px;
+	width: 774px;
+}
+
+.tutor_table{
+	border:1px solid #cccccc;
+	color:#252525;
+	font-size:11px;
+	text-align:center;
+}
+.tutor_table_tr{
+	background-color:#d2d2d2;
+	border:1px solid #cccccc;
+	
+}
+.tutor_index{
+	width:30px;
+}
+.tutor_subjcet{
+	width:60px;
+}
+.tutor_number{
+	width:70px;
+}
+.tutor_department{
+	width:20px;
+}
+.tutor_name{
+	width:40px;
+}
+.tutor_year{
+	width:30px;
+}
+.tutor_phonenumber{
+	width:40px;
+}
+.tutor_email{
+	width:70px;
+}
+.tutor_score{
+width:70px !important;
+}
+.tutor_date{
+	width:40px;
+}
+.tutor_object{
+	width:100px;
+}
+.tutor_descript{
+width:105px;
+}
+.tutor_indicate{
+	width:90px;
+}
+
+.tutor_subject_select{
+	width:90px;
+}
+.margin_0{
+	margin:0px !important;
+}
+/*제현 8.12 작업 끝*/
+.each_page {
+	float: left;
+	margin: 0px 0px 54px 54px;
+	width: 774px;
+}
+.each_page_padding{
+	padding:25px 0px 0px 30px;
+}
+
+/*진우 8.12 작업 */
+.email_collection_top{
+	 color : #000000;
+	 font-family: "NanumGothic-Regular";
+	 font-size: 14px; 
+	 font-weight: bold; 
+	 margin-bottom : 3px;
+}
+.email_collection_sub{
+	 color : #4c4c4c;
+	 font-family : 'NanumGothic-Regular'; 
+	 font-size : 12px; 
+	 line-height : 20px;
+	 margin-left : 15px;
+	 margin-bottom : 25px;
+	 letter-spacing : 1px;
+}
+.email_collection_sub_last{
+	 color : #4c4c4c;
+	 font-family : 'NanumGothic-Regular'; 
+	 font-size : 12px; 
+	 line-height : 20px;
+	 margin-left : 15px;
+	 margin-bottom : 40px;
+	 letter-spacing : 1px;
+}
+.person_information_top{
+	 font-family: 'NanumGothic-Regular';
+	 font-weight: bold;
+	 font-size: 24px;
+	 line-height: 24px;
+	 letter-spacing: 0.25px;
+	 color: #000000;
+	 margin-top: 20px; 
+	 margin-bottom: 30px; 
+}
+.person_information_title{
+	 font-family: 'NanumGothic-Regular';
+	 font-weight: bold;
+	 font-size: 14px;
+	 color: #000000;
+	 line-height : 20px;
+	 line-height: 20px;
+	 margin-bottom: 3px; 
+	 letter-spacing : -0.9px;
+}
+.person_information_sub{
+	 font-family: 'NanumGothic-Regular'; 
+	 font-size: 12px; 
+	 line-height : 20px;
+	 line-height: 20px; 
+	 color: #4c4c4c; 
+	 margin-bottom: 25px; 
+	 margin-left: 15px;
+}
+.person_information_contents{
+	 font-family: 'NanumGothic-Regular';
+	 font-size: 12px;
+	 line-height : 20px;
+	 color: #4c4c4c;
+	 margin-left: 30px; 
+	 margin-bottom: 3px;
+	 
+}
+.person_information_contents_last{
+	 font-family: 'NanumGothic-Regular';
+	 font-size: 12px;
+	 line-height : 20px;
+	 color: #4c4c4c;
+	 margin-left: 30px; 
+ 	 margin-bottom: 40px; 
+}
+.person_information_contents_list{
+	 font-family: 'NanumGothic-Regular';
+	 font-size: 12px;
+	 line-height : 20px;
+	 color: #4c4c4c;
+	 margin-bottom: 3px;
+	 margin-left: 50px; 
+}
+.person_information_contents_list_last{
+	 font-family: 'NanumGothic-Regular';
+	 font-size: 12px;
+	 line-height : 20px;
+	 color: #4c4c4c;
+	 margin-bottom: 25px;
+	 margin-left: 50px; 
+}
+/*진우 8.12 작업 끝 */

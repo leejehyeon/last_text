@@ -32,6 +32,7 @@
 					지원과목
 				</td>
 				<td colspan=4>
+				<label class="styled_select2">
 					<select name="user_subject" id="user_subject">
 						<?foreach($get_list as $lt){
 							if($user_data['subject_id'] == $lt -> subject_id){?>
@@ -41,6 +42,7 @@
 						<?	}
 						}?>
 					</select> 					
+				</label>
 				</td>
 			</tr>
 			<tr>
@@ -49,6 +51,7 @@
 				$user_grade_array = explode('/',$user_data['user_grade'.+$i]);
 				?>
 				<td colspan=2>
+				<label class="styled_select2">
 					<select name="user_subject<?echo $i;?>" id="user_subject<?echo $i;?>">
 						<?foreach($get_list as $lt){
 							if($lt -> subject == $user_grade_array[0]){?>
@@ -60,8 +63,10 @@
 						<?	}
 						}?>
 					</select>
+				</label>
 				</td>
 				<td colspan=2>
+				<label class="styled_select2">
 					<select name="user_grade_choose<?echo $i;?>" id="user_grade_choose<?echo $i;?>" class="tutor_apply_second_select">
 					<?if($user_grade_array[1] != ""){?>
 								<option>선택하세요
@@ -123,6 +128,7 @@
 						<option>F
 					<?}?>
 					</select>
+					</label>
 				</td>
 			</tr>
 			<input type="hidden" name="user_grade<?echo $i;?>" id="user_grade<?echo $i;?>" value=" "/>
@@ -130,6 +136,7 @@
 			<tr>
 				<td colspan=2 height="50px" width="20%" >튜터 가능요일 및 시간</td>
 				<td colspan=4 >
+				<label class="styled_select2">
 					<select name="user_time" id="user_time">
 						<?if($user_data['user_time'] != ""){?>
 							<option>선택하세요
@@ -138,29 +145,30 @@
 							<?}else{?>
 								<option>월수(18:30~20:00)
 							<?}?>
-						<?if($user_data['user_time'] == "월수(20:00-21:30)"){?>
-								<option selected>월수(20:00-21:30)
+						<?if($user_data['user_time'] == "월수(20:00~21:30)"){?>
+								<option selected>월수(20:00~21:30)
 							<?}else{?>
-								<option>월수(20:00-21:30)
+								<option>월수(20:00~21:30)
 							<?}?>
-						<?if($user_data['user_time'] == "화목(18:30-20:00)"){?>
-								<option selected>화목(18:30-20:00)
+						<?if($user_data['user_time'] == "화목(18:30~20:00)"){?>
+								<option selected>화목(18:30~20:00)
 							<?}else{?>
-								<option>화목(18:30-20:00)
+								<option>화목(18:30~20:00)
 							<?}?>
-						<?if($user_data['user_time'] == "화목(20:00-21:30)"){?>
-								<option selected>화목(20:00-21:30)
+						<?if($user_data['user_time'] == "화목(20:00~21:30)"){?>
+								<option selected>화목(20:00~21:30)
 							<?}else{?>
-								<option>화목(20:00-21:30)
+								<option>화목(20:00~21:30)
 							<?}
 						}else{?>
 						<option>선택하세요
 						<option>월수(18:30~20:00)
-						<option>월수(20:00-21:30)
-						<option>화목(18:30-20:00)
-						<option>화목(20:00-21:30)
+						<option>월수(20:00~21:30)
+						<option>화목(18:30~20:00)
+						<option>화목(20:00~21:30)
 						<?}?>
 					</select>
+				</label>
 				</td>
 			</tr>
 			<tr class="tutor_apply_input_tr1">
@@ -168,7 +176,7 @@
 					경력사항
 				</td>
 				<td colspan=5>
-					<input style="height:100%; width:100%" type="text" name="user_career" id="user_career" value="<?=$user_data['user_career']?>"/>
+					<textarea style="height:100%; width:100%" type="text" name="user_career" id="user_career"><?=$user_data['user_career']?></textarea>
 				</td>
 			</tr>
 			<tr class="tutor_apply_input_tr2">
@@ -177,15 +185,15 @@
 					및 목표
 				</td>
 				<td colspan=5>
-					<input style="height:100%; width:100%" type="text" name="user_content_application" id="user_content_application" value="<?=$user_data['user_content_application']?>"/>
+					<textarea style="height:100%; width:100%" type="text" name="user_content_application" id="user_content_application"><?=$user_data['user_content_application']?></textarea>
 				</td>
 			</tr>
 		</table>
 	</div>
 
 	<div class = "row tutee_apply_footer" align="center">
-		<input type="button" value="뒤로가기" onclick="javascript:history.back();">
-		<input type="button" value="지원하기" onclick="rating();">
+		<input type="button" value="취소" onclick="javascript:history.back();">
+		<input type="button" value="작성" onclick="rating();">
 	</div>
 		<input type="hidden" name="user_id" value="<?=$login_data['user_id']?>" />
 		<input type="hidden" name="user_number" value="<?=$login_data['user_number']?>" />

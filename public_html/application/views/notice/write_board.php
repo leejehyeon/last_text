@@ -35,7 +35,7 @@
 	    <div class="form-actions notice_write_footer">
 	        	<input type="hidden" name="user_id" value="<?=$login_data['user_id']?>" />
 	        	<input type="hidden" name="user_name" value="<?=$login_data['user_name']?>" />
-	            <input type="button" class="modify_button" value="취소" onclick="history.back()" />
+	            <input type="button" value="취소" onclick="history.back()" />
 	            <input type="button" value="작성완료" onclick="write_form_check()" />
 	    </div>    
 	</form>

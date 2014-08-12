@@ -15,9 +15,9 @@ class Administration extends CI_Controller {
 
 	public function _remap($title) {
 		$login_data = $this->session->userdata('login_data');
-		if(isset($login_data))
+		if($login_data != NULL){
 			 $data['login_data'] = $login_data;
-		
+		}
 		
 		$data['category_title'] = $title;
 		$data['menu_title'] = "administration";
@@ -61,6 +61,11 @@ class Administration extends CI_Controller {
 	}
 	
 	public function tutee_grade_up($view_name, $data){
+		if($this -> input -> post('user_subject')=="선택하세요"){
+			alert('과목을 선택하세요.', '/index.php/administration/tutee');
+		}else if($this -> input -> post('user_divide')=="선택하세요"){
+			alert('분반을 선택하세요.', '/index.php/administration/tutee');
+		}else{
 		$update_data = array('user_id' => $this -> input -> post('user_id'),
 							 'subject_id' => $this -> input -> post('user_subject'),
 							 'user_level' => $this -> input -> post('user_divide'),
@@ -72,9 +77,15 @@ class Administration extends CI_Controller {
 							);	
 		$this -> tutor_tutee -> tutee_delete($delete_data);
 		alert('등급을 올렸습니다.', '/index.php/administration/tutee');
+		}
 	}
 	
 	public function tutor_grade_up($view_name, $data){
+		if($this -> input -> post('user_subject')=="선택하세요"){
+			alert('과목을 선택하세요.', '/index.php/administration/tutee');
+		}else if($this -> input -> post('user_divide')=="선택하세요"){
+			alert('분반을 선택하세요.', '/index.php/administration/tutee');
+		}else{
 		$update_data = array('user_id' => $this -> input -> post('user_id'),
 							 'subject_id' => $this -> input -> post('user_subject'),
 							 'user_level' => $this -> input -> post('user_divide'),
@@ -86,5 +97,6 @@ class Administration extends CI_Controller {
 							);		
 		$this -> tutor_tutee -> tutor_delete($delete_data);
 		alert('등급을 올렸습니다.', '/index.php/administration/tutor');
+		}
 	}
 }

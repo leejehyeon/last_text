@@ -38,6 +38,11 @@
 *:focus{
 	outline:0;
 }
+
+html, body{
+	min-width:1380px !important;
+	width:100% !important;
+}
 #Header_div_second{
 	font:900 18px "Nanum Gothic";
 	
@@ -126,7 +131,7 @@
 	margin-left:-42px;
 }
 #Header_div_second > div ul li:nth-child(2){
-	padding-top:4px;
+
 	font-size:25px;
 	font-weight:100;
 }
@@ -207,7 +212,7 @@
 	font-family: 'NanumGothic-Bold';	
 }
 .Change_menulength {
-	margin-left: 80px !important;
+	margin-left: 78px !important;
 }
 .Change_menulength ul {
 	margin-left: -50px !important;
@@ -222,8 +227,7 @@
 	/*background-image: url(/static/img/Main_picture.png);*/
 	display: block;
 	width: 1280px;
-	height: 360px;
-	margin: 29px 0 0 145px;
+	margin: 0 0 0 145px;
 	position: relative;
 	text-align:center;
 	margin-left:auto;
@@ -243,11 +247,13 @@
 .Main_row > div:first-child table {
 	width:100%;
 	margin-bottom:30px;
+	height:105px;
 }
 .Main_row > div:first-child table th,
 .Main_row > div:first-child table td
 {
 	border-bottom:dotted 1px #c9c9c9;
+	height:26px;
 }
 .Main_row > div:first-child table th:last-child {
 	text-align:right;
@@ -282,10 +288,10 @@
 	font-size:10px;
 	color:#959595 !important;
 }
-.Main_row > div:first-child div:last-child table th:first-child span {
+#Main_Notice_Table2 th:first-child span {
 	color:#e75627;
 }
-.Main_row > div:first-child div:last-child table th:last-child span {
+#Main_Notice_Table2 th:last-child span {
 	font-size:10px;
 	color:#959595 !important;
 }
@@ -443,20 +449,20 @@
 	margin-bottom:4px;
 }
 .tutee_apply_footer input{
-	font: 10pt 'NanumGothic-Bold';
+	font: 12px 'NanumGothic-Bold';
 	margin:50px 0 70px 0;
 	border:none;
-	width:111px;
-	height:37px;
+	width:46px;
+	height:26px;
 	outline:none;
 }
 .tutee_apply_footer input:first-child {
-	background:url('/static/img/tutee_back.png') no-repeat;
+	background:url('/static/img/tutee_back2.png') no-repeat;
 	color:#2eaae0;
-	margin-right:40px;
+	margin-right:10px;
 }
 .tutee_apply_footer input:nth-child(2) {
-	background:url('/static/img/tutee_apply.png') no-repeat;
+	background:url('/static/img/tutee_apply2.png') no-repeat;
 	color:#ffffff;
 }
 
@@ -595,27 +601,27 @@ select {
 	border:none;
 	margin-left:-4px;
 }
-.LOGIN_div{
+.LOGIN_div2{
 	padding:7px 22px 10px 23px;
 }
-.LOGIN_div p:first-child {
+.LOGIN_div2 p:first-child {
 	font:9pt 'NanumGothic-ExtraBold';
 	color:#252525;
 }
-.LOGIN_div p:last-child {
+.LOGIN_div2 p:last-child {
 	text-align:right;
 }
-.LOGIN_div p:last-child a {
+.LOGIN_div2 p:last-child a {
 	font:7.5pt 'NanumGothic-ExtraBold';
 	color:#626262;
 }
-.LOGIN_div p:last-child a:last-child {
+.LOGIN_div2 p:last-child a:last-child {
 	margin-left:11px;
 }
-.LOGIN_div p:last-child a:hover{
+.LOGIN_div2 p:last-child a:hover{
 	border-bottom:solid 1px #a8a8a8;
 }
-.LOGIN_div p:first-child span {
+.LOGIN_div2 p:first-child span {
 	color:#e5004f;
 }
 .LOGIN_div_Enter_idpw{
@@ -977,18 +983,19 @@ select {
 	font: 10pt 'NanumGothic-Bold';
 	margin:50px 0 70px 0;
 	border:none;
-	width:111px;
-	height:37px;
+	height:26px;
 	outline:none;
 }
 .notice_write_footer input:nth-child(3) {
-	background:url('/static/img/notice_modify.png') no-repeat;
-	color:#2eaae0;
-	margin-right:40px;
+	background:url('/static/img/notice_modify3.png') no-repeat;
+	color:#ff8b00;
+	width:46px;
+	margin-right:10px;
 }
 .notice_write_footer input:nth-child(4) {
-	background:url('/static/img/notice_modify2.png') no-repeat;
+	background:url('/static/img/notice_modify4.png') no-repeat;
 	color:#ffffff;
+	width:59px;
 }
 .notice_write_board{
 	margin:37px 0 0 36px;
@@ -1077,7 +1084,7 @@ select {
 	-moz-box-shadow:   inset 2px 2px 0.5px 0.5px #cdcdcd;
    -webkit-box-shadow: inset 2px 2px 0.5px 0.5px #cdcdcd;
    box-shadow:         inset 2px 2px 0.5px 0.5px #cdcdcd;
-   padding:10px;
+   padding:0;
    margin-bottom:-2px;
 }
 
@@ -1090,24 +1097,25 @@ select {
 .notice_modify_footer{
 	width:777px;
 	margin:0 0 0 36px;
-	text-align:center;
+	text-align:right;
 }
 .notice_modify_footer button{
-	font: 10pt 'NanumGothic-Bold';
-	margin:50px 0 70px 0;
+	font: 12px 'NanumGothic-Bold';
+	margin:10px 0 70px 0;
 	border:none;
-	width:111px;
-	height:37px;
+	height:26px;
 	outline:none;
 }
 .notice_modify_footer button:nth-child(2) {
-	background:url('/static/img/notice_modify.png') no-repeat;
-	color:#2eaae0;
-	margin-right:40px;
+	background:url('/static/img/notice_modify3.png') no-repeat;
+	color:#ff8b00;
+	margin-right:10px;
+	width:46px;
 }
 .notice_modify_footer button:last-child {
-	background:url('/static/img/notice_modify2.png') no-repeat;
+	background:url('/static/img/notice_modify4.png') no-repeat;
 	color:#ffffff;
+	width:59px;
 }
 .notice_modify_board{
 	margin:37px 0 0 36px;
@@ -1196,7 +1204,7 @@ select {
 	-moz-box-shadow:   inset 2px 2px 0.5px 0.5px #cdcdcd;
    -webkit-box-shadow: inset 2px 2px 0.5px 0.5px #cdcdcd;
    box-shadow:         inset 2px 2px 0.5px 0.5px #cdcdcd;
-	padding:10px;
+	padding:0;
 }
 
 
@@ -1408,4 +1416,140 @@ select {
 }
 .attendance_record_inner_table tr td:first-child{
 	border-left:solid 1px #dbdbdc;
+}
+
+
+
+.view_board_textarea textarea{
+	width:100%;
+	height:100%;
+	resize:none;
+	border:none;
+	overflow-y:hidden;
+}
+
+
+
+/* ADMIN */
+.excel_p{
+	margin-top:20px;
+}
+#admin_tutor_table td{
+	width:774px;
+	text-align:center;
+	}
+#admin_tutor_table th{
+	background-color:#d2d2d2;
+	text-align:center;
+}
+
+#admin_tutor_table tr th,
+#admin_tutor_table tr td
+{
+	border : solid 1px #cccccc;
+	color:#000000;
+	font:11px 'NanumGothic-Regular';
+}
+#admin_tutor_table tr th:nth-child(1){
+	width:32px;
+}
+#admin_tutor_table tr th:nth-child(2){
+	width:94px;
+}
+#admin_tutor_table tr th:nth-child(3){
+	width:77px;
+}
+#admin_tutor_table tr th:nth-child(4){
+	width:52px;
+}
+#admin_tutor_table tr th:nth-child(5){
+	width:37px;
+}
+#admin_tutor_table tr th:nth-child(6){
+	width:92px;
+}
+#admin_tutor_table tr th:nth-child(7){
+	width:82px;
+}
+#admin_tutor_table tr th:nth-child(8){
+	width:66px;
+}
+#admin_tutor_table tr th:nth-child(9){
+	width:41px;
+}
+#admin_tutor_table tr th:nth-child(10){
+	width:106px;
+}
+#admin_tutor_table tr th:nth-child(11){
+	width:98px;
+}
+#admin_tutor_table tr th:nth-child(12){
+	width:98px;
+}
+#admin_tutor_table tr th:nth-child(13){
+	width:98px;
+}
+
+
+
+
+    /* TUTEE */
+   
+#admin_tutee_table td{
+	width:774px;
+	text-align:center;
+	}
+#admin_tutee_table th{
+	background-color:#d2d2d2;
+	text-align:center;
+}
+
+#admin_tutee_table tr th,
+#admin_tutee_table tr td
+{
+	border : solid 1px #cccccc;
+	color:#000000;
+	font:11px 'NanumGothic-Regular';
+}
+#admin_tutee_table tr th:nth-child(1){
+	width:32px;
+}
+#admin_tutee_table tr th:nth-child(2){
+	width:94px;
+}
+#admin_tutee_table tr th:nth-child(3){
+	width:77px;
+}
+#admin_tutee_table tr th:nth-child(4){
+	width:52px;
+}
+#admin_tutee_table tr th:nth-child(5){
+	width:37px;
+}
+#admin_tutee_table tr th:nth-child(6){
+	width:92px;
+}
+#admin_tutee_table tr th:nth-child(7){
+	width:82px;
+}
+#admin_tutee_table tr th:nth-child(8){
+	width:66px;
+}
+#admin_tutee_table tr th:nth-child(9){
+	width:41px;
+}
+#admin_tutee_table tr th:nth-child(10){
+	width:106px;
+}
+#admin_tutee_table tr th:nth-child(11){
+	width:98px;
+}
+#admin_tutee_table tr th:nth-child(12){
+	width:98px;
+}
+#admin_tutee_table tr th:nth-child(13){
+	width:98px;
+}
+#admin_tutee_table tr th:nth-child(14){
+	width:98px;
 }

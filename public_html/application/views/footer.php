@@ -9,7 +9,7 @@
 				</div>
 				<div>
 					<p>
-						<a href=""><span>개인정보 처리방침</span></a>&nbsp; |&nbsp; <a href=""><span>이메일무단수집거부</span></a>&nbsp; | 
+						<a href="http://tutor.thecakehouse.co.kr/index.php/site_information/personal_information"><span>개인정보 처리방침</span></a>&nbsp; |&nbsp; <a href="http://tutor.thecakehouse.co.kr/index.php/site_information/email_collection"><span>이메일무단수집거부</span></a>&nbsp; | 
 					</p>
 					<p>
 						MSC 센터 : <a href="http://msc.koreatech.ac.kr"><span>http://msc.koreatech.ac.kr</span></a>&nbsp;
@@ -18,10 +18,8 @@
 		</div>
 	</div>
 </div>
-</div>
 
-</div>
-</div>
+
 </div>
 </body>
 </html>

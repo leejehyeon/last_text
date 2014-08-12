@@ -8,7 +8,7 @@
 		<div>
 			<!--------------공지 사항 --------------->
 			<div>
-				<table>
+				<table id="Main_Notice_Table">
 					<tr>
 						<th>
 							<img src='/static/img/Notice_title.png'>	
@@ -22,7 +22,16 @@
 					<?foreach($notice_list3 as $lt){?>
 						<tr>
 							<td>
-								<a href="http://tutor.thecakehouse.co.kr/index.php/notice/whole_notice?req_id=<?echo $lt -> board_id; ?>"><?echo $lt -> subject; ?></a>
+								<a href="http://tutor.thecakehouse.co.kr/index.php/notice/whole_notice?req_id=<?echo $lt -> board_id; ?>">
+									<?if((strlen($lt->subject))>20){
+											echo substr(($lt->subject), 0, 18);
+											echo "...";
+										}
+										else{
+											echo $lt->subject;
+										}
+									?>
+								</a>
 							</td>
 							<td>
 								<?echo substr(($lt->reg_date),0,10);?>
@@ -31,9 +40,10 @@
 					<?} ?>
 				</table>
 			</div>
+			<?echo("<script language='javascript'>Main_Notice_Margin();</script>"); ?>
 			<!--------------수업공지 사항 --------------->
 			<div>
-				<table>
+				<table id="Main_Notice_Table2">
 					<tr>
 						<th>
 							<img src='/static/img/Notice_title_class.png'>
@@ -47,7 +57,16 @@
 					<?foreach($class_notice_list3 as $lt){?>
 						<tr>
 							<td>
-								<a href="http://tutor.thecakehouse.co.kr/index.php/notice/class_notice?req_id=<?echo $lt -> board_id; ?>"><?echo $lt -> subject; ?></a> 
+								<a href="http://tutor.thecakehouse.co.kr/index.php/notice/class_notice?req_id=<?echo $lt -> board_id; ?>">
+									<?if((strlen($lt->subject))>20){
+											echo substr(($lt->subject), 0, 18);
+											echo "...";
+										}
+										else{
+											echo $lt->subject;
+										}
+									?>
+								</a> 
 							</td>
 							<td>
 								<?echo substr(($lt->reg_date),0,10);?>
@@ -56,6 +75,7 @@
 					<?} ?>
 				</table>			
 			</div>
+		<?echo("<script language='javascript'>Main_Notice_Margin2();</script>"); ?>
 				
 		</div>
 	<!---------- second div -------------->
@@ -153,7 +173,7 @@
 							</p>
 						</div>					
 					<?}	
-					else{
+					else if($login_data['grade']=='3'){
 					?>
 						<div class="LOGOUT_div">
 							<p>
@@ -171,10 +191,26 @@
 								</a>
 							</p>
 						</div>					
+					<?}
+						else{
+					?>
+						<div class="LOGOUT_div">
+							<p>
+								<span>일반회원</span> <?echo $login_data['user_id']?>님, 반갑습니다!
+								<a href="/index.php/login_process/logout">
+									<input type="button" value="LOGOUT"/ class="Loginprocess_button">						
+								</a>
+							</p>
+							<p>
+								<a href="/index.php/mypage/modify">
+									<img src='/static/img/Main_row_loginicon_mypage.png'>
+								</a>
+							</p>
+						</div>					
 					<?}?>		
 							
 				<?}else{ ?>
-				<div class="LOGIN_div">
+				<div class="LOGIN_div2">
 
 					<form method="post" action="/index.php/login_process/login_id_pw_check">
 						<p>

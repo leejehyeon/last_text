@@ -29,8 +29,13 @@
 			<div class="header_Topmenu_div">
 						<p>
 							<a href='/index.php'>HOME</a><span>|</span>
-							<a href='http://tutor.thecakehouse.co.kr/index.php/login_process/login'>LOGIN</a><span>|</span>
-							<a href='http://tutor.thecakehouse.co.kr/index.php/mypage/modify'>MY PAGE</a>
+							<?if($this->session->userdata('login_data')==NULL){?>
+								<a href="http://tutor.thecakehouse.co.kr/index.php/login_process/login">LOGIN</a><span>|</span>
+								<a href="http://tutor.thecakehouse.co.kr/index.php/login_process/login">MY PAGE</a>
+							<?}else{?>
+								<a href="http://tutor.thecakehouse.co.kr/index.php/login_process/logout">LOGOUT</a><span>|</span>
+								<a href="http://tutor.thecakehouse.co.kr/index.php/mypage/modify">MY PAGE</a>
+							<?}?>
 						</p>
 					</div>
 			</div>
@@ -55,18 +60,27 @@
 									</li>
 								</ul>
 							</li>
-							<li>|</li>
+							<li>
+								<img src='/static/img/Header_menu_vertical_line.png'>
+							</li>
 							<li class="dropdown">
-								<a href="/index.php/lesson/
+								<a href="/index.php/
 								<?if(($this->session->userdata('login_data')!=NULL)){
 									if($login_data['grade']=='3'){?>
-										 my_attendance/<?echo date("Y/m")?>
+										lesson/my_attendance/<?echo date("Y/m")?>"
 									<?}else if($login_data['grade']=='2'){?>
-										attendance_record/<?echo date("Y/m/d")?>
+										lesson/attendance_record/<?echo date("Y/m/d")?>"
 									<?}else if($login_data['grade']=='1'){?>
-										attendance_record_admin/
-									<?}else{};
-								}?>" class="dropdown-toggle">CLASS
+										lesson/attendance_record_admin/"
+									<?}
+									else{?>
+										" onclick="goto_apply()"
+									<?}
+								}
+								else{?>
+									login_process/login/" onclick='goto_login()'
+								<?}?>
+								 class="dropdown-toggle">CLASS
 								<p>
 									수업
 								</p></a>
@@ -105,9 +119,28 @@
 								<?}else{} ?>
 								<?}else{} ?>
 							</li>
-							<li>|</li>
+							<li>
+								<img src='/static/img/Header_menu_vertical_line.png'>
+							</li>
 							<li class="dropdown">
-								<a href="/index.php/question_and_answer/questioning_and_answering" class="dropdown-toggle">Q&A
+								<a href="/index.php/
+								<?if($this->session->userdata('login_data')!=NULL){?>
+								<?if($login_data['grade']=='3'){
+								?>
+								question_and_answer/questioning_and_answering"
+								<?} else if($login_data['grade']=='2'){
+								?>
+								question_and_answer/questioning_and_answering"
+								<?} else if($login_data['grade']=='2'){
+								?>
+								question_and_answer/questioning_and_answering"
+								<?} else{ ?>
+										" onclick="goto_apply()"
+									<?}}
+								else{ ?>
+									login_process/login/" onclick='goto_login()'
+								<?}?>	
+								 class="dropdown-toggle">Q&A
 								<p>
 									질의응답
 								</p></a>
@@ -169,7 +202,7 @@
 							<?if($login_data['grade']=='1'){?>
 							<!-- 메뉴 5ea로 변경될 때 CSS 수정부분 -->
 							<li>
-								<p>|</p>	
+								<img src='/static/img/Header_menu_vertical_line.png'>
 							</li>
 							<li  class="dropdown">
 								<a href="/index.php/administration/tutee" class="dropdown-toggle">ADMIN

@@ -28,7 +28,7 @@
 	    			내용
 	    		</td>
 	    		<td colspan=3>
-	    			<textarea type="text" id = "text_body" name="contents" value="<?=$list['contents'] ?>"></textarea>
+	    			<textarea type="text" id = "text_body" name="contents"><?=$list['contents'] ?></textarea>
 	    		</td>    		
 	    	</tr>
 	    </table>

@@ -17,14 +17,16 @@ class Question_and_answer extends CI_Controller {
 		$title_name= implode(",", $name);
 		$login_data = $this -> session -> userdata('login_data');
 
-		if (isset($login_data))
-			$data['login_data'] = $login_data;
-			$data['req_id'] = $req_id;
-			$data['category_title'] = $title;
-			$data['name']=$title_name;
-			$data['menu_title'] = "question_and_answer";
-			$view_name = '/question_and_answer/' . $title;
-			$data['view_name'] = $view_name;
+		if($login_data != NULL){
+			 $data['login_data'] = $login_data;
+		}
+		
+		$data['req_id'] = $req_id;
+		$data['category_title'] = $title;
+		$data['name']=$title_name;
+		$data['menu_title'] = "question_and_answer";
+		$view_name = '/question_and_answer/' . $title;
+		$data['view_name'] = $view_name;
 			
 		$this -> load -> view('header', $data);
 		$this -> load -> view('sidebar', $data);

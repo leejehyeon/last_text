@@ -1,26 +1,31 @@
 <?
 // Session grade따라 메뉴를 구성
 $sidebar_content_array = array(	array(array('notice|공지사항|NOTICE','whole_notice|전체 공지사항','class_notice|수업 공지사항'),
-									  array('login_process|로그인|LOGIN','login|로그인','sign_up|회원가입','search_id_pwd|아이디/비밀번호 찾기')
+									  array('login_process|로그인|LOGIN','login|로그인','sign_up|회원가입','search_id_pwd|아이디/비밀번호 찾기'),
+									  array('site_information|사이트 정보|SITE','personal_information|개인정보 이용약관','email_collection|이메일무단수집거부')
 									 ),
 							  	array(array('notice|공지사항|NOTICE','whole_notice|전체 공지사항','class_notice|수업 공지사항'),
 									  array('lesson|수업|CLASS','attendance_record_admin|출석부 관리','daily_journal_admin|근무일지 관리','enrichment_study_admin|보강신청 관리'),
 									  array('administration|관리|ADMIN','tutee|튜티', 'tutor|튜터'),
 									  array('question_and_answer|질의응답|Q&A','questioning_and_answering|질문 및 답변하기'),
-									  array('mypage|마이페이지|MYPAGE','modify|회원수정','delete|회원탈퇴')
+									  array('mypage|마이페이지|MYPAGE','modify|회원수정','delete|회원탈퇴'),
+									  array('site_information|사이트 정보|SITE','personal_information|개인정보 이용약관','email_collection|이메일무단수집거부')
 									  ),
 								array(array('notice|공지사항|NOTICE','whole_notice|전체 공지사항','class_notice|수업 공지사항'),
 									  array('lesson|수업|CLASS','attendance_record|출석부','daily_journal|근무일지','enrichment_study|보강신청'),
 									  array('question_and_answer|질의응답|Q&A','questioning_and_answering|질문 및 답변하기'),
-									  array('mypage|마이페이지|MYPAGE','modify|회원수정','delete|회원탈퇴')
+									  array('mypage|마이페이지|MYPAGE','modify|회원수정','delete|회원탈퇴'),
+									  array('site_information|사이트 정보|SITE','personal_information|개인정보 이용약관','email_collection|이메일무단수집거부')
 							  		 ),
 								array(array('notice|공지사항|NOTICE','whole_notice|전체 공지사항','class_notice|수업 공지사항'),
 									  array('lesson|수업|CLASS','my_attendance|내 출결보기'),
 									  array('question_and_answer|질의응답|Q&A','questioning_and_answering|질문 및 답변하기'),
-									  array('mypage|마이페이지|MYPAGE','modify|회원수정','delete|회원탈퇴')
+									  array('mypage|마이페이지|MYPAGE','modify|회원수정','delete|회원탈퇴'),
+									  array('site_information|사이트 정보|SITE','personal_information|개인정보 이용약관','email_collection|이메일무단수집거부')
 							  		 ),
 								array(array('notice|공지사항|NOTICE','whole_notice|전체 공지사항','class_notice|수업 공지사항'),
-							  		  array('mypage|마이페이지|MYPAGE','modify|회원수정','delete|회원탈퇴')
+							  		  array('mypage|마이페이지|MYPAGE','modify|회원수정','delete|회원탈퇴'),
+							  		  array('site_information|사이트 정보|SITE','personal_information|개인정보 이용약관','email_collection|이메일무단수집거부')
 									 )
 							  );
 		if($this->session->userdata('login_data')!=NULL){

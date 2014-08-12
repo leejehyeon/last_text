@@ -1,6 +1,6 @@
 <!--<div class="col-xs-7">-->
 <!-- homepageguide login start -->
-<div class="login_page">
+<div class="each_page login_page">
 	<!-- login area -->
 	<!--<p style="font-size:12.7px;font-weight: bold;color: #666666;font-family: '굴림';"> 로그인</p>-->
 	<div class="login_info">* 아이디와 비밀번호를 입력하신 후 LOGIN버튼을 눌러주세요.</div>

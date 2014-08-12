@@ -18,14 +18,16 @@ class Notice extends CI_Controller {
 		$title_name= implode(",", $name);
 		$login_data = $this->session->userdata('login_data');
 		
-		if(isset($login_data))
-			$data['login_data'] = $login_data;
-			$data['req_id']=$req_id;
-			$data['name']=$title_name;
-			$data['category_title'] = $title;
-			$data['menu_title'] = "notice";	
-			$view_name = '/notice/' . $title;
-			$data['view_name']=$view_name;
+		if($login_data != NULL){
+			 $data['login_data'] = $login_data;
+		}
+		
+		$data['req_id']=$req_id;
+		$data['name']=$title_name;
+		$data['category_title'] = $title;
+		$data['menu_title'] = "notice";	
+		$view_name = '/notice/' . $title;
+		$data['view_name']=$view_name;
 			
 			
 		$this -> load -> view('header', $data);

@@ -30,18 +30,21 @@ class Member extends CI_Model {
 	}
 	
 	public function id_search($name_number_email_array){
-		$form_array = array('user_name' => $name_number_email_array['form_name'],
-				'user_number' => $name_number_email_array['form_number'],
-				'user_email1' => $name_number_email_array['form_email1'],
-				'user_email2' => $name_number_email_array['form_email2']);
+		$form_array = array('user_name' => $name_number_email_array['user_name'],
+				'user_number' => $name_number_email_array['user_number'],
+				'user_email' => $name_number_email_array['user_email']);
+				/*'user_email1' => $name_number_email_array['user_email1'],
+				'user_email2' => $name_number_email_array['user_email2']);*/
 				return $this -> db -> get_where('member', $form_array) -> result();
 	}
 	
 	public function pw_search($id_name_email_array){
-		$form_array = array('user_id' => $id_name_email_array['form_id'],
-				'user_name' => $id_name_email_array['form_name'],
-				'user_email1' => $id_name_email_array['form_email1'],
-				'user_email2' => $id_name_email_array['form_email2']);
+		$form_array = array('user_id' => $id_name_email_array['user_id'],
+				'user_name' => $id_name_email_array['user_name'],
+				'user_email' => $id_name_email_array['user_email']);
+				/*'user_email' => $name_number_email_array['user_email1']."@".$name_number_email_array['user_email2']);*/
+				/*'user_email1' => $id_name_email_array['user_email1'],
+				'user_email2' => $id_name_email_array['user_email2']);*/
 				return $this -> db -> get_where('member', $form_array) -> result();
 	}
 	public function id_compare($id_array){
@@ -137,6 +140,10 @@ class Member extends CI_Model {
 	public function tutor_grade_up($update_data){
 		$this -> db -> where('user_id', $update_data['user_id']);
 		return $this -> db -> update('member', $update_data);
+	}
+
+	public function select_id($user_id_array){
+		return $this -> db -> get_where('member',$user_id_array) -> row_array();
 	}
 }
 ?>

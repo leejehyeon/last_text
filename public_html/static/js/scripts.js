@@ -200,9 +200,70 @@ function addLoadEvent(func){
 }
 //-------테이블을 엑셀로 바꾸어주는 함수 
 
+
 addLoadEvent(function(){
-dynamicSelect("user_subject", "user_divide");
+	dynamicSelect("user_subject1", "user_divide1");
 });
+addLoadEvent(function(){
+	dynamicSelect("user_subject2", "user_divide2");
+});
+addLoadEvent(function(){
+	dynamicSelect("user_subject3", "user_divide3");
+});
+addLoadEvent(function(){
+	dynamicSelect("user_subject4", "user_divide4");
+});
+addLoadEvent(function(){
+	dynamicSelect("user_subject5", "user_divide5");
+});
+addLoadEvent(function(){
+	dynamicSelect("user_subject6", "user_divide6");
+});
+addLoadEvent(function(){
+	dynamicSelect("user_subject7", "user_divide7");
+});
+addLoadEvent(function(){
+	dynamicSelect("user_subject8", "user_divide8");
+});
+addLoadEvent(function(){
+	dynamicSelect("user_subject9", "user_divide9");
+});
+addLoadEvent(function(){
+	dynamicSelect("user_subject10", "user_subject10");
+});
+addLoadEvent(function(){
+	dynamicSelect("user_subject11", "user_subject11");
+});
+addLoadEvent(function(){
+	dynamicSelect("user_subject12", "user_subject12");
+});
+addLoadEvent(function(){
+	dynamicSelect("user_subject13", "user_subject13");
+});
+addLoadEvent(function(){
+	dynamicSelect("user_subject14", "user_subject14");
+});
+addLoadEvent(function(){
+	dynamicSelect("user_subject15", "user_subject15");
+});
+addLoadEvent(function(){
+	dynamicSelect("user_subject16", "user_subject16");
+});
+addLoadEvent(function(){
+	dynamicSelect("user_subject17", "user_subject17");
+});
+addLoadEvent(function(){
+	dynamicSelect("user_subject18", "user_subject18");
+});
+addLoadEvent(function(){
+	dynamicSelect("user_subject19", "user_subject19");
+});
+addLoadEvent(function(){
+	dynamicSelect("user_subject20", "user_subject20");
+});
+
+
+
 
 function getmonth(date){
 	 var month = document.getElementById('month').value;
@@ -493,8 +554,10 @@ function write_form_check(){
 		alert('제목을 입력하시오');
 	}else if(document.getElementById('contents').value == ""){
 		alert('내용을 입력하세요');
-	}else{}
-	write_form.submit();
+	}else{
+		write_form.submit();		
+	}
+//	document.write_form.contents.value = document.write_form.contents.value.replace(/\n/gi,'<br//>');		
 }
 
 //보강신청 년도 선택시 해당 년도의 1월 1일로 select box 세팅
@@ -549,3 +612,375 @@ function Change_menu(){
 		changer[i].className = "Change_menulength dropdown";
 	}
 }
+
+function goto_login(){
+	alert('로그인이 필요합니다.');
+}
+function goto_apply(){
+	alert('튜터 혹은 튜티를 지원하세요.');
+}
+function Change_Pagination(){
+	var changer;
+	changer = document.getElementById('Pagination').children;
+
+	var i = changer.length-3;
+	
+	changer[i].style.backgroundImage = "none";
+}
+function Change_Pagination_class(){
+	var changer_class;
+	changer_class = document.getElementById('Pagination_class').children;
+
+	var j = changer_class.length-3;
+	
+	changer_class[j].style.backgroundImage = "none";
+}
+
+function resize(obj) {
+  obj.style.height = "1px";
+  obj.style.height = (20+obj.scrollHeight)+"px";
+}
+
+$(document).ready(function() {
+  $('.view_board_textarea').on( 'keyup', 'textarea', function (e){
+    $(this).css('height', 'auto' );
+    $(this).height( this.scrollHeight );
+  });
+  $('.view_board_textarea').find( 'textarea' ).keyup();
+});
+
+function Main_Notice_Margin(){
+		var table	= document.getElementById('Main_Notice_Table');
+		var tl = table.getElementsByTagName("tr").length;
+		
+		if(tl == 1){
+			var row1 = table.insertRow(1);
+			var row2 = table.insertRow(2);
+			var row3 = table.insertRow(3);
+
+			var cell1_1 = row1.insertCell(0);
+			var cell1_2 = row1.insertCell(1);
+			var cell2_1 = row2.insertCell(0);
+			var cell2_2 = row2.insertCell(1);
+			var cell3_1 = row3.insertCell(0);
+			var cell3_2 = row3.insertCell(1);
+			
+			cell1_1.innerHTML = "";
+			cell1_2.innerHTML = "";
+			cell2_1.innerHTML = "";
+			cell2_2.innerHTML = "";
+			cell3_1.innerHTML = "";
+			cell3_2.innerHTML = "";
+			
+			cell1_1.style.backgroundImage = "none";			
+			cell1_1.style.border = "none";			
+			cell1_2.style.border = "none";
+			cell2_1.style.backgroundImage = "none";			
+			cell2_1.style.border = "none";			
+			cell2_2.style.border = "none";
+			cell3_1.style.backgroundImage = "none";			
+			cell3_1.style.border = "none";			
+			cell3_2.style.border = "none";
+		}
+		else if(tl == 2){
+			var row2 = table.insertRow(2);
+			var row3 = table.insertRow(3);
+
+			var cell2_1 = row2.insertCell(0);
+			var cell2_2 = row2.insertCell(1);
+			var cell3_1 = row3.insertCell(0);
+			var cell3_2 = row3.insertCell(1);
+			
+			cell2_1.innerHTML = "";
+			cell2_2.innerHTML = "";
+			cell3_1.innerHTML = "";
+			cell3_2.innerHTML = "";			
+
+			cell2_1.style.backgroundImage = "none";			
+			cell2_1.style.border = "none";			
+			cell2_2.style.border = "none";
+			cell3_1.style.backgroundImage = "none";			
+			cell3_1.style.border = "none";			
+			cell3_2.style.border = "none";
+		}
+		else if(tl == 3){
+			var row3 = table.insertRow(3);
+
+			var cell3_1 = row3.insertCell(0);
+			var cell3_2 = row3.insertCell(1);
+			
+			cell3_1.innerHTML = "";
+			cell3_2.innerHTML = "";						
+
+			cell3_1.style.backgroundImage = "none";			
+			cell3_1.style.border = "none";			
+			cell3_2.style.border = "none";
+		}
+}
+function Main_Notice_Margin2(){
+		var table	= document.getElementById('Main_Notice_Table2');
+		var tl = table.getElementsByTagName("tr").length;
+		
+		if(tl == 1){
+			var row1 = table.insertRow(1);
+			var row2 = table.insertRow(2);
+			var row3 = table.insertRow(3);
+
+			var cell1_1 = row1.insertCell(0);
+			var cell1_2 = row1.insertCell(1);
+			var cell2_1 = row2.insertCell(0);
+			var cell2_2 = row2.insertCell(1);
+			var cell3_1 = row3.insertCell(0);
+			var cell3_2 = row3.insertCell(1);
+			
+			cell1_1.innerHTML = "";
+			cell1_2.innerHTML = "";
+			cell2_1.innerHTML = "";
+			cell2_2.innerHTML = "";
+			cell3_1.innerHTML = "";
+			cell3_2.innerHTML = "";
+			
+			cell1_1.style.backgroundImage = "none";			
+			cell1_1.style.border = "none";			
+			cell1_2.style.border = "none";
+			cell2_1.style.backgroundImage = "none";			
+			cell2_1.style.border = "none";			
+			cell2_2.style.border = "none";
+			cell3_1.style.backgroundImage = "none";			
+			cell3_1.style.border = "none";			
+			cell3_2.style.border = "none";
+		}
+		else if(tl == 2){
+			var row2 = table.insertRow(2);
+			var row3 = table.insertRow(3);
+
+			var cell2_1 = row2.insertCell(0);
+			var cell2_2 = row2.insertCell(1);
+			var cell3_1 = row3.insertCell(0);
+			var cell3_2 = row3.insertCell(1);
+			
+			cell2_1.innerHTML = "";
+			cell2_2.innerHTML = "";
+			cell3_1.innerHTML = "";
+			cell3_2.innerHTML = "";			
+
+			cell2_1.style.backgroundImage = "none";			
+			cell2_1.style.border = "none";			
+			cell2_2.style.border = "none";
+			cell3_1.style.backgroundImage = "none";			
+			cell3_1.style.border = "none";			
+			cell3_2.style.border = "none";
+		}
+		else if(tl == 3){
+			var row3 = table.insertRow(3);
+
+			var cell3_1 = row3.insertCell(0);
+			var cell3_2 = row3.insertCell(1);
+			
+			cell3_1.innerHTML = "";
+			cell3_2.innerHTML = "";						
+
+			cell3_1.style.backgroundImage = "none";			
+			cell3_1.style.border = "none";			
+			cell3_2.style.border = "none";
+		}
+}
+/*
+//select send value
+$(document).ready(function(){
+ 
+//Initializing arrays with city names
+var list1 = [];
+ 
+var list2 = [
+ {display: "1분반", value: "1분반" },
+ {display: "2분반", value: "2분반" },
+ {display: "3분반", value: "3분반" },
+ {display: "4분반", value: "4분반" },
+ {display: "5분반", value: "5분반" },
+ {display: "6분반", value: "6분반" }];
+ 
+var list3 = [
+ {display: "1분반", value: "1분반" },
+ {display: "2분반", value: "2분반" },
+ {display: "3분반", value: "3분반" },
+ {display: "4분반", value: "4분반" },
+ {display: "5분반", value: "5분반" },
+ {display: "6분반", value: "6분반" }];
+
+var list4 = [
+ {display: "1분반", value: "1분반" },
+ {display: "2분반", value: "2분반" },
+ {display: "3분반", value: "3분반" },
+ {display: "4분반", value: "4분반" },
+ {display: "5분반", value: "5분반" },
+ {display: "6분반", value: "6분반" }];
+
+var list5 = [
+ {display: "1분반", value: "1분반" },
+ {display: "2분반", value: "2분반" }];
+ 
+var list6 = [
+ {display: "1분반", value: "1분반" },
+ {display: "2분반", value: "2분반" }];
+
+var list7 = [
+ {display: "1분반", value: "1분반" },
+ {display: "2분반", value: "2분반" }];
+
+var list8 = [
+ {display: "1분반", value: "1분반" },
+ {display: "2분반", value: "2분반" }];
+
+var list9 = [
+ {display: "1분반", value: "1분반" },
+ {display: "2분반", value: "2분반" },
+ {display: "3분반", value: "3분반" },
+ {display: "4분반", value: "4분반" },
+ {display: "5분반", value: "5분반" },
+ {display: "6분반", value: "6분반" },
+ {display: "7분반", value: "7분반" },
+ {display: "8분반", value: "8분반" },
+ {display: "9분반", value: "9분반" },
+ {display: "10분반", value: "10분반" }];
+ 
+var list10 = [
+ {display: "1분반", value: "1분반" },
+ {display: "2분반", value: "2분반" },
+ {display: "3분반", value: "3분반" },
+ {display: "4분반", value: "4분반" },
+ {display: "5분반", value: "5분반" },
+ {display: "6분반", value: "6분반" },
+ {display: "7분반", value: "7분반" },
+ {display: "8분반", value: "8분반" },
+ {display: "9분반", value: "9분반" },
+ {display: "10분반", value: "10분반" }];
+ 
+var list11 = [
+ {display: "1분반", value: "1분반" },
+ {display: "2분반", value: "2분반" }];
+
+var list12 = [
+ {display: "1분반", value: "1분반" },
+ {display: "2분반", value: "2분반" }];
+
+var list13 = [
+ {display: "1분반", value: "1분반" },
+ {display: "2분반", value: "2분반" }];
+
+var list14 = [
+ {display: "1분반", value: "1분반" },
+ {display: "2분반", value: "2분반" }];
+
+var list15 = [
+ {display: "1분반", value: "1분반" },
+ {display: "2분반", value: "2분반" },
+ {display: "3분반", value: "3분반" },
+ {display: "4분반", value: "4분반" },
+ {display: "5분반", value: "5분반" },
+ {display: "6분반", value: "6분반" }];
+
+var list16 = [
+ {display: "1분반", value: "1분반" },
+ {display: "2분반", value: "2분반" }];
+
+var list17 = [
+ {display: "1분반", value: "1분반" },
+ {display: "2분반", value: "2분반" },
+ {display: "3분반", value: "3분반" },
+ {display: "4분반", value: "4분반" },
+ {display: "5분반", value: "5분반" },
+ {display: "6분반", value: "6분반" }];
+//Function executes on change of first select option field
+$("#user_subject1").change(function(){
+ 
+var select = $("#user_subject1 option:selected").val();
+ 
+switch(select){
+case "1":
+ user_divide1(list1);
+break;
+ 
+case "2":
+ user_divide1(list2);
+break;
+ 
+case "3":
+ user_divide1(list3);
+break;
+
+case "4":
+ user_divide1(list4);
+break;
+
+case "5":
+ user_divide1(list5);
+break;
+
+case "6":
+ user_divide1(list6);
+break;
+
+case "7":
+ user_divide1(list7);
+break;
+
+case "8":
+ user_divide1(list8);
+break;
+
+case "9":
+ user_divide1(list9);
+break;
+
+case "10":
+ user_divide1(list10);
+break;
+
+case "11":
+ user_divide1(list11);
+break;
+
+case "12":
+ user_divide1(list12);
+break;
+
+case "13":
+ user_divide1(list13);
+break;
+
+case "14":
+ user_divide1(list13);
+break;
+
+case "15":
+ user_divide1(list13);
+break;
+
+case "16":
+ user_divide1(list13);
+break;
+
+case "17":
+ user_divide1(list13);
+break;
+
+default:
+ $("#user_divide1").empty();
+ $("#user_divide1").append("<option>선택하세요</option>");
+break;
+}
+});
+ 
+//Function To List out Cities in Second Select tags
+function user_divide1(arr){
+ $("#user_divide1").empty();//To reset cities
+ $("#user_divide1").append("<option>선택하세요</option>");
+ $(arr).each(function(i){//to list cities
+ $("#user_divide1").append("<option value=\""+arr[i].value+"\">"+arr[i].display+"</option>")
+ }); 
+}
+ 
+});
+*/
+

@@ -22,8 +22,9 @@ class Lesson extends CI_Controller {
 		$title_name = implode(",", $name);
 		$login_data = $this -> session -> userdata('login_data');
 
-		if (isset($login_data))
-			$data['login_data'] = $login_data;
+		if($login_data != NULL){
+			 $data['login_data'] = $login_data;
+		}
 
 			$data['req_id'] = $req_id;
 

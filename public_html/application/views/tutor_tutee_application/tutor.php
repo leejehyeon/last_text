@@ -107,8 +107,8 @@
 	</div>
 
 	<div class = "row tutee_apply_footer" align="center">
-		<input type="button" value="뒤로가기" onclick="javascript:history.back();">
-		<input type="button" value="지원하기" onclick="confirming_tutor_application();">
+		<input type="button" value="취소" onclick="javascript:history.back();">
+		<input type="button" value="작성" onclick="confirming_tutor_application();">
 	</div>
 		<input type="hidden" name="user_id" value="<?=$login_data['user_id']?>"/>
 		<input type="hidden" name="user_number" value="<?=$login_data['user_number']?>" />

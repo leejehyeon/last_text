@@ -83,3 +83,5 @@
 	</form>
 	
 	<div id="txtHint"><b>위에 설정을 해주세요.</b></div>
+	
+	</div>

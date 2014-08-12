@@ -1,52 +1,55 @@
-<div class="col-xs-7">
+
 	<?$i=1;?>
-<div>
+<div class="each_page">
 	<!-- test table create -->
-	<table cellpadding="0" cellspacing="0" id="test1" class="border" width="100%" style="font-size:12px">
+	<p class="excel_p">
+		<a style="float:right; cursor:pointer;" onclick="tableToExcel('admin_tutee_table')">엑셀파일로 다운로드</a>
+	</p>
+	<table cellpadding="0" cellspacing="0" id="admin_tutee_table" class="border" width="100%" style="font-size:12px">
 		<!-- Subject Line -->
 		<tr>
-			<td class="tutee_table">
+			<th>
 				연번
-			</td>
-			<td class="tutee_table">
+			</th>
+			<th>
 				지원과목
-			</td>
-			<td class="tutee_table">
+			</th>
+			<th>
 				학번
-			</td>
-			<td class="tutee_table">
+			</th>
+			<th>
 				학과
-			</td>
-			<td class="tutee_table">
+			</th>
+			<th>
 				이름
-			</td>
-			<td class="tutee_table">
+			</th>
+			<th>
 				학년
-			</td>
-			<td class="tutee_table">
+			</th>
+			<th>
 				전화
-			</td>
-			<td class="tutee_table">
+			</th>
+			<th>
 				이메일
-			</td>
-			<td class="tutee_table">
+			</th>
+			<th>
 				고등학교 구분
-			</td>
-			<td class="tutee_table">
+			</th>
+			<th>
 				고등학교 계열
-			</td>
-			<td class="tutee_table">
+			</th>
+			<th>
 				난이도
-			</td>
-			<td class="tutee_table">
+			</th>
+			<th>
 				튜티가능 요일
-			</td>
-			<td class="tutee_table">
+			</th>
+			<th>
 				지원동기 및 목표
-			</td>
-			<td class="tutee_table">
+			</th>
+			<th>
 				등급올리기
-			</td>
+			</th>
 		</tr>
 		<!-- 본문 내용 반복문 -->
 		
@@ -94,20 +97,25 @@
 						<?echo $lt -> user_time?>
 					</td>
 					<td class="border">
-						<?echo $lt -> user_content_application?>
+						<textarea readonly="readonly" style="border:none; resize:none; height:100%;"><?echo $lt -> user_content_application?></textarea>
 					</td>
 					<td class="border">
 						<form method="post" action="/index.php/administration/tutee_grade_up">
-							<select name="user_subject" id="user_subject">
+							<select name="user_subject" id="user_subject<?echo $i?>">
 							<?foreach($get_subject as $st){?>
 								<option value="<?echo $st->subject_id;?>"><? echo $st->subject;?>
 							<?}?>
 							</select>
-							<select name="user_divide" id="user_divide">
+							<select class="tutee_subject_select" name="user_divide" id="user_divide<?echo $i?>">
 							<?foreach($get_sub_list as $yt){?>
 								<option class="<?echo $yt->subject_id?>" value="<?echo $yt->subject_level?>"><?echo $yt->subject_level?>
-							<?}?>					
-							</select> 
+							<?} ?>
+							</select>
+							<!--
+							<select name="user_divide" id="user_divide1">
+								<option>선택하세요</option>
+							</select>
+							--> 
 							<input type="hidden" id="user_id" name="user_id" value="<?echo $lt -> user_id?>" />	
 							<input type="hidden" id="user_application_subject" name="user_application_subject" value="check"/>
 							<input type="submit" value="등급올리기" />
@@ -120,13 +128,15 @@
 		}
 		}?>
 	</table>
-	<input type="button" value="excel로 변환하기" id="write" onclick="tableToExcel('test1')" > <!-- Excel 파일 test 버튼-->
-	<div style="display: none">
+</select>
+	<div style="float: left;margin-top: 30px;">
 	<form method="post" action="/index.php/tutor_tuti_application/change_application_on">
-	<input type="submit" value="지원기간 O" />
+	<input class="gray_button margin_0" type="submit" value="지원기간 O" />
 	</form>
+	</div>
+	<div style="margin-top: 30px;margin-left: 90px;">
 	<form method="post" action="/index.php/tutor_tuti_application/change_application_off">
-	<input type="submit" value="지원기간 X" />
+	<input class="gray_button margin_0" type="submit" value="지원기간 X" />
 	</form>
 	</div>
 </div>

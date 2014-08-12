@@ -7,6 +7,7 @@ class Tutor_tutee_application extends CI_Controller {
 		parent::__construct();
 		$this -> load -> database();
 		$this -> load -> model('tutor_tutee');
+		$this -> load -> model('member');
 		$this -> load -> library('session');
 		$this -> load -> helper('alert');
 	}
@@ -14,8 +15,10 @@ class Tutor_tutee_application extends CI_Controller {
 	public function _remap($title) {
 
 		$login_data = $this -> session -> userdata('login_data');
-		if (isset($login_data))
-			$data['login_data'] = $login_data;
+		
+		if($login_data != NULL){
+			 $data['login_data'] = $login_data;
+		}
 		
 		$data['category_title'] = $title;
 		$data['menu_title'] = "tutor_tutee_application";
@@ -43,7 +46,7 @@ class Tutor_tutee_application extends CI_Controller {
 		$this -> load -> view($view_name, $data);
 	}
 	
-	private function tutee_insert(){
+	private function tutee_insert($view_name,$data){
 		$registration_array = array('user_id' => $this -> input -> post('user_id'),
 									'user_number' => $this -> input -> post('user_number'), 
 									'user_department' => $this -> input -> post('user_department'), 
@@ -65,10 +68,11 @@ class Tutor_tutee_application extends CI_Controller {
 									'user_application_subject' => $this -> input -> post('user_application_subject')
 									);
 		$this -> tutor_tutee ->update_user_application($update_application);
+		$this -> session_update($data);
 		alert('글이 등록되었습니다.', '/index.php/');
 	} 
 
-	private function tutor_insert(){
+	private function tutor_insert($view_name,$data){
 		$registration_array = array('user_id' => $this -> input -> post('user_id'),
 									'user_number' => $this -> input -> post('user_number'), 
 									'user_department' => $this -> input -> post('user_department'), 
@@ -92,6 +96,7 @@ class Tutor_tutee_application extends CI_Controller {
 									'user_application_subject' => $this -> input -> post('user_application_subject')
 									);
 		$this -> tutor_tutee ->update_user_application($update_application);
+		$this -> session_update($data);
 		alert('글이 등록되었습니다.', '/index.php/');
 	}
 	
@@ -149,6 +154,25 @@ class Tutor_tutee_application extends CI_Controller {
 		$this -> load -> model('member');
 		$data = $this -> member ->update_application_off(); 
 		alert('튜터,튜티 지원기능이 비활성화되었습니다..', '/index.php/');
+	}
+	
+	private function session_update($data){
+		$user_id_array = array('user_id' => $data['login_data']['user_id']);
+		$user_data = $this -> member -> select_id($user_id_array);
+		$login_array = array('user_id' => $user_data['user_id'],
+			 'user_pw' => $user_data['user_pw'], 
+			 'user_name' => $user_data['user_name'], 
+			 'user_year' => $user_data['user_year'],
+			 'user_number' => $user_data['user_number'],
+			 'subject_id' => $user_data['subject_id'],
+			 'user_department' => $user_data['user_department'],
+			 'user_phonenumber' => $user_data['user_phonenumber'],
+			 'user_email' => $user_data['user_email'],
+			 'user_application' => $user_data['user_application'],
+			 'user_check_admin' => $user_data['user_check_admin'],
+			 'user_application_subject' => $user_data['user_application_subject'],
+			 'grade' => $user_data['grade']);
+		$this -> session -> set_userdata(array('login_data' => $login_array));
 	}
 	
 }
