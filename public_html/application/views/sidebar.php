@@ -2,7 +2,7 @@
 // Session grade따라 메뉴를 구성
 $sidebar_content_array = array(	array(array('notice|공지사항|NOTICE','whole_notice|전체 공지사항','class_notice|수업 공지사항'),
 									  array('login_process|로그인|LOGIN','login|로그인','sign_up|회원가입','search_id_pwd|아이디/비밀번호 찾기'),
-									  array('site_information|사이트 정보|SITE','personal_information|개인정보 이용약관','email_collection|이메일무단수집거부')
+									  array('site_information|사이트 정보|SITE','personal_information|개인정보 이용약관','email_collection|이메일 무단 수집거부')
 									 ),
 							  	array(array('notice|공지사항|NOTICE','whole_notice|전체 공지사항','class_notice|수업 공지사항'),
 									  array('lesson|수업|CLASS','attendance_record_admin|출석부 관리','daily_journal_admin|근무일지 관리','enrichment_study_admin|보강신청 관리'),
@@ -47,6 +47,7 @@ $sidebar_content_array = array(	array(array('notice|공지사항|NOTICE','whole_
 				*/	
 				$explode_top_array = explode('|', $sidebar_content_array[$i][$j][0]);
 				if($menu_title == $explode_top_array[0]){
+					
 					for($k=1;$k<=count($sidebar_content_array[$i][$j])-1;$k++){
 						/*		
 						 ----submenu 지정----
@@ -54,19 +55,19 @@ $sidebar_content_array = array(	array(array('notice|공지사항|NOTICE','whole_
 						*/						
 						$explode_category_top_array = explode('|', $sidebar_content_array[$i][$j][$k]);
 						if($category_title == $explode_category_top_array[0]){
-?>		
+?>			
 							<!--<p class="sidebar_title_korean"><?echo $explode_top_array[1]?></p>-->
 <?							$page_title= $explode_category_top_array[1];
 
 							if($explode_top_array[0]=="login_process" || $explode_top_array[0]=="mypage"){
 								$title_area = "loginpage_title_area";
-?>								<p class="sidebar_title_english"><?echo $explode_top_array[2]?></p>
-								<p class="sidebar_title_korean"><?echo $explode_top_array[1]?></p>
-<?							}else{
-								$title_area = "page_title_area";
-?>								<p class="sidebar_title_english"><?echo $explode_top_array[2]?></p>
-								<p class="sidebar_title_korean"><?echo $explode_top_array[1]?></p>
-<?							}
+							}else if($explode_top_array[0]=="notice" || $explode_top_array[0]=="question_and_answer"){
+								$title_area = "boardpage_title_area";
+							}else{
+								$title_area = "page_title_area";	
+							}
+							?><p class="sidebar_title_english"><?echo $explode_top_array[2]?></p>
+								<p class="sidebar_title_korean"><?echo $explode_top_array[1]?></p><?
 						}
 					}
 ?>					
@@ -81,6 +82,7 @@ $sidebar_content_array = array(	array(array('notice|공지사항|NOTICE','whole_
 							}else if($explode_category_top_array[0]=="attendance_record"){echo $explode_category_top_array[0].'/'.date("Y/m/d");
 							}else if($explode_category_top_array[0]=="daily_journal"){echo $explode_category_top_array[0].'/'.date("Y/m");
 							}else if($explode_category_top_array[0]=="daily_journal_admin"){echo $explode_category_top_array[0].'/'.date("Y/m");
+							}else if($explode_category_top_array[0]=="questioning_and_answering"){echo $explode_category_top_array[0].'/'."2";
 							}else{echo $explode_category_top_array[0];}?>"><li class="sidebar_subtitle_select"><p class="select_subtitle_line">- </p><?echo $explode_category_top_array[1]?></li></a>						
 <?
 						}else{?>
@@ -88,6 +90,7 @@ $sidebar_content_array = array(	array(array('notice|공지사항|NOTICE','whole_
 							}else if($explode_category_top_array[0]=="attendance_record"){echo $explode_category_top_array[0].'/'.date("Y/m/d");
 							}else if($explode_category_top_array[0]=="daily_journal"){echo $explode_category_top_array[0].'/'.date("Y/m");
 							}else if($explode_category_top_array[0]=="daily_journal_admin"){echo $explode_category_top_array[0].'/'.date("Y/m");
+							}else if($explode_category_top_array[0]=="questioning_and_answering"){echo $explode_category_top_array[0].'/'."2";
 							}else{echo $explode_category_top_array[0];}?>"><li class="sidebar_subtitle"><p class="select_subtitle_line">- </p><?echo $explode_category_top_array[1]?></li></a>
 <?						}
 					}

@@ -1,4 +1,4 @@
-<div class="col-xs-7">
+<div class="each_page" style="margin-top:37px">
 <div>
 	<div class="row">
 		<!-- 년도 드롭다운 -->

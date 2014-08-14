@@ -1,4 +1,25 @@
-<div class="col-xs-8">
+<div class="each_page">
+	<form>
+	<p style="float:left;margin:20px 0px 20px; 0px">과목 : 
+		<label class="styled_select4">
+			<select style="	width:154px;
+							height:30px;
+							border:solid 1px #bdbdbd;
+						" id="subject_id" onChange="change_subject_id(this);">
+				<?foreach($get_subject as $lt){
+					if($lt ->subject_id == 1){
+						continue;
+					}
+					if($lt -> subject_id == $this -> uri -> segment(3)){?>
+						<option value="<?echo $lt -> subject_id;?>" selected><?echo $lt -> subject;?></option>
+					<?}else{?>
+						<option value="<?echo $lt -> subject_id;?>"><?echo $lt -> subject;?></option>
+					<?}
+					}?>
+			</select>
+		</label>
+		</p>
+</form>
 	<table class="whole_notice">
 		<thead>
 			<tr>
@@ -26,7 +47,7 @@
 						<? echo $id;?>
 					</td>
 					<td>
-						<a href="/index.php/notice/whole_notice/<?echo $this -> uri ->segment(3)?>?req_id=<?echo $lt->board_id?>"><?echo $lt->subject;?></a>
+						<a href="/index.php/question_and_answer/questioning_and_answering/<?echo $this -> uri ->segment(3)?>?req_id=<?echo $lt->board_id?>"><?echo $lt->subject;?></a>
 					</td>
 					<td>
 						<? echo $lt->user_name;?>
@@ -45,12 +66,9 @@
 			
 		</tbody>
 	</table>
-	
-			<?if($login_data['grade']==1){?>
 				<div class="whole_notice_write">
-					<a href="/index.php/notice/whole_notice/write_board"><img src='/static/img/Notice_write_icon.png'></a>
+					<a href="/index.php/question_and_answer/questioning_and_answering/write_board/<?echo $this -> uri -> segment(3);?>"><img src='/static/img/Notice_write_icon.png'></a>
 				</div>
-			<?}else{}?>
 				<div class="whole_notice_create_links">
 					<?echo $this -> pagination -> create_links();?>
 				</div>

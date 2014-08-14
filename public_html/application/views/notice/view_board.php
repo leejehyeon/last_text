@@ -1,4 +1,4 @@
-<div class="col-xs-8">
+<div class="each_page" style="margin-top:37px">
 	    <table class="notice_view_board">
 	    	<tr>
 	    		<td>
@@ -31,12 +31,16 @@
 
 	    <div class="form-actions notice_view_footer">
 			<a href="/index.php<?echo $view_name?>/<?echo $this -> uri -> segment(3);?>"><img src='/static/img/view_whole_notice_botton1.png'></a>
-			<?if($login_data['grade'] == 1){?>
-			<a href="/index.php<?echo $view_name?>/update_board?req_id=<?echo $list['board_id']?>"><img src='/static/img/view_whole_notice_botton2.png'></a>
-			<form name="delete_board" method="post" action="/index.php<?echo $view_name?>/delete_board?req_id=<?echo $list['board_id']?>">
-			<input type="button" value="삭제" onclick="checkagain()"/>
-			</form>
-			<?}else{}?>
+			
+			<?if(($this->session->userdata('login_data')!=NULL)){
+				if($login_data['grade']==1){?>
+					<a href="/index.php<?echo $view_name?>/update_board?req_id=<?echo $list['board_id']?>"><img src='/static/img/view_whole_notice_botton2.png'></a>
+					<form name="delete_board" method="post" action="/index.php<?echo $view_name?>/delete_board?req_id=<?echo $list['board_id']?>">
+					<input type="button" value="삭제" onclick="checkagain()"/>
+					</form>
+				<?}else{}
+			}else{}
+			?>
 	    </div>    
 <!--
 	<div class = "row">

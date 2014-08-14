@@ -146,7 +146,7 @@ class Login_process extends CI_Controller {
 		if ($data != null) {
 			alert_parameter('당신의 아이디는', '입니다.', $data[0] -> user_id, '/index.php/login_process/login');
 		} else {
-			alert('입력하신 정보에 해당하는 아이디가 없습니다.', '/index.php/login_process/search_id_pwd');
+			alert('입력하신 정보에 해당하는 아이디가 없습니다. 다시 확인해주세요.', '/index.php/login_process/search_id_pwd');
 		}
 	}
 
@@ -180,7 +180,7 @@ class Login_process extends CI_Controller {
 		if ($data != null) {
 			alert_parameter('해당 아이디의 암호는', '입니다.', $data[0] -> user_pw, '/index.php/login_process/login');
 		} else {
-			alert('입력하신 정보가 올바르지 않습니다.', '/index.php/login_process/search_id_pwd');
+			alert('입력하신 정보에 해당하는 비밀번호가 없습니다. 다시 확인해주세요.', '/index.php/login_process/search_id_pwd');
 		}
 	}
 
@@ -189,13 +189,10 @@ class Login_process extends CI_Controller {
 		$this -> load -> model('member');
 		$data = $this -> member -> id_compare($id_array);
 		if ($data != null) {
-			$this -> form_validation -> set_message('user_id_check', $id_array['user_id'] . '은(는) 중복된 아이디입니다.');
+			alert('중복된 아이디 입니다. 아이디를 다시 입력해주세요.');
 			return FALSE;
-			//alert('중복된 아이디 입니다.');
 		} else {
-			$this -> form_validation -> set_message('user_id_check', $id_array['user_id'] . '은(는) 사용하실수 있는 아이디입니다.');
 			return TRUE;
-			//alert('중복되지않은 아이디 입니다.');
 		}
 	}
 
@@ -222,12 +219,13 @@ class Login_process extends CI_Controller {
 
 	//폼 체크
 	public function id_form_check() {
-		/* 한글 특수문자 제한
-		 preg_match('/[가-힣!@#$%^&*()?+=\/]/', $this -> input -> post('user_name'), $user_id_check);*/
+		preg_match('/[가-힣!@#$%^&*()?+=\/]/', $this -> input -> post('user_id'), $user_id_check);
 		if ($this -> input -> post('user_id') == null) {
-			alert('아이디를 입력하시지 않았습니다.');
-		} else if ((strlen($this -> input -> post('user_id')) < 5) || (strlen($this -> input -> post('user_id')) > 12)) {
+			alert('아이디를 입력하지 않았습니다');
+		} else if((strlen($this -> input -> post('user_id')) < 5) || (strlen($this -> input -> post('user_id')) > 12)) {
 			alert('아이디는 5자 이상 12자 이하 입니다.');
+		} else if( $user_id_check != null ){
+			alert('아이디는 영어와 숫자만 입력 가능합니다.');
 		}
 		/* 숫자 한글 특수문자 제한
 		 else if ($user_id_check != null) {
@@ -237,7 +235,7 @@ class Login_process extends CI_Controller {
 
 	public function pw_form_check() {
 		if ($this -> input -> post('user_pw') == null) {
-			alert('비밀번호를 입력하시지 않았습니다.');
+			alert('비밀번호를 입력하지 않았습니다');
 		} else if ((strlen($this -> input -> post('user_pw')) < 6) || (strlen($this -> input -> post('user_pw')) > 17) != null) {
 			alert('비밀번호는 6자 이상 17자 이하 입니다.');
 		}
@@ -245,16 +243,16 @@ class Login_process extends CI_Controller {
 
 	public function pw_check_form_check() {
 		if ($this -> input -> post('user_pw_check') == null) {
-			alert('비밀번호 확인을 입력하시지 않았습니다.');
+			alert('비밀번호 확인을 입력하지 않았습니다');
 		} else if (($this -> input -> post('user_pw')) != ($this -> input -> post('user_pw_check'))) {
-			alert('비밀번호가 일치하지 않았습니다.');
+			alert('비밀번호가 일치하지 않습니다.');
 		}
 	}
 
 	public function name_form_check() {
 		preg_match('/[0-9!@#$%^&*()?+=\/]/', $this -> input -> post('user_name'), $user_name_check);
 		if ($this -> input -> post('user_name') == null) {
-			alert('이름을 입력하시지 않았습니다.');
+			alert('이름을 입력하지 않았습니다');
 		} else if ($user_name_check != null) {
 			alert('이름은 한글과 알파벳만 입력 가능합니다.');
 		}
@@ -263,7 +261,7 @@ class Login_process extends CI_Controller {
 	public function number_form_check() {
 		preg_match('/[a-zA-Z!@#$%^&*()?+=\/]/', $this -> input -> post('user_number'), $user_number_check);
 		if ($this -> input -> post('user_number') == null) {
-			alert('학번을 입력하시지 않았습니다.');
+			alert('학번을 입력하지 않았습니다');
 		} else if (strlen($this -> input -> post('user_number')) != 10) {
 			alert('학번이 올바르지 않습니다.');
 		} else if ($user_number_check != null) {
@@ -275,31 +273,36 @@ class Login_process extends CI_Controller {
 		preg_match('/[a-zA-Z!@#$%^&*()?+=\/]/', $this -> input -> post('user_phonenumber2'), $user_phone2_check);
 		preg_match('/[a-zA-Z!@#$%^&*()?+=\/]/', $this -> input -> post('user_phonenumber3'), $user_phone3_check);
 		if ($this -> input -> post('user_phonenumber2') == null) {
-			alert('핸드폰 번호를 입력하시지 않았습니다.');
+			alert('핸드폰 번호를 입력하지 않았습니다');
 		} else if ($user_phone2_check != null) {
-			alert('올바른 핸드폰 번호가 아닙니다.');
+			alert('핸드폰 번호는 숫자만 입력가능합니다.');
 		} else if ($this -> input -> post('user_phonenumber3' == null)) {
-			alert('핸드폰 번호를 입력하시지 않았습니다.');
+			alert('핸드폰 번호를 입력하세요.');
 		} else if ($user_phone3_check != null) {
-			alert('올바른 핸드폰 번호가 아닙니다.');
+			alert('핸드폰 번호는 숫자만 입력가능합니다.');
 		}
 	}
 
 	public function email_form_check() {
 		preg_match('/[!@#$%^&*()?+=\/]/', $this -> input -> post('user_email1'), $user_email1_check);
 		preg_match('/[!@#$%^&*()?+=\/]/', $this -> input -> post('user_email2'), $user_email2_check);
+		preg_match('/[\xA1-\xFE\xA1-\xFE]/', $this -> input -> post('user_email1'), $user_email3_check);
+		preg_match('/[\xA1-\xFE\xA1-\xFE]/', $this -> input -> post('user_email2'), $user_email4_check);
 		if ($this -> input -> post('user_email1') == null) {
-			alert('e-mail울 입력하시지 않았습니다.');
+			alert('e-mail울 입력하지 않았습니다');
 		} else if ($user_email1_check != null) {
-			alert('올바른 e-mail형식이 아닙니다.');
+			alert('e-mail은 특수문자를 사용하실 수 없습니다.');
 		} else if ($this -> input -> post('user_email2') == null) {
-			alert('e-mail울 입력하시지 않았습니다.');
+			alert('e-mail울 입력하세요.');
 		} else if ($user_email2_check != null) {
-			alert('올바른 e-mail형식이 아닙니다.');
+			alert('e-mail은 특수문자를 사용하실 수 없습니다.');
 		} else if (strlen($this -> input -> post('user_email2')) < 4) {
-			alert('올바른 e-mail형식이 아닙니다.');
+			alert('e-mail이 올바르지 않습니다.');
+		} else if ($user_email3_check) {
+			alert('e-mail은 한글을 사용하실 수 없습니다.');
+		} else if ($user_email4_check) {
+			alert('e-mail은 한글을 사용하실 수 없습니다.');
 		}
-
 	}
 
 }

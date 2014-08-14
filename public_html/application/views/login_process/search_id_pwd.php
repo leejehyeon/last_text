@@ -23,7 +23,7 @@
 						<!--<td rowspan='2'><input class="id_search_button" type='submit' value="아이디 찾기"></td>-->
 					</tr>
 				</table>
-				<input class="small_green_button search_button" type='submit' value="완료">
+				<input class="small_green_button search_button" type='submit' value="찾기">
 			</div>
 		</form>
 	</div>
@@ -44,12 +44,12 @@
 					</tr>
 					<tr>
 						<td><p class="search_list_text">이메일</p></td>
-						<td><input class="search_list" type='text' name='user_email1' style="width: 91px;"/> @ <input type='text' name='user_email2' style="width: 138px;"/></td>
+						<td><input class="search_list" type='text' name='user_email1' style="width: 90px;"/> @ <input type='text' name='user_email2' style="width: 138px;"/></td>
 						<!--<td rowspan='2'><input class="id_search_button" type='submit' value="비밀번호 찾기"></td>-->
 					</tr>
 				</table>
 			</div>
-			<input class="small_green_button search_button" type='submit' value="완료">
+			<input class="small_green_button search_button" type='submit' value="찾기">
 		</form>
 		<input class="gray_button"type="button" value="뒤로가기" onclick="javascript:history.back();">
 	</div>

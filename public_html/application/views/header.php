@@ -51,7 +51,7 @@
 								<p>
 									공지사항
 								</p></a>
-								<ul class="dropdown-menu">
+								<ul class="dropdown-menu" onmouseover="changer_parent_licolor(this)" onmouseout="changer_parent_licolor_out(this)">
 									<li>
 										<a href="/index.php/notice/whole_notice">전체공지사항</a>
 									</li>
@@ -87,13 +87,13 @@
 								<?if($this->session->userdata('login_data')!=NULL){?>
 								<?if($login_data['grade']=='3'){
 								?>
-								<ul class="dropdown-menu">
+								<ul class="dropdown-menu" onmouseover="changer_parent_licolor(this)" onmouseout="changer_parent_licolor_out(this)">
 									<li>
 										<a href="/index.php/lesson/my_attendance/<?echo date("Y/m"); ?>">내 출결보기</a>
 									</li>
 								</ul>
 								<?}else if($login_data['grade']=='2'){ ?>
-								<ul class="dropdown-menu">
+								<ul class="dropdown-menu" onmouseover="changer_parent_licolor(this)" onmouseout="changer_parent_licolor_out(this)">
 									<li>
 										<a href="/index.php/lesson/attendance_record/<?echo date("Y/m/d"); ?>">출석부</a>
 									</li>
@@ -105,7 +105,7 @@
 									</li>
 								</ul>
 								<?}else if($login_data['grade']=='1'){ ?>
-								<ul class="dropdown-menu">
+								<ul class="dropdown-menu" onmouseover="changer_parent_licolor(this)" onmouseout="changer_parent_licolor_out(this)">
 									<li>
 										<a href="/index.php/lesson/attendance_record_admin">출석부 관리</a>
 									</li>
@@ -127,13 +127,13 @@
 								<?if($this->session->userdata('login_data')!=NULL){?>
 								<?if($login_data['grade']=='3'){
 								?>
-								question_and_answer/questioning_and_answering"
+								question_and_answer/questioning_and_answering/2/"
 								<?} else if($login_data['grade']=='2'){
 								?>
-								question_and_answer/questioning_and_answering"
-								<?} else if($login_data['grade']=='2'){
+								question_and_answer/questioning_and_answering/2/"
+								<?} else if($login_data['grade']=='1'){
 								?>
-								question_and_answer/questioning_and_answering"
+								question_and_answer/questioning_and_answering/2/"
 								<?} else{ ?>
 										" onclick="goto_apply()"
 									<?}}
@@ -147,21 +147,21 @@
 								<?if($this->session->userdata('login_data')!=NULL){?>
 								<?if($login_data['grade']=='3'){
 								?>
-								<ul class="dropdown-menu">
+								<ul class="dropdown-menu" onmouseover="changer_parent_licolor(this)" onmouseout="changer_parent_licolor_out(this)">
 									<li>
-										<a href="/index.php/question_and_answer/questioning_and_answering">질문 및 답변하기</a>
+										<a href="/index.php/question_and_answer/questioning_and_answering/2/">질문 및 답변하기</a>
 									</li>
 								</ul>
 								<?}else if($login_data['grade']=='2'){ ?>
-								<ul class="dropdown-menu">
+								<ul class="dropdown-menu" onmouseover="changer_parent_licolor(this)" onmouseout="changer_parent_licolor_out(this)">
 									<li>
-										<a href="/index.php/question_and_answer/questioning_and_answering">질문 및 답변하기</a>
+										<a href="/index.php/question_and_answer/questioning_and_answering/2/">질문 및 답변하기</a>
 									</li>
 								</ul>
 								<?}else if($login_data['grade']=='1'){ ?>
-								<ul class="dropdown-menu">
+								<ul class="dropdown-menu" onmouseover="changer_parent_licolor(this)" onmouseout="changer_parent_licolor_out(this)">
 									<li>
-										<a href="/index.php/question_and_answer/questioning_and_answering">질문 및 답변하기</a>
+										<a href="/index.php/question_and_answer/questioning_and_answering/2/">질문 및 답변하기</a>
 									</li>
 									</li>
 								</ul>
@@ -209,7 +209,7 @@
 								<p>
 									관리
 								</p></a>
-								<ul class="dropdown-menu">
+								<ul class="dropdown-menu" onmouseover="changer_parent_licolor(this)" onmouseout="changer_parent_licolor_out(this)">
 									<li>
 										<a href="/index.php/administration/tutee">튜티</a>
 									</li>

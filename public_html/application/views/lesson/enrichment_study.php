@@ -1,11 +1,11 @@
-<div class="col-xs-7">
-	<table>
+<div class="each_page" style="margin-top:37px">
+	<table class="whole_notice">
 		<thead>
 			<tr>
-				<th scope="col" style="width:80px;">번호</th>
-				<th scope="col" style="width:200px;">제목</th>
-				<th scope="col" style="width:80px;">작성자</th>
-				<th scope="col" style="width:120px;">작성일</th>
+				<th scope="col">번호</th>
+				<th scope="col">제목</th>
+				<th scope="col">작성자</th>
+				<th scope="col">작성일</th>
 				<th scope="col">조회수</th> 
 			</tr>
 		</thead>
@@ -22,9 +22,9 @@
 			foreach($list as $lt){
 				?>
 				<tr>
-					<th scope="row">
+					<td scope="row">
 						<? echo $id;?>
-					</th>
+					</td>
 					<td>
 						<a href="/index.php<?echo $view_name?>?req_id=<? echo $lt->board_id?>"><? echo $lt->subject_title;?></a>
 					</td>
@@ -44,18 +44,12 @@
 			?>
 			
 		</tbody>
-		<tfoot>
-			<tr>
-				<td>
-					<?echo $this -> pagination -> create_links();?>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<a href="/index.php<?echo $view_name?>/write_board">글쓰기</a>
-				</td>
-			</tr>
-		</tfoot>
-	</table>
+		</table>
+			<div class="whole_notice_write">
+				<a href="/index.php/<?echo $view_name?>/write_board"><img src='/static/img/Notice_write_icon.png'></a>
+			</div>
+			<div class="whole_notice_create_links">
+				<?echo $this -> pagination -> create_links();?>
+			</div>
 </div>
 

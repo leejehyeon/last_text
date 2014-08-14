@@ -42,11 +42,11 @@
 	<div id="txtHint"><b>위에 설정을 해주세요.</b></div>	
 </div>
 여기까지 진우님-->
-<div class="daily_journal_admin_page">
+<div class="each_page each_page_padding2">
 	<p class="daily_journal_admin_infoText">* 다음 설정을 해주세요.</p>	
 <form style="float: left;">
-	<label>
-<select class="custom_select daily_journal_admin_year" onChange="journalgetmonth(this);">
+	<label class="styled_select9">
+<select class="daily_journal_admin_year custom_select" onChange="journalgetmonth(this);">
 	<?for($i = 2013; $i <= 2017; $i++){?>
 		<?if($i == $this -> uri -> segment(3)){?>
 			<option value="<?echo $i;?>" selected><?echo $i;?></option>
@@ -62,8 +62,8 @@
 </form><p class="daily_journal_admin_middleText">년</p>
 
 <form style="float: left;">
-<label>
-<select class="custom_select daily_journal_admin_month" onChange="journalgetyear(this);">
+<label class="styled_select9">
+<select class="daily_journal_admin_month custom_select" onChange="journalgetyear(this);">
 	<?for($i = 1; $i <= 12; $i++){
 		$k = sprintf("%02d", $i);
 	?>
@@ -80,8 +80,8 @@
 </label>
 </form><p class="daily_journal_admin_middleText">월</p>
 <form>
-<label>
-<select class="custom_select daily_journal_admin_subject" onChange="showdaily(this.value);">
+<label class="styled_select9">
+<select class="daily_journal_admin_subject custom_select" onChange="showdaily(this.value);">
 	<?foreach($subject_list as $lt){?>
 		<option value="<?echo $lt -> subject_id?>"><?echo $lt -> subject?></option>
 	<?}?>
@@ -90,6 +90,19 @@
 </select>
 </label>
 </form>
+				<?foreach($journal_list5 as $lt){?>
+								<a href="http://tutor.thecakehouse.co.kr/index.php/lesson/daily_journal_admin/daily_journal_tutor?req_id=<?echo $lt -> board_id; ?>"><p class="jounal_list_text">
+									<?if((strlen($lt->subject))>20){
+											echo substr(($lt->subject), 0, 18);
+											echo "...";
+										}
+										else{
+											echo $lt->subject;
+										}
+									?>
+								<span class="float_right"><?echo substr(($lt->reg_date),0,10);?></span>
+								</p></a>
+					<?} ?>
 </div>
 
 

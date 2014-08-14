@@ -57,6 +57,26 @@
         
         exit;
     }
+	
+	function alert_p_url($msg='',$url='',$parameter='',$parameter2='') 
+    {
+        $CI =& get_instance();
+ 
+        if (!$msg) $msg = '올바른 방법으로 이용해 주십시오.';
+
+        echo "<meta http-equiv=\"content-type\" content=\"text/html; charset=".$CI->config->item('charset')."\">";
+        echo "<script type='text/javascript'>alert('".$msg."');";
+
+        if ($url)
+            echo "location.replace('$url$parameter/$parameter2');";
+
+        else
+            echo "history.go(-1);";
+
+        echo "</script>";
+        
+        exit;
+    }
     // 경고메세지 출력후 창을 닫음
     function alert_close($msg) 
     {

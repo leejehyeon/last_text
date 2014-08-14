@@ -1,5 +1,5 @@
 <div class="each_page" style="margin-top:37px">
-	<form class="form-horizontal" method="post" action="/index.php<?echo $view_name?>/update_ok?<?echo $this -> uri -> segment(3);?>req_id=<?=$list['board_id']?>" style = "font-size: 13px">
+	<form class="form-horizontal" method="post" action="/index.php<?echo $view_name?>/update_ok/<?echo $this -> uri -> segment(4);?>?req_id=<?=$list['board_id']?>" style = "font-size: 13px">
   	    <table class="notice_modify_board">
 	    	<tr>
 	    		<td>
@@ -25,6 +25,16 @@
 	    	</tr>
 	    	<tr>
 	    		<td>
+	    			과목
+	    		</td>
+	    		<td>
+	    			<?foreach($get_sub_list as $it){?>
+						<?if(($this -> uri ->segment(4)) == ($it -> subject_id)){echo $it -> subject;}else{}?>
+					<?}?>
+	    		</td>
+	    	</tr>
+	    	<tr>
+	    		<td>
 	    			내용
 	    		</td>
 	    		<td colspan=3>
@@ -41,7 +51,7 @@
   
   
   <!--
-    <table class="notice_modify_board">
+    <table class="notice_modify_board"> 
         <label for="text_title" class="col-xs-1 control-label">제목</label>
         
         <div class="col-xs-9">
@@ -66,7 +76,7 @@
             <button type="submit" class="write_button">수정</button>
             <button type="button" onclick="history.back()">취소</button>
         </div>
-    </div>
+    </div> 
    -->
 </form>
 </div>

@@ -31,8 +31,8 @@ $sum = 0;
 ?>
 	<input type="hidden" id="year" value="<?echo $this -> uri -> segment(3); ?>"/>
 </select>
-</form>
-<div>
+</form>-->
+<!--<div>
 	<div class="row">
 		<!--튜터 일지 table의 시작 -->
 		<!--<table cellpadding="0" cellspacing="0" width="100%" id="Test3">
@@ -158,12 +158,50 @@ $sum = 0;
 				</div>
 		</div>
 		여기까지 진우님-->
-		<?$number = 1;
-$sum = 0;
-?>
+	
 <!--<div class="col-xs-7">-->
-<form style=" float: left; ">
-<div class="daily_journal_page">
+
+	<div class="each_page each_page_padding2 daily_journal_page">
+		<p class="daily_journal_admin_infoText">* 다음 설정을 해주세요.</p>
+			<?$number = 1;
+		$sum = 0;
+		?>
+<form class="float_left">
+	<label class="styled_select9">
+<select class="custom_select daily_journal_write_year_time padding_left_7" onChange="dailygetmonth(this);">
+	<?for($i=2013;$i<=2017;$i++){?>
+		<?if($i == $this -> uri -> segment(3)){?>
+			<option value="<?echo $i; ?>" selected><?echo $i; ?></option>
+		<?}else{ ?>
+			<option value="<?echo $i; ?>"><?echo $i; ?></option>
+	<?
+	}
+	}
+?>
+	<input type="hidden" id="month" value="<?echo $this -> uri -> segment(4); ?>"/>
+</select>
+</label>
+</form>
+<span class="daily_journal_write_middle_text padding_top_3 float_left">년</span>
+<form class="float_left">
+	<label class="styled_select9">
+<select class="custom_select daily_journal_write_month_day" onChange="dailygetyear(this);">
+	<?for($i=1;$i<=12;$i++){
+		$k = sprintf("%02d", $i);	
+	?>
+		<?if($i == $this -> uri -> segment(4)){?>
+			<option value="<?echo $k; ?>" selected><?echo $i; ?></option>
+		<?}else{ ?>
+			<option value="<?echo $k; ?>"><?echo $i; ?></option>
+	<?
+	}
+	}
+?>
+	<input type="hidden" id="year" value="<?echo $this -> uri -> segment(3); ?>"/>
+</select>
+</label>
+</form>
+<span class="daily_journal_write_middle_text padding_top_3 float_left">월</span>
 <!--<select onChange="dailygetmonth(this);">
 	<?for($i=2013;$i<=2017;$i++){?>
 		<?if($i == $this -> uri -> segment(3)){?>
@@ -196,7 +234,7 @@ $sum = 0;
 <!--<div>
 	<div class="row">-->
 		<!--튜터 일지 table의 시작 -->
-		<table cellpadding="0" cellspacing="0" id="Test3">
+		<table cellpadding="0" cellspacing="0" id="Test3" style="clear:both">
 			<!-- 튜터 일지 제목 line -->
 			<tr>
 				<td style="text-align: center; font-size:25px">
@@ -206,7 +244,7 @@ $sum = 0;
 			<!-- 수업과목 -->
 			<tr>
 				<td>
-					<p class="daily_journal_infoText">* 수업 과목 : <?echo $get_subject['subject']; ?></p>
+					<p class="daily_journal_infoText">* 수업 과목 : <?echo $get_subject['subject_id']; ?></p>
 				</td>
 			</tr>
 			<!-- 튜터 성명 -->
@@ -218,8 +256,9 @@ $sum = 0;
 			<!-- 튜터 학번-->
 			<tr>
 				<td>
-					<p class="daily_journal_infoText float_left">* 튜터 학번 : <?echo $login_data['user_number']; ?></p><a href="#"><p class="download_text">엑셀 파일로 다운로드</p></a>
-				</td>
+					<p class="daily_journal_infoText float_left">* 튜터 학번 : <?echo $login_data['user_number']; ?></p><p class="excel_p">
+		<a style="float:right; cursor:pointer;" onclick="tableToExcel('Test3')">엑셀파일로 다운로드</a>
+	</p></td>
 			</tr>
 			<!-- 내부 Table Line-->
 			<tr>
@@ -257,7 +296,7 @@ $sum = 0;
 									<?echo $number; ?>
 								</td>
 								<td class="daily_journal_tableDescript">
-									<input type="button" class="daily_journal_dateButton" onclick=window.open("/index.php/lesson/daily_journal/<?echo substr($lt -> date, 0, 4);
+									<input type="button" class="daily_journal_dateButton" onclick=window.open("/index.php/lesson/daily_journal_tutor/<?echo substr($lt -> date, 0, 4);
 									echo "/";
 									echo substr($lt -> date, 5, 2);
 									echo "/";
@@ -331,7 +370,7 @@ $sum = 0;
 				</div>
 			
 				<div class="daily_journal_button_area">
-					<input type="button" class="daily_journal_writeButton" onclick=window.open("/index.php/lesson/daily_journal_write","_self") value="글쓰기">
+					<input type="button" class="daily_journal_writeButton" onclick=window.open("/index.php/lesson/daily_journal/daily_journal_write","_self") value="글쓰기">
 				</div>
 			</div>
 		</div>

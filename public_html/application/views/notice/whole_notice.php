@@ -1,4 +1,4 @@
-<div class="col-xs-8">
+<div class="each_page" style="margin-top:37px">
 	<table class="whole_notice">
 		<thead>
 			<tr>

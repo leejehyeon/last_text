@@ -87,7 +87,7 @@ $(this).next(".holder").text(selectedOption);
 							학번
 						</p></td>
 						<td>
-						<input class="search_list" type="text" name="user_number" id="user_number" value="<?echo $login_data['user_number']?>"/>
+						<input class="search_list" type="text" name="user_number" id="user_number" maxlength="10" value="<?echo $login_data['user_number']?>"/>
 						</td>
 					</tr>
 					<tr>
@@ -151,36 +151,32 @@ $(this).next(".holder").text(selectedOption);
 							@
 						</p>
 						<input class="email_second" type="text" name="user_email2" id="user_email2" value="<?echo $user_email2?>" onFocus = "this.value=''">
-						<input type="hidden" name="nt_0014" value="직접입력">
-						<input type="hidden" name="nt_0001" value="chol.com">
-						<input type="hidden" name="nt_0002" value="dreamwiz.com">
-						<input type="hidden" name="nt_0003" value="empal.com">
-						<input type="hidden" name="nt_0004" value="gmail.com">
-						<input type="hidden" name="nt_0005" value="hanafos.com">
+						<input type="hidden" name="nt_0012" value="직접입력">
+						<input type="hidden" name="nt_0001" value="naver.com">
+						<input type="hidden" name="nt_0002" value="gmail.com">
+						<input type="hidden" name="nt_0003" value="yahoo.com">
+						<input type="hidden" name="nt_0004" value="nate.com">
+						<input type="hidden" name="nt_0005" value="paran.com">
 						<input type="hidden" name="nt_0006" value="hanmail.net">
-						<input type="hidden" name="nt_0007" value="gmail.com">
-						<input type="hidden" name="nt_0008" value="korea.com">
-						<input type="hidden" name="nt_0009" value="lycos.co.kr">
-						<input type="hidden" name="nt_0010" value="nate.com">
-						<input type="hidden" name="nt_0011" value="naver.com">
-						<input type="hidden" name="nt_0012" value="paran.com">
-						<input type="hidden" name="nt_0013" value="yahoo.com">
+						<input type="hidden" name="nt_0007" value="korea.com">
+						<input type="hidden" name="nt_0008" value="lycos.co.kr">
+						<input type="hidden" name="nt_0009" value="dreamwiz.com">
+						<input type="hidden" name="nt_0010" value="hanafos.com">
+						<input type="hidden" name="nt_0011" value="empal.com">
 						<label class="styled_select9">
 							<select class="email_third" onchange="selectMatch(this);">
-								<option value="nt_0014">선택</option>
-								<option value="nt_0001">chol.com</option>
-								<option value="nt_0002">dreamwiz.com</option>
-								<option value="nt_0003">empal.com</option>
-								<option value="nt_0004">gmail.com</option>
-								<option value="nt_0005">hanafos.com</option>
+								<option value="nt_0012">선택</option>
+								<option value="nt_0001">naver.com</option>
+								<option value="nt_0002">gmail.com</option>
+								<option value="nt_0003">yahoo.com</option>
+								<option value="nt_0004">nate.com</option>
+								<option value="nt_0005">paran.com</option>
 								<option value="nt_0006">hanmail.net</option>
-								<option value="nt_0007">gmail.com</option>
-								<option value="nt_0008">korea.com</option>
-								<option value="nt_0009">lycos.co.kr</option>
-								<option value="nt_0010">nate.com</option>
-								<option value="nt_0011">naver.com</option>
-								<option value="nt_0012">paran.com</option>
-								<option value="nt_0013">yahoo.com</option>
+								<option value="nt_0007">korea.com</option>
+								<option value="nt_0008">lycos.co.kr</option>
+								<option value="nt_0009">dreamwiz.com</option>
+								<option value="nt_0010">hanafos.com</option>
+								<option value="nt_0011">empal.com</option>
 							</select></label>
 						<input type="hidden" id="user_id" name="user_id" value="<?echo $login_data['user_id']?>">
 						</td>

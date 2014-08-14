@@ -13,19 +13,22 @@ class Administration extends CI_Controller {
 		$this -> load -> helper('url');
 	}
 
-	public function _remap($title) {
+	public function _remap($title,$name) {
+		$user_id= $this->input->get('user_id');
+		$title_name= implode(",", $name);
 		$login_data = $this->session->userdata('login_data');
 		if($login_data != NULL){
 			 $data['login_data'] = $login_data;
 		}
 		
+		$data['user_id']=$user_id;
+		$data['name']=$title_name;
 		$data['category_title'] = $title;
 		$data['menu_title'] = "administration";
 		$view_name = '/administration/' . $title;
 		$data['view_name'] = $view_name;
 		
 		$this -> load -> view('header', $data);
-		$this -> load -> view('sidebar', $data);
 		
 		if (method_exists($this, $title)) {
 			$this -> {"{$title}"}($view_name, $data);
@@ -33,6 +36,13 @@ class Administration extends CI_Controller {
 		$this -> load -> view('footer');
 	}
 	public function tutee($view_name, $data){
+		if($data['user_id']!=NULL){
+			$login_array = array('user_id' => $data['user_id']);
+			$data['user_data'] = $this -> tutor_tutee -> select_tutee_by_id($login_array);
+			$data['get_subject'] = $this -> attendance -> get_subject_all_data();
+		
+			$this -> load -> view('/administration/view_tutee', $data);
+		}else{
 		$get_tutee_list = $this -> member -> get_tutee_list();
 		$get_count_tutee = $this -> member -> get_count_tutee();
 		
@@ -43,10 +53,21 @@ class Administration extends CI_Controller {
 		$data['get_sub_list'] = $this -> tutor_tutee -> select_list_sub();
 		
 		$data['get_subject'] = $this -> attendance -> get_subject_all_data();
+		
+		
+		$this -> load -> view('sidebar', $data);
 		$this -> load -> view($view_name, $data);
+		}
 	}
 	
 	public function tutor($view_name, $data){
+		if($data['user_id']!=NULL){
+			$login_array = array('user_id' => $data['user_id']);
+			$data['user_data'] = $this -> tutor_tutee -> select_tutor_by_id($login_array);
+			$data['get_subject'] = $this -> attendance -> get_subject_all_data();
+		
+			$this -> load -> view('/administration/view_tutor', $data);
+		}else{
 		$get_tutor_list = $this -> member -> get_tutor_list();
 		$get_count_tutor = $this -> member -> get_count_tutor();
 		
@@ -57,7 +78,10 @@ class Administration extends CI_Controller {
 		$data['get_sub_list'] = $this -> tutor_tutee -> select_list_sub();
 		
 		$data['get_subject'] = $this -> attendance -> get_subject_all_data();
+		
+		$this -> load -> view('sidebar', $data);
 		$this -> load -> view($view_name, $data);
+		}
 	}
 	
 	public function tutee_grade_up($view_name, $data){

@@ -1,6 +1,9 @@
-<div class="Main_image" style="position:relative;">
+<div id="slideShowImages" class="Main_image" style="position:relative;">
+
+	<img src="/static/img/Main_picture2.png">
 	<img src="/static/img/Main_picture.png">
 </div>
+<script src="/static/js/slideShow.js"></script>
 
 <div id="Main_row_container">
 	<div class="Main_row">

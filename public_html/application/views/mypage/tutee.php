@@ -32,7 +32,7 @@
 				</td>
 				<td>
 					<label class="styled_select">
-						<select name="user_subject" id="user_subject">
+						<select name="user_subject" id="user_subject1">
 						<?foreach($get_list as $lt){
 						if($user_data['subject_id'] == $lt -> subject_id){?>
 								<option value="<?echo $lt->subject_id;?>" selected><? echo $lt->subject;?>
@@ -46,7 +46,7 @@
 				<td >지원과목</br>수강분반</td>
 				<td >
 					<label class="styled_select">
-						<select name="user_divide" id="user_divide">
+						<select name="user_divide" id="user_divide1">
 							<?foreach($get_sub_list as $lt){
 								if($lt -> subject_level == $user_data['user_divide']){?>
 									<option class="<?echo $lt->subject_id?>" value="<?echo $lt->subject_level?>" selected><?echo $lt->subject_level?>

@@ -1,24 +1,26 @@
-<div class="write_board_page">
+<div class="write_board_page each_page each_page_padding">
 	<form action="/index.php/lesson/enrichment_study/write_ok" method="post" name="day_form">
 		<fieldset>
-			<p class="write_board_info">제목</p>
-        <!--<div class="col-xs-7">-->
-            <input type="text" class="" id="text_title" name="subject_title" placeholder="제목">
-        <!--</div>-->
-        <p class="write_board_info">이름</p>
-        <!--<div class="col-xs-7">-->
-            <?echo $login_data['user_name'];?>
-        <!--</div>-->
 				<p class="write_board_title">
 					보 강 계 획 서
 				</p>
+				<p><span>제목</span>
+	    	        <input type="text" class="" id="text_title" name="subject_title" placeholder="제목">
+				</p>
+	        <!--<div class="col-xs-7">-->
+	        <!--</div>-->
+	 	     	<p><span>이름</span>
+	 	            <?echo $login_data['user_name'];?>
+				</p>
+	        <!--<div class="col-xs-7">-->
+	        <!--</div>-->
 				<table class="write_board_table">
 					<tr>
 						<td rowspan="2" class="view_board_tableLow">
 						<p class="none_style">
 							교 과 목 명
 						</p></td>
-						<td rowspan="2" class="view_board_tableLow">
+						<td rowspan="2" class="view_board_tableLow2">
 						<p class="none_style">
 							보 강 사 유
 						</p></td>
@@ -45,7 +47,7 @@
 					</tr>
 					<tr>
 						<td class="border_right">
-							<label class="styled_select3">
+							<label class="styled_select5">
 							<select class="write_board_subject" name="subject" id="subject">
 								<?foreach($get_list as $lt){?>
 									<option value="<?echo $lt->subject_id;?>"><? echo $lt->subject;?>
@@ -58,12 +60,12 @@
 						</td>
 						<td class="border_right">						
 							<input class="write_board_reason"type="text" id="reason" name="reason"/></td>
-						<td class="height_49 border_right">
+						<td class="height_49 border_right enrichment_write_selectd">
 							<!--<input type='text' name='year' id='year' style="width:60px;">-->
 							<!--수정시작
 							<select name="p_sYear" onchange=chk()>
 								수정끝-->
-							<label class="styled_select3">
+							<label class="styled_select5">
 							<select class="write_board_year" name="year" id="year" onchange="month_day_set()">
 									<?for($i = 2014; $i <= 2024; $i++){?>
 									<?if($i == date('Y')){?>
@@ -77,7 +79,7 @@
 							</label><span class="write_board_dateMiddle">년</span>
       						<!--제현 8.1지움<select name="month" id="month" onchange=day_set()><option>년을 선택해주세요</option></select> 월
         						<select name="day" id="day"><option>월을 선택해주세요</option></select> 일-->
-        						<label class="styled_select3">
+        						<label class="styled_select5">
         						<select class="write_board_month" name="month" id="month" onchange="day_set()">
         							<?for($i = 1; $i <= 12; $i++){
 									$k = sprintf("%02d", $i);
@@ -91,7 +93,7 @@
 								}?>
         						</select>
         						</label><span class="write_board_dateMiddle">월</span>
-        						<label class="styled_select3">
+        						<label class="styled_select5">
         						<select class="write_board_day" name="day" id="day">
         					        <?for($i = 1; $i <= 31; $i++){
 									$k = sprintf("%02d", $i);
@@ -106,7 +108,7 @@
 							</select></label><span class="write_board_dateMiddle">일</span>
 						</td>
 						<td class="border_right">
-							<label class="styled_select3">
+							<label class="styled_select5">
             <select class="write_board_year" id="time1">
             	<!--<option>시간
             	<?for($i=0;$i<=23;$i++){
@@ -159,7 +161,7 @@
             </select>
            </label>
             :
-            <label class="styled_select3">
+            <label class="styled_select5">
            <select class="write_board_year" id="time2">
             	<option>분
             	<?for($i=0;$i<=5;$i++){
@@ -176,7 +178,7 @@
             </select>
            </label>
             ~
-            <label class="styled_select3">
+            <label class="styled_select5">
         	<select class="write_board_year" id="time3">    
             	<!--<option>시간
             	<?for($i=0;$i<=23;$i++){
@@ -228,7 +230,7 @@
             </select>
            </label>
             :
-            <label class="styled_select3">
+            <label class="styled_select5">
             <select class="write_board_year" id="time4">
             	<option>분
             	<?for($i=0;$i<=5;$i++){
@@ -255,8 +257,8 @@
 				</p>
 			</div>
 			<div class="write_board_button_area">
-				<input type="button" class="join_back_button" value="뒤로가기" onclick="javascript:window.location.href = 'http://<?echo base_url();?>index.php<?echo $view_name?>'"/>
-				<input type="button" class="join_button " value="제출하기" onclick="en_daily_form()"/>
+				<input type="button" value="취소" onclick="javascript:window.location.href = 'http://<?echo base_url();?>index.php<?echo $view_name?>'"/>
+				<input type="button" value="등록" onclick="en_daily_form()"/>
 			</div>
 		</fieldset>
 		<input type="hidden" id="user_id" name="user_id" value="<?echo $login_data['user_id'];?>" />

@@ -1,4 +1,4 @@
-<div class="view_board_page">
+<div class="each_page each_page_padding view_board_page">
 
 				<p class="view_board_title">
 					보 강 계 획 서
@@ -91,10 +91,10 @@
 
 <!--if user_id == admin -->
 <div class="view_board_button_area">
-<input class="gray_button view_board_gray"type="button" value="뒤로가기" onclick="javascript:window.location.href = 'http://<?echo base_url(); ?>index.php<?echo $view_name?>'"/>
+<input type="button" value="취소" onclick="javascript:window.location.href = 'http://<?echo base_url(); ?>index.php<?echo $view_name?>'"/>
 <?if(($login_data['user_id'] == $list['user_id']) || ($login_data['grade']==1)){?>
-<input class="green_button view_board_green"type="button" value="삭제하기" onclick=window.location.href="/index.php<?echo $view_name?>/delete_board?req_id=<?echo $list['board_id']?>"/>
-<input class="green_button view_board_green"type="button" value="수정하기" onclick=window.location.href="/index.php<?echo $view_name?>/update_board?req_id=<?echo $list['board_id']?>"/>
+<input type="button" value="수정" onclick=window.location.href="/index.php/lesson/enrichment_study/update_board?req_id=<?echo $list['board_id']?>">
+<input type="button" value="삭제" onclick=window.location.href="/index.php/".<?echo $view_name?>."/delete_board?req_id=".<?echo $list['board_id']?>/>
 
 <!--<a href="/index.php<?echo $view_name?>/update_board?req_id=<?echo $list['board_id']?>">수정하기</a>
 <a href="/index.php<?echo $view_name?>/delete_board?req_id=<?echo $list['board_id']?>">삭제하기</a>-->
