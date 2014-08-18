@@ -72,12 +72,34 @@ class Question_and_answer extends CI_Controller {
 										     'subject' => $this -> input -> post('subject'),
 											 'contents' => $this -> input -> post('contents'));
 				$data['list']= $this -> q_a_board -> update_board($board_id_type_array);
-				alert_p_url('글이 업데이트 되었습니다.', '/index.php', $data['view_name'],$this -> uri ->segment(4));
+				alert_q_w_url('글이 업데이트 되었습니다.', '/index.php', $data['view_name'],$this -> uri ->segment(4),$data['req_id']);
 			/*
 			 * 만약 $data['name']가 delete_board일때,
 			 * board_type과 board_id 값을 가지고 model로 가서
 			 * board_type과 board_id 값에 맞는 database를 찾아서 삭제하고 countroller로 돌아와 alert창과 함께 게시판페이지로 리턴한다.
 			 */	
+			}else if($data['name']=="reply_insert"){
+				$board_id_type_array = array('board_id' => $this -> input -> post('board_id'),
+											 'user_id' => $this -> input -> post('user_id'),
+											 'user_name' => $this -> input -> post('user_name'),
+											 'reply_contents' => $this -> input -> post('reply_contents'));
+				$data['list']= $this -> reply_ci_board -> reply_board($board_id_type_array);
+				alert_q_w_url('댓글이 등록되었습니다.', '/index.php', $data['view_name'],$this -> uri ->segment(4),$data['req_id']);
+			
+			
+			}else if($data['name']=="reply_update"){
+				$reply_id_type_array = array('reply_id' => $this -> input -> post('reply_id'),
+											 'reply_contents' => $this -> input -> post('reply_contents'));
+				$this -> reply_ci_board -> update_reply_board($reply_id_type_array);
+				alert_q_w_url('댓글이 업데이트 되었습니다.', '/index.php', $data['view_name'],$this -> uri ->segment(4),$data['req_id']);
+			
+			
+			}else if($data['name']=="reply_delete"){
+				$board_reply_id_array = array('reply_id' => $this -> input -> post('reply_id'));
+				$this -> reply_ci_board -> delete_reply_board($board_reply_id_array);
+				alert_q_w_url('댓글이 삭제되었습니다.', '/index.php', $data['view_name'],$this -> uri ->segment(4),$data['req_id']);
+			
+			
 			}else if($data['name']=="delete_board"){
 				$board_id_type_array = array('board_type'=> $this -> uri ->segment(4),'board_id' => $data['req_id']);
 				$this -> q_a_board -> delete_board($board_id_type_array);
@@ -87,9 +109,11 @@ class Question_and_answer extends CI_Controller {
 		 	 */	
 			}else{
 			$board_id_type_array = array('board_type' => $this -> uri ->segment(3),'board_id' => $data['req_id']);
+			$reply_board_array = array('board_id' => $data['req_id']);
 			$data['get_sub_list'] = $this -> tutor_tutee -> select_list();
-			$data['get_list']=$this -> reply_ci_board -> get_list($board_id_type_array);
-			$data['get_all_board_count']= $this -> reply_ci_board -> get_all_board_count($board_id_type_array);;
+			
+			$data['get_list']=$this -> reply_ci_board -> get_list($reply_board_array);
+			$data['get_all_board_count']= $this -> reply_ci_board -> get_all_board_count($reply_board_array);;
 			
 			$data['list']=$this -> q_a_board -> update_hit($board_id_type_array);
 			

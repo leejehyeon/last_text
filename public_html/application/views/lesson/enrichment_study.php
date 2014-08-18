@@ -46,10 +46,12 @@
 		</tbody>
 		</table>
 			<div class="whole_notice_write">
-				<a href="/index.php/<?echo $view_name?>/write_board"><img src='/static/img/Notice_write_icon.png'></a>
+				<a href="/index.php/<?echo $view_name?>/write_board"><img src='/static/img/enrichment_study_write_botton.png'></a>
 			</div>
-			<div class="whole_notice_create_links">
-				<?echo $this -> pagination -> create_links();?>
+			<div class="whole_notice_create_links" id='Pagination'>
+				<?echo $this -> pagination -> create_links();
+					echo("<script language='javascript'>Change_Pagination();</script>"); 					
+				?>
 			</div>
 </div>
 

@@ -17,7 +17,7 @@
 							<img src='/static/img/Notice_title.png'>	
 						</th>
 						<th>
-							<a href="http://tutor.thecakehouse.co.kr/index.php/notice/whole_notice">
+							<a href="/index.php/notice/whole_notice">
 							<span>more</span>
 							<img src="/static/img/Notice_icon.png"></a>
 						</th>
@@ -25,7 +25,7 @@
 					<?foreach($notice_list3 as $lt){?>
 						<tr>
 							<td>
-								<a href="http://tutor.thecakehouse.co.kr/index.php/notice/whole_notice?req_id=<?echo $lt -> board_id; ?>">
+								<a href="/index.php/notice/whole_notice?req_id=<?echo $lt -> board_id; ?>">
 									<?if((strlen($lt->subject))>20){
 											echo substr(($lt->subject), 0, 18);
 											echo "...";
@@ -52,7 +52,7 @@
 							<img src='/static/img/Notice_title_class.png'>
 						</th>
 						<th>
-							<a href="http://tutor.thecakehouse.co.kr/index.php/notice/class_notice">
+							<a href="/index.php/notice/class_notice">
 							<span>more</span>
 							<img src="/static/img/Notice_icon.png"></a>
 						</th>
@@ -60,7 +60,7 @@
 					<?foreach($class_notice_list3 as $lt){?>
 						<tr>
 							<td>
-								<a href="http://tutor.thecakehouse.co.kr/index.php/notice/class_notice?req_id=<?echo $lt -> board_id; ?>">
+								<a href="/index.php/notice/class_notice?req_id=<?echo $lt -> board_id; ?>">
 									<?if((strlen($lt->subject))>20){
 											echo substr(($lt->subject), 0, 18);
 											echo "...";

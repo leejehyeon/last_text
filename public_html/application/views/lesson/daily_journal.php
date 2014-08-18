@@ -161,7 +161,7 @@ $sum = 0;
 	
 <!--<div class="col-xs-7">-->
 
-	<div class="each_page each_page_padding2 daily_journal_page">
+	<div class="each_page each_page_padding daily_journal_page">
 		<p class="daily_journal_admin_infoText">* 다음 설정을 해주세요.</p>
 			<?$number = 1;
 		$sum = 0;
@@ -296,12 +296,7 @@ $sum = 0;
 									<?echo $number; ?>
 								</td>
 								<td class="daily_journal_tableDescript">
-									<input type="button" class="daily_journal_dateButton" onclick=window.open("/index.php/lesson/daily_journal_tutor/<?echo substr($lt -> date, 0, 4);
-									echo "/";
-									echo substr($lt -> date, 5, 2);
-									echo "/";
-									echo substr($lt -> date, 8, 2);
-								?>",'_self') value="<?echo substr($lt -> date, 5, 2);
+									<input type="button" class="daily_journal_dateButton" onclick=window.open("/index.php/lesson/daily_journal/daily_journal_update",'_self') value="<?echo substr($lt -> date, 5, 2);
 										echo "월 ";
 										echo substr($lt -> date, 8, 2);
 										echo "일";

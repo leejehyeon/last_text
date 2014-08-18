@@ -90,19 +90,57 @@
 </select>
 </label>
 </form>
-				<?foreach($journal_list5 as $lt){?>
-								<a href="http://tutor.thecakehouse.co.kr/index.php/lesson/daily_journal_admin/daily_journal_tutor?req_id=<?echo $lt -> board_id; ?>"><p class="jounal_list_text">
-									<?if((strlen($lt->subject))>20){
+	<table class="whole_notice">
+		<thead>
+			<tr>
+				<th scope="col">번호</th>
+				<th scope="col">제목</th>
+				<th scope="col">작성자</th>
+				<th scope="col">작성일</th>
+				<!--<th scope="col">조회수</th>-->
+			</tr>
+		</thead>
+		<tbody>
+			<!--
+				게시물 리스트를 불러운 개수만큼 자동으로 반복해서 뿌려준다.
+			-->
+			<?
+			$i=$list_count;
+			foreach($journal_list5 as $lt){?>
+								<tr>
+									<td scope="row">
+										<? echo $i;?>
+									</td>
+									<td>
+										<a href="http://syjeon.ancle.kr/index.php/lesson/daily_journal_admin/daily_journal_tutor?req_id=<?echo $lt -> board_id; ?>"><?if((strlen($lt->subject))>20){
 											echo substr(($lt->subject), 0, 18);
 											echo "...";
 										}
 										else{
 											echo $lt->subject;
 										}
-									?>
-								<span class="float_right"><?echo substr(($lt->reg_date),0,10);?></span>
-								</p></a>
-					<?} ?>
+									?></a>
+									</td>
+									<td>
+										<? echo $lt -> user_name;?>
+									</td>
+									<td>
+										<? echo substr(($lt->reg_date),0,10);?> 
+									</td>
+									<!--조회수<td>
+										<? echo $lt ->hits;?>
+									</td>-->
+									</a>
+							</tr>
+					
+					<?$i--;
+			} ?>
+		</tbody>
+	</table>
+	
+	<div class="whole_notice_create_links">
+		<?echo $this -> pagination -> create_links();?>
+	</div>
 </div>
 
 

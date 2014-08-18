@@ -118,21 +118,33 @@ class Lesson extends CI_Controller {
 		$year = $this -> uri -> segment(3);
 		$month = $this -> uri -> segment(4);
 		$day = $this -> uri -> segment(5);
-		$subject = $_POST['subject'];
+		$subject_id = $_GET['subject_id'];
+		$user_divide = $_GET['user_divide'];
 
-		$divide_array = array('user_divide' => $_POST['subject']);
+		$subject_array = array('subject_id' => $_GET['subject_id'],
+							  'user_divide' => $_GET['user_divide']);
 		$this -> load -> model('member');
-		$data['divide'] = $this -> member -> select_divide($divide_array);
+		$data['divide'] = $this -> member -> select_subject($subject_array);
 		$this -> load -> view($view_name, $data);
 	}
 
 	/* 튜터 -> 수업 -> 출석부에서 출석,결근,병결,지각 클릭시 발생
 	 *
 	 */
-	private function register() {
-		$year = $this -> input -> post('year');
-		$month = $this -> input -> post('month');
-		$day = $this -> input -> post('day');
+	private function insert_attendance() {
+		$year = $this -> uri -> segment(3);
+		$month = $this -> uri -> segment(4);
+		$day = $this -> uri -> segment(5);
+		(string)$date = (string)$year+"-"+(string)$month+"-"+(string)$day;
+		
+		$user_id = explode(",",$this -> input -> post('user_id'));
+		
+		for($i=1;$i<=($this ->input -> post('check_length'));$i++){
+			$subject_array = array('user_id' => $user_id[$i],
+							       'attendance' => $this -> input -> post('attendance'),
+							       'date' => $date);
+			$this -> attendance -> insert_data($subject_array); 
+		}
 		$url = "/index.php/lesson/attendance_record" + $year + "/" + $month + "/" + $day;
 		alert('저장되었습니다.', $url);
 	}
@@ -151,6 +163,7 @@ class Lesson extends CI_Controller {
 			$data['get_list'] = $all_data;
 			$this -> load -> view("lesson/daily_journal_tutor", $data);
 		} else {
+			$data['list_count'] = $this -> attendance -> get_all_data_count();
 			$data['subject_list'] = $this -> attendance -> get_subject_all_data();
 			$this -> load -> view($view_name, $data);
 		}
@@ -209,7 +222,7 @@ class Lesson extends CI_Controller {
 			$data_data_array = array('user_id' => $data['login_data']['user_id'], 'date' => $date);
 			$all_data = $this -> attendance -> get_all_data($data_data_array);
 			$data_get_subject = array('subject_id' => $data['login_data']['subject_id']);
-
+			
 			$data['get_subject'] = $this -> attendance -> get_subject($data_get_subject);
 			$data['get_list'] = $all_data;
 			$this -> load -> view($view_name, $data);
@@ -296,6 +309,19 @@ class Lesson extends CI_Controller {
 			$config['num_links'] = 5;
 			$config['uri_segment'] = 3;
 
+			//페이징 처리 수정 8_08 Jay
+			$config['prev_tag_open'] = '<div class="prev_tag_div">';
+			$config['prev_tag_close'] = '</div>';
+			$config['next_tag_open'] = '<div class="next_tag_div">';
+			$config['next_tag_close'] = '</div>';
+			$config['num_tag_open'] = '<div class="num_tag_open">';
+			$config['num_tag_close'] = '</div>';
+			$config['prev_link'] = '&nbsp&nbsp&nbsp&nbsp';
+			$config['next_link'] = '&nbsp&nbsp&nbsp&nbsp';
+			$config['cur_tag_open'] = '<div class="cur_tag_div">';
+			$config['cur_tag_close'] = '</div>';
+			////////////////////////////////////////////////
+
 			$this -> pagination -> initialize($config);
 
 			$page = $this -> uri -> segment(3, 0);
@@ -355,6 +381,19 @@ class Lesson extends CI_Controller {
 			$config['per_page'] = 5;
 			$config['num_links'] = 5;
 			$config['uri_segment'] = 3;
+
+			//페이징 처리 수정 8_08 Jay
+			$config['prev_tag_open'] = '<div class="prev_tag_div">';
+			$config['prev_tag_close'] = '</div>';
+			$config['next_tag_open'] = '<div class="next_tag_div">';
+			$config['next_tag_close'] = '</div>';
+			$config['num_tag_open'] = '<div class="num_tag_open">';
+			$config['num_tag_close'] = '</div>';
+			$config['prev_link'] = '&nbsp&nbsp&nbsp&nbsp';
+			$config['next_link'] = '&nbsp&nbsp&nbsp&nbsp';
+			$config['cur_tag_open'] = '<div class="cur_tag_div">';
+			$config['cur_tag_close'] = '</div>';
+			////////////////////////////////////////////////
 
 			$this -> pagination -> initialize($config);
 

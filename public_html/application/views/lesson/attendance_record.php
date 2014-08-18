@@ -79,30 +79,44 @@
 
 	<form>
 		<label class="styled_select4">
-			<select name="user_subject" id="user_subject">
+			<select name="user_subject" id="user_subject1">
 			<?foreach($get_list as $lt){?>
 				<option value="<?echo $lt -> subject_id;?>"><?echo $lt -> subject;?></option>
 			<?}?>
 			</select>
 		</label>
 		<label class="styled_select4">
-			<select name="user_divide" id="user_divide" onchange="showtutee(this.value)">
+			<select name="user_divide" id="user_divide1" onchange="showtutee(this.value)">
 				<?foreach($get_sub_list as $lt){?>
 					<option class="<?echo $lt -> subject_id?>" value="<?echo $lt -> subject_level?>"><?echo $lt ->subject_level?>
-				<?}?>					
+				<?}?>
 			</select>
 		</label>
 		<input type="hidden" id="year" value="<?echo $this -> uri -> segment(3);?>" />
 		<input type="hidden" id="month" value="<?echo $this -> uri -> segment(4);?>" />
 		<input type="hidden" id="day" value="<?echo $this -> uri -> segment(5);?>" />
 	</form>
-	
+	<div id="txtHint">
 	<table class="attendance_record_table2" style="margin-top:30px;">
+						<td class="input-td">
+							<input type="checkbox" id="total">
+							전체 선택
+						</td>
+						<td>학번</td>
+						<td>학생 이름</td>
+						<td>출결 상황</td>
+						<td>비고</td>
 		<tbody>
 			<? for($i=0; $i<6; $i++){?>
 			<tr>
 				<td>
 					<input type="checkbox">
+				</td>
+				<td>
+					
+				</td>
+				<td>
+					
 				</td>
 				<td>
 					
@@ -117,5 +131,5 @@
 		<img src='/static/img/attendance_record_icon3.png'>
 		<img src='/static/img/attendance_record_icon4.png'>
 	</div>
-
+</div>
 </div>

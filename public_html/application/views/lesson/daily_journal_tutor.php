@@ -1,8 +1,7 @@
 <?$number = 1;
 $sum = 0;
 ?>
-<div class="each_page each_page_padding2" >
-	<div class="row">
+<div class="each_page each_page_padding" >
 		<!--튜터 일지 table의 시작 -->
 		<table cellpadding="0" cellspacing="0" width="100%" id="Test3">
 			<!-- 튜터 일지 제목 line -->

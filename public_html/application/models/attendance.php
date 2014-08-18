@@ -22,6 +22,9 @@ class Attendance extends CI_Model {
 		$daily_board_id_array = array('board_id' => $daily_id_array['reply_id']);
 		return $this -> db -> get_where('journal_board', $daily_board_id_array) -> row_array();
 	}
+	function get_all_data_count(){
+		return $this->db->count_all('journal_board');
+	}
 	
 	function get_all_data($data_data_array){
 		$this -> db -> like($data_data_array);
@@ -47,6 +50,10 @@ class Attendance extends CI_Model {
 	function update_daily($update_daily_array,$user_id_array){
 		$this -> db -> where($user_id_array);
 		return $this -> db -> update('journal_board',$update_daily_array);
+	}
+	
+	function insert_data($subject_array){
+		return $this -> db -> insert('attendance_record',$subject_array);
 	}
 }
 ?>

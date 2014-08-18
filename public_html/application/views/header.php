@@ -11,6 +11,7 @@
 		<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 		<script src="//code.jquery.com/jquery-1.9.1.js"></script>
 		<script src="/static/js/scripts.js"></script>
+		<script src="/static/js/scripts2.js"></script>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
@@ -30,11 +31,11 @@
 						<p>
 							<a href='/index.php'>HOME</a><span>|</span>
 							<?if($this->session->userdata('login_data')==NULL){?>
-								<a href="http://tutor.thecakehouse.co.kr/index.php/login_process/login">LOGIN</a><span>|</span>
-								<a href="http://tutor.thecakehouse.co.kr/index.php/login_process/login">MY PAGE</a>
+								<a href="/index.php/login_process/login">LOGIN</a><span>|</span>
+								<a href="/index.php/login_process/login">MY PAGE</a>
 							<?}else{?>
-								<a href="http://tutor.thecakehouse.co.kr/index.php/login_process/logout">LOGOUT</a><span>|</span>
-								<a href="http://tutor.thecakehouse.co.kr/index.php/mypage/modify">MY PAGE</a>
+								<a href="/index.php/login_process/logout">LOGOUT</a><span>|</span>
+								<a href="/index.php/mypage/modify">MY PAGE</a>
 							<?}?>
 						</p>
 					</div>
@@ -42,7 +43,7 @@
 			<div id="Header_div_second">
 				<div class="row">
 					<div class="col-xs-2">
-						<a href="http://tutor.thecakehouse.co.kr/index.php"><img src="/static/img/Header_Logo.png" class="header_logo"/></a>
+						<a href="/index.php"><img src="/static/img/Header_Logo.png" class="header_logo"/></a>
 					</div>
 					<div class="col-xs-8">
 						<ul  id="Header_top_nav" class="nav navbar-nav navbar-left">

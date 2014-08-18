@@ -80,8 +80,10 @@ class Member extends CI_Model {
 		return $this -> db -> get_where('member',$divide_array);
 	}
 
-	public function select_divide($divide_array){
-		return $this -> db -> get_where('tutee_application',$divide_array) -> result();
+	public function select_subject($subject_array){
+		$this -> db -> like($subject_array);
+		$this -> db -> from('member');
+		return $this -> db -> get() -> result();
 	}
 	
 	public function subject_by_tutor_data($tutor_subject_array){

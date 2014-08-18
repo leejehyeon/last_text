@@ -12,18 +12,17 @@ class reply_ci_board extends CI_Model {
 		return $this -> db -> insert('ci_reply_board',$board_reply_array);
 	}
 	
-	public function get_all_board_count($reply_id_board_array) {
-		$this -> db -> like('board_id',$reply_id_board_array['board_id']);
+	public function get_all_board_count($reply_board_array) {
+		$this -> db -> like('board_id',$reply_board_array['board_id']);
 		$this -> db -> from('ci_reply_board');
 		return $this->db->count_all_results();
 	}
 	
-	public function get_list($reply_id_board_array){
+	public function get_list($reply_board_array){
 		$this -> db -> get('ci_reply_board');	
-		$this -> db -> order_by("reply_parent_id", "asc");
 		$this -> db -> order_by("step", "asc");
-		$reply_board_id_array = array('board_id' => $reply_id_board_array['board_id']);
-		return $this -> db -> get_where('ci_reply_board', $reply_board_id_array) -> result();
+		$reply_board_id_array = array('board_id' => $reply_board_array['board_id']);
+		return $this -> db -> get_where('ci_reply_board', $reply_board_array) -> result();
 	}
 	
 	public function select_id_list($reply_id_board_array){
@@ -31,10 +30,10 @@ class reply_ci_board extends CI_Model {
 		return $this -> db -> get_where('ci_reply_board', $reply_board_id_array) -> row_array();
 	}
 	
-	public function update_reply_board($board_reply_id_array){
+	public function update_reply_board($reply_id_type_array){
 		$this -> db -> get('ci_reply_board');
-		$reply_board_update_array = array('reply_contents' => $board_reply_id_array['reply_contents']);
-		$this -> db -> where('reply_id',(string)$board_reply_id_array['reply_id']);
+		$reply_board_update_array = array('reply_contents' => $reply_id_type_array['reply_contents']);
+		$this -> db -> where('reply_id',(string)$reply_id_type_array['reply_id']);
 		return $this -> db -> update('ci_reply_board', $reply_board_update_array);
 	}
 	

@@ -67,7 +67,7 @@
 		</tbody>
 	</table>
 				<div class="whole_notice_write">
-					<a href="/index.php/question_and_answer/questioning_and_answering/write_board/<?echo $this -> uri -> segment(3);?>"><img src='/static/img/Notice_write_icon.png'></a>
+					<a href="/index.php/question_and_answer/questioning_and_answering/write_board/<?echo $this -> uri -> segment(3);?>"><img src='/static/img/enrichment_study_write_botton.png'></a>
 				</div>
 				<div class="whole_notice_create_links">
 					<?echo $this -> pagination -> create_links();?>

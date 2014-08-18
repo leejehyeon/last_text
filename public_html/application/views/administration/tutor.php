@@ -4,7 +4,7 @@
 	<p class="excel_p">
 		<a style="float:right; cursor:pointer;" onclick="tableToExcel('admin_tutor_table2','Worksheet','Tutor')">엑셀파일로 다운로드</a>
 	</p>
-	<form method="post" action="/index.php/">
+	<form style='float:right' method="post" action="/index.php/">
 	<table cellpadding="0" cellspacing="0" id="admin_tutor_table" class="border" width="100%" style="font-size:12px">
 		<!-- Subject Line -->
 		<tr>

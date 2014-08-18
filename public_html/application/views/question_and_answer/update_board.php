@@ -1,6 +1,6 @@
 <div class="each_page" style="margin-top:37px">
 	<form class="form-horizontal" method="post" action="/index.php<?echo $view_name?>/update_ok/<?echo $this -> uri -> segment(4);?>?req_id=<?=$list['board_id']?>" style = "font-size: 13px">
-  	    <table class="notice_modify_board">
+  	    <table class="question_and_answer_update">
 	    	<tr>
 	    		<td>
 	    			제목
@@ -27,7 +27,7 @@
 	    		<td>
 	    			과목
 	    		</td>
-	    		<td>
+	    		<td colspan=3>
 	    			<?foreach($get_sub_list as $it){?>
 						<?if(($this -> uri ->segment(4)) == ($it -> subject_id)){echo $it -> subject;}else{}?>
 					<?}?>

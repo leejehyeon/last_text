@@ -26,7 +26,7 @@
 	    		<td>
 	    			과목
 	    		</td>
-	    		<td>
+	    		<td colspan=3>
 	    			<?foreach($get_list as $it){?>
 						<?if(($this -> uri ->segment(4)) == ($it -> subject_id)){echo $it -> subject;}else{}?>
 					<?}?>

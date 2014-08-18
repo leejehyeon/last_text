@@ -258,7 +258,7 @@
 			</div>
 			<div class="write_board_button_area">
 				<input type="button" value="취소" onclick="javascript:window.location.href = 'http://<?echo base_url();?>index.php<?echo $view_name?>'"/>
-				<input type="button" value="등록" onclick="en_daily_form()"/>
+				<input type="button" value="등록" onclick="confirming_enrichment_study_write_board()"/>
 			</div>
 		</fieldset>
 		<input type="hidden" id="user_id" name="user_id" value="<?echo $login_data['user_id'];?>" />

@@ -1,4 +1,4 @@
-<div class="each_page each_page_padding">
+<div class="write_board_page each_page each_page_padding">
 	<?if($login_data['grade'] == 1){?>
 		<form action="/index.php/lesson/enrichment_study_admin/update_admin_ok?req_id=<?echo $list['board_id']?>" method="post" name="day_form">
 	<?}else{?>
@@ -313,6 +313,7 @@
             	<?
 					}
 				}
+			}
             	?>
             </select>
            </label><!--<option value="<?echo $i*10;?>" selected><?echo $i*10?>-->
@@ -328,7 +329,7 @@
 			</div>
 			<div class="write_board_button_area">
 				<input type="button" value="취소" onclick="javascript:window.location.href = 'http://<?echo base_url();?>index.php<?echo $view_name?>'"/>
-				<input type="button" value="등록" onclick="en_daily_form()"/>
+				<input type="button" value="등록" onclick="confirming_enrichment_study_write_board()"/>
 			</div>
 		</fieldset>
 		<input type="hidden" id="user_id" name="user_id" value="<?echo $login_data['user_id'];?>" />
