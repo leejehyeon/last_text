@@ -96,7 +96,7 @@
 					<p>
 							<img src="/static/img/tutor_apply_icon2.png" <?if($this->session->userdata('login_data')==null){?> onclick="tutee();" 
 							<?}else if($login_data['grade'] == "1" || $login_data['grade'] == "2" || $login_data['grade'] == "3"){?>onclick="grade_isset('<?echo $login_data['grade'];?>')"  
-							<?}else{?> onclick="tutee_login('<?echo $login_data['user_application']?>','<?echo $login_data['user_application_subject']?>');"<?}?>  onMouseOver="this.src='/static/img/tutor_apply_icon2_hover.png'" onMouseOut="this.src='/static/img/tutor_apply_icon2.png'">
+							<?}else{?> onclick="tutee_login('<?echo $tutee_tutor_application['user_application']?>','<?echo $login_data['user_application_subject']?>');"<?}?>  onMouseOver="this.src='/static/img/tutor_apply_icon2_hover.png'" onMouseOut="this.src='/static/img/tutor_apply_icon2.png'">
 					</p>
 				</div>
 			</div>
@@ -114,7 +114,7 @@
 					<p>
 							<img src="/static/img/tutor_apply_icon2.png" <?if($this->session->userdata('login_data')==null){?> onclick="tutor();" 
 							<?}else if($login_data['grade'] == "1" || $login_data['grade'] == "2" || $login_data['grade'] == "3"){?>onclick="grade_isset('<?echo $login_data['grade'];?>')"  
-							<?}else{?> onclick="tutor_login('<?echo $login_data['user_application']?>','<?echo $login_data['user_application_subject']?>');"<?}?> onMouseOver="this.src='/static/img/tutor_apply_icon2_hover.png'" onMouseOut="this.src='/static/img/tutor_apply_icon2.png'">
+							<?}else{?> onclick="tutor_login('<?echo $tutee_tutor_application['user_application']?>','<?echo $login_data['user_application_subject']?>');"<?}?> onMouseOver="this.src='/static/img/tutor_apply_icon2_hover.png'" onMouseOut="this.src='/static/img/tutor_apply_icon2.png'">
 					</p>
 				</div>			
 			</div>
@@ -221,8 +221,8 @@
 						</p>
 						
 						<div class="LOGIN_div_Enter_idpw">
-							<input type="text" name="form_id" class="userdata_input_box">
-							<input type="password" name="form_pw" class="userdata_input_box">
+							<input type="text" name="user_id" class="userdata_input_box">
+							<input type="password" name="user_pw" class="userdata_input_box">
 						</div>
 						<div class="LOGIN_div_Submit">
 							<input type="submit" value="LOGIN"/ class="Loginprocess_button">

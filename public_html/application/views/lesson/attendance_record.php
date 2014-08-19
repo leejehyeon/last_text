@@ -81,6 +81,7 @@
 		<label class="styled_select4">
 			<select name="user_subject" id="user_subject1">
 			<?foreach($get_list as $lt){?>
+				
 				<option value="<?echo $lt -> subject_id;?>"><?echo $lt -> subject;?></option>
 			<?}?>
 			</select>
@@ -95,6 +96,7 @@
 		<input type="hidden" id="year" value="<?echo $this -> uri -> segment(3);?>" />
 		<input type="hidden" id="month" value="<?echo $this -> uri -> segment(4);?>" />
 		<input type="hidden" id="day" value="<?echo $this -> uri -> segment(5);?>" />
+		<input type="hidden" id="date" value="" />
 	</form>
 	<div id="txtHint">
 	<table class="attendance_record_table2" style="margin-top:30px;">
@@ -107,22 +109,11 @@
 						<td>출결 상황</td>
 						<td>비고</td>
 		<tbody>
-			<? for($i=0; $i<6; $i++){?>
 			<tr>
-				<td>
-					<input type="checkbox">
-				</td>
-				<td>
-					
-				</td>
-				<td>
-					
-				</td>
-				<td>
-					
+				<td colspan="5">
+					위에 정보를 선택하세요.
 				</td>
 			</tr>
-			<?}?>
 		</tbody>
 	</table>
 	<div>

@@ -6,7 +6,7 @@ $sum = 0;
 		<table cellpadding="0" cellspacing="0" width="100%" id="Test3">
 			<!-- 튜터 일지 제목 line -->
 			<tr>
-				<td style="text-align: center; font-size:25px"><p class="daily_journal_title"><?echo $this -> uri -> segment(4); ?>년 <?echo $this -> uri -> segment(5); ?>월 튜터 일지</p </td>
+				<td style="text-align: center; font-size:25px"><p class="daily_journal_title"><?echo $this -> uri -> segment(3); ?>년 <?echo $this -> uri -> segment(4); ?>월 튜터 일지</p </td>
 			</tr>
 			<!-- 수업과목 -->
 			<tr>
@@ -46,7 +46,7 @@ $sum = 0;
 					<tr class="border">
 						<td class="daily_journal_tableDescript"> <?echo $number; ?> </td>
 						<td class="daily_journal_tableDescript">
-							<form method="post" action="/index.php/lesson/daily_journal_update/">
+							<form method="post" action="/index.php/lesson/daily_journal_admin/daily_journal_update/">
 							<input type="submit" class="none_style_input" value="<?echo substr($lt -> date, 5, 2);
 								echo "월 ";
 								echo substr($lt -> date, 8, 2);
@@ -89,7 +89,7 @@ $sum = 0;
 			<!-- Table 아래쪽 Line-->
 			<tr>
 				<td style="text-align: center"> 
-					<p class="daily_journal_infoText daily_journal_submitText">위와 같이 <?echo $this -> uri -> segment(4); ?>년 <?echo $this -> uri -> segment(5); ?>월 MSC교육센터 튜터일지를 제출합니다. </p>
+					<p class="daily_journal_infoText daily_journal_submitText">위와 같이 <?echo $this -> uri -> segment(3); ?>년 <?echo $this -> uri -> segment(4); ?>월 MSC교육센터 튜터일지를 제출합니다. </p>
 				</td>
 			</tr>
 			<tr>

@@ -13,8 +13,10 @@
 			<!--
 				게시물 리스트를 불러운 개수만큼 자동으로 반복해서 뿌려준다.
 			-->
-			<?
-			if($page<5){
+			<?if($get_list_count == 0){?>
+				<tr><td colspan="5">해당 게시물이 없습니다.</td></tr>
+			<?}else{
+				if($page<5){
 				$id = $get_list_count;
 			}else{
 				$id = $get_list_count-$page;
@@ -41,6 +43,7 @@
 				<?
 				$id--;
 				}
+			}
 			?>
 			
 		</tbody>

@@ -53,19 +53,13 @@
 						<td class="border_right">
 							<label class="styled_select5">
 							<select class="write_board_subject" name="subject" id="subject">
-								<?foreach($get_list as $it){?>
-								<?
-								if (($list['subject']) == ($it -> subject_id)) {echo $it -> subject;
-								} else {
-								}
-							?>
-							<?} ?>
-								<?foreach($get_list as $lt){?>
-									<option value="<?echo $lt->subject_id;?>"><? echo $lt->subject;?>
-										if(<?echo $lt->subject_id;?>){
-											value.
-										}
-								<?}?>
+								<?foreach($get_list as $it){
+									if (($list['subject']) == ($it -> subject_id)){?>
+										<option value="<?echo $it->subject_id;?>" selected><? echo $it->subject;?>
+									<?}else {?>
+										<option value="<?echo $it->subject_id;?>"><? echo $it->subject;?>
+								<?}
+								}?>
 							</select>
 							</label> 
 							<!--
@@ -201,7 +195,7 @@
            <select class="write_board_year" id="time2">
             	<option>분
             	<?for($i=0;$i<=5;$i++){
-            		if($i == substr($list['time'], 3, 2)){
+            		if($i == substr($list['time'], 3, 1)){
 					if($i == 0){
 						$k = sprintf("%02d", $i);
 				?>
@@ -303,6 +297,29 @@
             <select class="write_board_year" id="time4">
             	<option>분
             	<?for($i=0;$i<=5;$i++){
+            		if($i == substr($list['time'], 9, 1)){
+					if($i == 0){
+						$k = sprintf("%02d", $i);
+				?>
+						<option value="<?echo $k;?>" selected><?echo $k?>
+					<?}else{?>
+            			<option value="<?echo $i*10;?>" selected><?echo $i*10?>
+            	<?
+					}
+				}else{
+					if($i == 0){
+						$k = sprintf("%02d", $i);
+				?>
+						<option value="<?echo $k;?>"><?echo $k?>
+					<?}else{?>
+            			<option value="<?echo $i*10;?>"><?echo $i*10?>
+            	<?
+					}
+				}
+			}
+            	?>
+
+<!--            	<?for($i=0;$i<=5;$i++){
 					if($i == 0){
 						$k = sprintf("%02d", $i);
             					if($k == substr($list['time'], 9, 2)){
@@ -314,11 +331,15 @@
 					}
 				}
 			}
-            	?>
+            	?>-->
             </select>
            </label><!--<option value="<?echo $i*10;?>" selected><?echo $i*10?>-->
 						<td class="write_board_warn border_right">
-							<p class="none_style">관리자 입력<br/>튜터 입력 불가</p>
+							<?if($login_data['grade'] != 1){?>
+								<p class="none_style">관리자 입력<br/>튜터 입력 불가</p>
+							<?}else{?>
+								<input value="<?$list['classroom']?>" type="text" id="classroom" name="classroom" />
+							<?}?>
 						</td>
 					</tr>
 				</table>
@@ -327,17 +348,16 @@
 					위와 같이 보강계획을 제출합니다.
 				</p>
 			</div>
-			<div class="write_board_button_area">
-				<input type="button" value="취소" onclick="javascript:window.location.href = 'http://<?echo base_url();?>index.php<?echo $view_name?>'"/>
-				<input type="button" value="등록" onclick="confirming_enrichment_study_write_board()"/>
-			</div>
 		</fieldset>
 		<input type="hidden" id="user_id" name="user_id" value="<?echo $login_data['user_id'];?>" />
 		<input type="hidden" id="user_name" name="user_name" value="<?echo $login_data['user_name'];?>" />
 		<input type="hidden" id="date" name="date" value="" />
 		<input type="hidden" id="time" name="time" value="" />
-		<input type="hidden" id="classroom" name="classroom" value="none"/>
 	</form>
+	<div class="write_board_button_area">
+		<input type="button" value="취소" onclick="javascript:window.location.href = 'http://<?echo base_url();?>index.php<?echo $view_name?>'"/>
+		<input type="button" value="등록" onclick="confirming_enrichment_study_write_board()"/>
+	</div>
 </div>
 				
 				

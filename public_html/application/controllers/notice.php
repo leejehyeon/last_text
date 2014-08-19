@@ -89,8 +89,6 @@ class Notice extends CI_Controller {
 		 	 */	
 			}else{
 			$board_id_type_array = array('board_type'=> $data['category_title'],'board_id' => $data['req_id']);
-			$data['get_list']=$this -> reply_ci_board -> get_list($board_id_type_array);
-			$data['get_all_board_count']= $this -> reply_ci_board -> get_all_board_count($board_id_type_array);;
 			$data['list']=$this -> ci_board -> update_hit($board_id_type_array);
 			$this -> load -> view('notice/view_board',$data);
 			
@@ -126,7 +124,6 @@ class Notice extends CI_Controller {
 			$config['per_page'] = 5;
 			$config['num_links'] = 5;
 			$config['uri_segment'] = 3;
-			$config['use_page_numbers'] = TRUE;
 
 			//페이징 처리 수정 8_08 Jay
 			$config['prev_tag_open'] = '<div class="prev_tag_div">';

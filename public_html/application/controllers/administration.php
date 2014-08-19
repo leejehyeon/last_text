@@ -51,6 +51,7 @@ class Administration extends CI_Controller {
 		$data['get_subject_list'] = $this -> tutor_tutee -> get_subject_list();
 		$data['get_list'] = $this -> tutor_tutee -> tutee_list();
 		$data['get_sub_list'] = $this -> tutor_tutee -> select_list_sub();
+		$data['tutee_tutor_application'] = $this -> member -> get_application();
 		
 		$data['get_subject'] = $this -> attendance -> get_subject_all_data();
 		
@@ -76,6 +77,7 @@ class Administration extends CI_Controller {
 		$data['get_subject_list'] = $this -> tutor_tutee -> get_subject_list();
 		$data['get_list'] = $this -> tutor_tutee -> tutor_list();
 		$data['get_sub_list'] = $this -> tutor_tutee -> select_list_sub();
+		$data['tutee_tutor_application'] = $this -> member -> get_application();
 		
 		$data['get_subject'] = $this -> attendance -> get_subject_all_data();
 		
@@ -92,7 +94,7 @@ class Administration extends CI_Controller {
 		}else{
 		$update_data = array('user_id' => $this -> input -> post('user_id'),
 							 'subject_id' => $this -> input -> post('user_subject'),
-							 'user_level' => $this -> input -> post('user_divide'),
+							 'user_divide' => $this -> input -> post('user_divide'),
 							 'user_application_subject' => $this -> input -> post('user_application_subject'),
 							 'grade' => "3"
 							);
@@ -112,7 +114,7 @@ class Administration extends CI_Controller {
 		}else{
 		$update_data = array('user_id' => $this -> input -> post('user_id'),
 							 'subject_id' => $this -> input -> post('user_subject'),
-							 'user_level' => $this -> input -> post('user_divide'),
+							 'user_divide' => $this -> input -> post('user_divide'),
 							 'user_application_subject' => $this -> input -> post('user_application_subject'),
 							 'grade' => "2"
 							);

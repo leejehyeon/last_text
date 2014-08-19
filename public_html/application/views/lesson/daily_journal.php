@@ -31,8 +31,8 @@ $sum = 0;
 ?>
 	<input type="hidden" id="year" value="<?echo $this -> uri -> segment(3); ?>"/>
 </select>
-</form>-->
-<!--<div>
+</form>
+<div>
 	<div class="row">
 		<!--튜터 일지 table의 시작 -->
 		<!--<table cellpadding="0" cellspacing="0" width="100%" id="Test3">
@@ -45,7 +45,12 @@ $sum = 0;
 			<!-- 수업과목 -->
 			<!--<tr>
 				<td>
-					수업 과목 : <?echo $get_subject['subject']; ?>
+					수업 과목 : 
+					<?foreach($get_subject as $lt){
+						if($login_data['subject_id'] == $lt -> subject_id){
+							 	echo $lt -> subject;?>
+					<?}else{}
+					}?>
 				</td>
 			</tr>
 			<!-- 튜터 성명 -->
@@ -156,8 +161,8 @@ $sum = 0;
 				<!--<div class="row" style="float: right;">
 					<a href="/index.php/lesson/daily_journal_write">글쓰기</a>
 				</div>
-		</div>
-		여기까지 진우님-->
+		</div>-->
+		<!--여기까지 진우님-->
 	
 <!--<div class="col-xs-7">-->
 
@@ -244,7 +249,11 @@ $sum = 0;
 			<!-- 수업과목 -->
 			<tr>
 				<td>
-					<p class="daily_journal_infoText">* 수업 과목 : <?echo $get_subject['subject_id']; ?></p>
+					<p class="daily_journal_infoText">* 수업 과목 : <?foreach($get_subject as $lt){
+						if($login_data['subject_id'] == $lt -> subject_id){
+							 	echo $lt -> subject;?>
+					<?}else{}
+					}?></p>
 				</td>
 			</tr>
 			<!-- 튜터 성명 -->
@@ -296,11 +305,11 @@ $sum = 0;
 									<?echo $number; ?>
 								</td>
 								<td class="daily_journal_tableDescript">
-									<input type="button" class="daily_journal_dateButton" onclick=window.open("/index.php/lesson/daily_journal/daily_journal_update",'_self') value="<?echo substr($lt -> date, 5, 2);
+									<?echo substr($lt -> date, 5, 2);
 										echo "월 ";
 										echo substr($lt -> date, 8, 2);
 										echo "일";
-								?>">
+								?>
 									<!--<p class="daily_journal_dateButton"><a href="/index.php/lesson/daily_journal/<?echo substr($lt -> date,0,4); echo"/"; echo substr($lt -> date,5,2); echo"/"; echo substr($lt -> date,8,2);?>"><?echo substr($lt -> date,5,2); echo"월 "; echo substr($lt -> date,8,2); echo"일";?></a></p>
 								--></td>
 								<td class="daily_journal_tableDescript">
@@ -359,8 +368,8 @@ $sum = 0;
 			
 			</table>
 				<div class="">
-					<p class="daily_journal_infoText daily_journal_submitText">위와 같이 2014년 07월 MSC교육센터 튜터일지를 제출합니다.</p>
-					<p class="daily_journal_infoText daily_journal_submitText">2014년 08월 07일</p>
+					<p class="daily_journal_infoText daily_journal_submitText">위와 같이 <?echo $this -> uri -> segment(3); ?>년 <?echo $this -> uri -> segment(4); ?>월 MSC교육센터 튜터일지를 제출합니다.</p>
+					<p class="daily_journal_infoText daily_journal_submitText"><?echo date('Y')?>년 <?echo date('m')?>월 <?echo date('d')?>일</p>
 					<p class="daily_journal_infoText daily_journal_submitText">제출자 : <?echo $login_data['user_name']; ?>(인)</p>				
 				</div>
 			
@@ -371,3 +380,4 @@ $sum = 0;
 		</div>
 			<!-- 내부 Table Line 종료 -->
 			<!-- Table 아래쪽 Line-->
+			

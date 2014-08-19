@@ -90,13 +90,15 @@
 </select>
 </label>
 </form>
+<div id="txtHint">
 	<table class="whole_notice">
 		<thead>
 			<tr>
-				<th scope="col">번호</th>
-				<th scope="col">제목</th>
-				<th scope="col">작성자</th>
-				<th scope="col">작성일</th>
+				<th class="width_79" scope="col">번호</th>
+				<!--<th scope="col">제목</th>-->
+				<th class="width_116"scope="col">학번</th>
+				<th class="width_579">작성자</th>
+				<!--<th scope="col">작성일</th>-->
 				<!--<th scope="col">조회수</th>-->
 			</tr>
 		</thead>
@@ -104,14 +106,9 @@
 			<!--
 				게시물 리스트를 불러운 개수만큼 자동으로 반복해서 뿌려준다.
 			-->
-			<?
-			$i=$list_count;
-			foreach($journal_list5 as $lt){?>
 								<tr>
-									<td scope="row">
-										<? echo $i;?>
-									</td>
-									<td>
+									<td  colspan="3" class="width_116">해당 근무일지가 없습니다.</td>
+									<!--<td>
 										<a href="http://syjeon.ancle.kr/index.php/lesson/daily_journal_admin/daily_journal_tutor?req_id=<?echo $lt -> board_id; ?>"><?if((strlen($lt->subject))>20){
 											echo substr(($lt->subject), 0, 18);
 											echo "...";
@@ -121,26 +118,22 @@
 										}
 									?></a>
 									</td>
-									<td>
-										<? echo $lt -> user_name;?>
+									<td id="daily_id">
 									</td>
-									<td>
+									<td id="daily_number">
+									</td>-->
+									<!--<td>
 										<? echo substr(($lt->reg_date),0,10);?> 
-									</td>
+									</td>-->
 									<!--조회수<td>
 										<? echo $lt ->hits;?>
-									</td>-->
-									</a>
+									</td>
+									</a>-->
 							</tr>
 					
-					<?$i--;
-			} ?>
 		</tbody>
-	</table>
-	
-	<div class="whole_notice_create_links">
-		<?echo $this -> pagination -> create_links();?>
-	</div>
+</table>
+</div>
 </div>
 
 

@@ -94,7 +94,7 @@
 <input type="button" value="취소" onclick="javascript:window.location.href = 'http://<?echo base_url(); ?>index.php<?echo $view_name?>'"/>
 <?if(($login_data['user_id'] == $list['user_id']) || ($login_data['grade']==1)){?>
 <input type="button" value="수정" onclick=window.location.href="/index.php/lesson/enrichment_study/update_board?req_id=<?echo $list['board_id']?>">
-<input type="button" value="삭제" onclick=window.location.href="/index.php/".<?echo $view_name?>."/delete_board?req_id=".<?echo $list['board_id']?>/>
+<input type="button" value="삭제" onclick=window.location.href="/index.php<?echo $view_name?>/delete_board?req_id=<?echo $list['board_id']?>"/>
 
 <!--<a href="/index.php<?echo $view_name?>/update_board?req_id=<?echo $list['board_id']?>">수정하기</a>
 <a href="/index.php<?echo $view_name?>/delete_board?req_id=<?echo $list['board_id']?>">삭제하기</a>-->

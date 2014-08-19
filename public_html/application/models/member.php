@@ -13,11 +13,11 @@ class Member extends CI_Model {
     }
 	 
 	public function logincheck($form_id_pw_array){
-		$form_array = array('form_id' => $form_id_pw_array['form_id'],
-							'form_pw' => $form_id_pw_array['form_pw']);
-		$db_data = $this->db->get_where('member',array('user_id'=>$form_array['form_id'],'user_pw'=>$form_array['form_pw']))->row();
+		$form_array = array('user_id' => $form_id_pw_array['user_id'],
+							'user_pw' => $form_id_pw_array['user_pw']);
+		$db_data = $this->db->get_where('member',array('user_id'=>$form_array['user_id'],'user_pw'=>$form_array['user_pw']))->row();
 		if(($db_data != null)){
-			$this -> db -> get_where('member',array('user_id'=>$form_array['form_id']));
+			$this -> db -> get_where('member',array('user_id'=>$form_array['user_id']));
 			return TRUE;
 		}else{
 			return FALSE;
@@ -25,8 +25,8 @@ class Member extends CI_Model {
 	}
 	
 	public function select_where($form_id_pw_array){
-		$form_array = array('form_id' => $form_id_pw_array['form_id']);
-		return $this -> db -> get_where('member',array('user_id'=>$form_array['form_id'])) -> row_array();
+		$form_array = array('user_id' => $form_id_pw_array['user_id']);
+		return $this -> db -> get_where('member',array('user_id'=>$form_array['user_id'])) -> row_array();
 	}
 	
 	public function id_search($name_number_email_array){
@@ -57,18 +57,26 @@ class Member extends CI_Model {
 		return $this -> db -> get_where('member', $form_array) -> result();
 	}
 	
+	public function get_user_data($member_data){
+		return $this -> db -> get_where('member',$member_data) -> result();
+	}
+	
 	/*튜터튜티 지원서 ON OFF 기능
 	 *ON 일시 튜터, 튜티 지원기간
 	 *OFF 일시 튜터, 튜티 지원기간 X  
 	 */
 	public function update_application_on(){
 		$data = array('user_application' => "O");
-		return $this -> db -> update('member',$data);
+		return $this -> db -> update('tutee_tutor_application',$data);
 	}
 
 	public function update_application_off(){
 		$data = array('user_application' => "X");
-		return $this -> db -> update('member',$data);
+		return $this -> db -> update('tutee_tutor_application',$data);
+	}
+
+	public function get_application(){
+		return $this -> db -> get('tutee_tutor_application') -> row_array();
 	}
 	//----튜터튜티 지원서 ON OFF 기능
 	
@@ -79,11 +87,14 @@ class Member extends CI_Model {
 	public function select_list($divide_array){
 		return $this -> db -> get_where('member',$divide_array);
 	}
+	
+	public function select_list_by_sub($subject_array){
+		return $this -> db -> get_where('subject_sub',array('subject_id'=> $subject_array['subject_id'])) -> result();
+	}
 
 	public function select_subject($subject_array){
 		$this -> db -> like($subject_array);
 		$this -> db -> from('member');
-		return $this -> db -> get() -> result();
 	}
 	
 	public function subject_by_tutor_data($tutor_subject_array){

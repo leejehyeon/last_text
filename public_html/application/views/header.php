@@ -11,7 +11,6 @@
 		<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 		<script src="//code.jquery.com/jquery-1.9.1.js"></script>
 		<script src="/static/js/scripts.js"></script>
-		<script src="/static/js/scripts2.js"></script>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
@@ -72,7 +71,7 @@
 									<?}else if($login_data['grade']=='2'){?>
 										lesson/attendance_record/<?echo date("Y/m/d")?>"
 									<?}else if($login_data['grade']=='1'){?>
-										lesson/attendance_record_admin/"
+										lesson/attendance_record_admin/<?echo date("Y/m/d");?>"
 									<?}
 									else{?>
 										" onclick="goto_apply()"
@@ -108,7 +107,7 @@
 								<?}else if($login_data['grade']=='1'){ ?>
 								<ul class="dropdown-menu" onmouseover="changer_parent_licolor(this)" onmouseout="changer_parent_licolor_out(this)">
 									<li>
-										<a href="/index.php/lesson/attendance_record_admin">출석부 관리</a>
+										<a href="/index.php/lesson/attendance_record_admin/<?echo date("Y/m/d"); ?>">출석부 관리</a>
 									</li>
 									<li>
 										<a href="/index.php/lesson/daily_journal_admin/<?echo date("Y/m");?>">근무일지 관리</a>

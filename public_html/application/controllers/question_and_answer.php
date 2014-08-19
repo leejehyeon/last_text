@@ -149,7 +149,7 @@ class Question_and_answer extends CI_Controller {
 
 			$board_type_array = array('board_type'=> $this -> uri -> segment(3));
 			//페이징 처리
-			$config['base_url']= 'http://tutor.thecakehouse.co.kr/index.php/question_and_answer/questioning_and_answering/'.+$this -> uri -> segment(3);
+			$config['base_url']= '/index.php/question_and_answer/questioning_and_answering/'.+$this -> uri -> segment(3);
 			$config['total_rows'] = $this -> q_a_board -> get_board_all($board_type_array,$this -> uri -> segment(4), 'count');
 			$config['per_page'] = 5;
 			$config['num_links'] = 5;

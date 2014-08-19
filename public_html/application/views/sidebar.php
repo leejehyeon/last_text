@@ -83,6 +83,7 @@ $sidebar_content_array = array(	array(array('notice|공지사항|NOTICE','whole_
 							}else if($explode_category_top_array[0]=="daily_journal"){echo $explode_category_top_array[0].'/'.date("Y/m");
 							}else if($explode_category_top_array[0]=="daily_journal_admin"){echo $explode_category_top_array[0].'/'.date("Y/m");
 							}else if($explode_category_top_array[0]=="questioning_and_answering"){echo $explode_category_top_array[0].'/'."2";
+							}else if($explode_category_top_array[0]=="attendance_record_admin"){echo $explode_category_top_array[0].'/'.date("Y/m/d");
 							}else{echo $explode_category_top_array[0];}?>"><li class="sidebar_subtitle_select"><p class="select_subtitle_line">- </p><?echo $explode_category_top_array[1]?></li></a>						
 <?
 						}else{?>
@@ -91,6 +92,7 @@ $sidebar_content_array = array(	array(array('notice|공지사항|NOTICE','whole_
 							}else if($explode_category_top_array[0]=="daily_journal"){echo $explode_category_top_array[0].'/'.date("Y/m");
 							}else if($explode_category_top_array[0]=="daily_journal_admin"){echo $explode_category_top_array[0].'/'.date("Y/m");
 							}else if($explode_category_top_array[0]=="questioning_and_answering"){echo $explode_category_top_array[0].'/'."2";
+							}else if($explode_category_top_array[0]=="attendance_record_admin"){echo $explode_category_top_array[0].'/'.date("Y/m/d");
 							}else{echo $explode_category_top_array[0];}?>"><li class="sidebar_subtitle"><p class="select_subtitle_line">- </p><?echo $explode_category_top_array[1]?></li></a>
 <?						}
 					}

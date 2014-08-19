@@ -255,4 +255,11 @@
 	<input class="gray_button margin_0" type="submit" value="지원기간 중" />
 	</form>
 	</div>
+	<div style=" float: right; margin-top: 30px; ">
+	<?if($tutee_tutor_application['user_application'] == "X"){?>
+		<p style=" margin-bottom: 0px; margin-top: 3px; margin-right: 20px;">현재 튜터,튜티 지원기간 아님</p>
+	<?}else{?>
+		<p style=" margin-bottom: 0px; margin-top: 3px; margin-right: 20px;">현재 튜터,튜티 지원기간 중</p>
+	<?}?>
+	</div>
 </div>

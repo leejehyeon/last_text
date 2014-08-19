@@ -1,136 +1,106 @@
-<div class="each_page" style="margin-top:37px">
-<div>
-	<div class="row">
-		<!-- 년도 드롭다운 -->
-		<div class="dropdown">
-			<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
-				<?
-					echo date("Y년");															//현재 년도 반환
-				?>
-				<span class="caret"></span>
-			</button>
-			<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-				<?
-					$year = array("2015", "2016", "2017", "2018");								//년도 저장
-					for($i=0; $i<count($year); $i++)											//드롭다운 리스트 출력 반복문
-						{
-							echo '<li role="presentation">
-									<a role="menuitem" tabindex="-1" href="#">';
-							echo $year[$i];														//과목 내용 출력
-							echo '	</a>
-								  </li>';
-						}										
-				?>
-			</ul>
-		</div>
-		 
-		<!-- 월 드롭다운 -->
-		<div class="dropdown">
-			<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
-				<?
-					echo date("m월");			//현재 달 반환
-				?>
-				<span class="caret"></span>
-			</button>
-			<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-				<?	
-					$month = array("1", "2", "3", "4", "5", "6", "7", "8");						//년도 저장
-					for($i=0; $i<count($month); $i++)											//드롭다운 리스트 출력 반복문
-						{
-							echo '<li role="presentation">
-									<a role="menuitem" tabindex="-1" href="#">';
-							echo $month[$i];													//과목 내용 출력
-							echo '	</a>
-								  </li>';
-						}										
-				?>			
-			</ul>
-		</div>
-		
-		<!-- 년도와 월을 받아서 출력 -->
-		<div class="col-xs-3 col-xs-offset-1">
-			<span class="recieve-year">
-				<?
-					echo date("Y년");															//현재 년도 반환
-				?>
-			</span>
-			<span class="recieve-month">
-				<?
-					echo date("m월");															//현재 년도 반환
-				?>
-			</span>
-		</div>
-		
-	</div>
-	
-	<!-- 본문작성 테이블 -->
-	<div class="row">
-		<div>
-			<table width="100%" align="center" style="height:30" cellspacing="0">
+<div class="each_page each_page_padding attendance_record">
+<?	
+	$year = date("Y");
+	$month = date("m");
+	$day = date("d");
+?>
 
-			<!-- Table 제일 위쪽 Tr -->
-				<tr>
-					<td class="input-td">
-						<!-- 과목 버튼 -->
-						<div class="dropdown">
-							<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
-								과목명
-								<span class="caret"></span>
-							</button>
-							<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">	
-								<?
-									$subject = array("수학", "과학", "영어", "국사");						//과목 저장
-									for($i=0; $i<count($subject); $i++)								//드롭다운 리스트 출력 반복문
-										{
-											echo '<li role="presentation">
-													<a role="menuitem" tabindex="-1" href="#">';
-											echo $subject[$i];										//과목 내용 출력
-											echo '	</a>
-												  </li>';
-										}										
-								?>
-							</ul>
-						</div>
-						<!-- 분반 버튼 -->
-						<div class="dropdown">
-							<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
-								분반
-								<span class="caret"></span>
-							</button>
-							<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">	
-								<?
-									$subject = array("1분반", "2분반", "2분반", "2분반");					//과목 저장
-									for($i=0; $i<count($subject); $i++)								//드롭다운 리스트 출력 반복문
-										{
-											echo '<li role="presentation">
-													<a role="menuitem" tabindex="-1" href="#">';
-											echo $subject[$i];										//과목 내용 출력
-											echo '	</a>
-												  </li>';
-										}										
-								?>
-							</ul>
-						</div>
-						<!-- 확인 버튼 -->
-						<div class="dropdown">
-							<button id="confirm" type='button'>
-								확인
-							</button>
-						</div>
-					</td>
-				</tr>
-				
-				<!-- 본문 td 반복문 -->
+<form style="float: left;">
+		<label class="styled_select4">
+			<select onChange="change_year_value(this);">
+				<?for($i = 2013; $i <= 2017; $i++){?>
+					<?if($i == $this -> uri -> segment(3)){?>
+						<option value="<?echo $i;?>" selected><?echo $i;?></option>
+					<?}else{?>
+						<option value="<?echo $i;?>"><?echo $i;?></option>
 				<?
-					$tr_length = 5;
-					for ($i = 0; $i < $tr_length; $i++)
-						echo '<tr><td class="input-td"><a href="/index.php/lesson/attendance_record_admin_status">test</a></td></tr>';
+					}	
+				}?>
+				<input type="hidden" id="year" value="<?echo $this -> uri -> segment(3);?>"/>
+				<input type="hidden" id="day" value="<?echo $this -> uri -> segment(5);?>"/>
+			</select>
+		</label>
+<span>년</span>
+</form>
+
+
+<form style="float: left;">
+		<label class="styled_select4">
+			<select onChange="change_month_value(this);">
+				<?for($i = 1; $i <= 12; $i++){
+					$k = sprintf("%02d", $i);
 				?>
-			</table>
+					<?if($i == $this -> uri -> segment(4)){?>
+						<option value="<?echo $k;?>" selected><?echo $i;?></option>
+					<?}else{?>
+						<option value="<?echo $k;?>"><?echo $i;?></option>
+				<?
+					}	
+				}?>
+				<input type="hidden" id="month" value="<?echo $this -> uri -> segment(4);?>"/>
+				<input type="hidden" id="day" value="<?echo $this -> uri -> segment(5);?>"/>
+			</select>
+		</label>
+	<span>월</span>
+</form>
 
-		</div>
-	</div>
 
+<form style="float: left">
+		<label class="styled_select4">
+			<select onChange="change_day_value(this);">
+				<!--
+				   월(month)에 맞는 일(day) 구하기
+				--> 
+				<?
+				  $year = $this -> uri -> segment(3);
+				  $month = $this -> uri -> segment(4);
+				  for($day_month=31;$day_month>=27;$day_month--){
+				  	if(checkdate($month, $day_month, $year)){
+				  		$day = $day_month;
+						break;
+				  	}
+				  }
+				  for($i = 1; $i <= $day; $i++){
+				  	$k = sprintf("%02d", $i);
+				?>
+					<?if($i == $this -> uri -> segment(5)){?>
+						<option value="<?echo $k;?>" selected><?echo $i;?></option>
+					<?}else{?>
+						<option value="<?echo $k;?>"><?echo $i;?></option>
+				<?
+					}	
+				}?>
+				<input type="hidden" id="year" value="<?echo $this -> uri -> segment(3);?>"/>
+				<input type="hidden" id="month" value="<?echo $this -> uri -> segment(4);?>"/>
+			</select>
+		</label>
+<span>일</span>
+</form>
+
+	<form>
+		<label class="styled_select4">
+			<select name="user_subject" id="user_subject1" onchange="showdivide(this.value)">
+			<?foreach($get_list as $lt){?>
+				<option value="<?echo $lt -> subject_id;?>"><?echo $lt -> subject;?></option>
+			<?}?>
+			</select>
+		</label>
+		<input type="hidden" id="year" value="<?echo $this -> uri -> segment(3);?>" />
+		<input type="hidden" id="month" value="<?echo $this -> uri -> segment(4);?>" />
+		<input type="hidden" id="day" value="<?echo $this -> uri -> segment(5);?>" />
+		<input type="hidden" id="date" value="" />
+	</form>
+	<div id="txtHint">
+	<table class="attendance_record_table2" style="margin-top:30px;">
+						<td>번호</td>
+						<td>과목</td>
+						<td>분반</td>
+		<tbody>
+			<tr>
+				<td colspan="3">
+					위에 정보를 선택하세요.
+				</td>
+			</tr>
+		</tbody>
+	</table>
 </div>
-</div>
-
