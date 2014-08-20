@@ -89,7 +89,7 @@ class Question_and_answer extends CI_Controller {
 			
 			}else if($data['name']=="reply_update"){
 				$reply_id_type_array = array('reply_id' => $this -> input -> post('reply_id'),
-											 'reply_contents' => $this -> input -> post('reply_contents'));
+											 'reply_contents' => $this -> input -> post('reply_textarea'));
 				$this -> reply_ci_board -> update_reply_board($reply_id_type_array);
 				alert_q_w_url('댓글이 업데이트 되었습니다.', '/index.php', $data['view_name'],$this -> uri ->segment(4),$data['req_id']);
 			
@@ -151,7 +151,7 @@ class Question_and_answer extends CI_Controller {
 			//페이징 처리
 			$config['base_url']= '/index.php/question_and_answer/questioning_and_answering/'.+$this -> uri -> segment(3);
 			$config['total_rows'] = $this -> q_a_board -> get_board_all($board_type_array,$this -> uri -> segment(4), 'count');
-			$config['per_page'] = 5;
+			$config['per_page'] = 10;
 			$config['num_links'] = 5;
 			$config['uri_segment'] = 4;
 

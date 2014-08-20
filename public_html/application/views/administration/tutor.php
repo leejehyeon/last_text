@@ -161,6 +161,15 @@
 								<?}?>					
 								</select> 
 							</label>
+							<label class="styled_select3">
+								<select name="user_time" id="user_time" style="width : 107px;">
+									<option>선택하세요
+									<option>월수(18:30~20:00)
+									<option>월수(20:00~21:30)
+									<option>화목(18:30~20:00)
+									<option>화목(20:00~21:30)
+								</select>
+							</label>
 							<input type="hidden" id="user_id" name="user_id" value="<?echo $lt -> user_id?>" />	
 							<input type="hidden" id="user_application_subject" name="user_application_subject" value="check"/>
 							<input type="submit" value="등급올리기" />

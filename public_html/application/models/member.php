@@ -104,6 +104,9 @@ class Member extends CI_Model {
 	public function user_id_get($get_id_array){
 		return $this -> db -> get_where('member',$get_id_array) -> row_array();
 	}
+	public function user_number_get($get_number_array){
+		return $this -> db -> get_where('member',$get_number_array) -> row_array();
+	}
 	
 	//회원탈퇴시 정보 체크 맞으면 true 라턴, 틀리면 false 리턴
 	public function check_member($check_member_array){

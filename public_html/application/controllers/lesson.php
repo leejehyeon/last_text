@@ -151,33 +151,39 @@ class Lesson extends CI_Controller {
 	private function daily_journal_admin($view_name, $data) {
 		//if ($data['name'] == "daily_journal_tutor") {
 		if ($this -> uri -> segment(5) == "daily_journal_tutor") {
-		$get_id_array = array('user_id' => $this -> input -> post('user_id'));
-		$data['user_data_by_id'] = $this -> member -> user_id_get($get_id_array);
-
-		$date = $this -> uri -> segment(3) . '-' . $this -> uri -> segment(4);
-		$data_data_array = array('user_id' => $data['user_data_by_id']['user_id'], 'date' => $date);
-		$all_data = $this -> attendance -> get_all_data($data_data_array);
-
-		$data_get_subject = array('subject_id' => $data['user_data_by_id']['subject_id']);
-		$data['get_subject'] = $this -> attendance -> get_subject($data_get_subject);
-		$data['get_list'] = $all_data;
-		$this -> load -> view("lesson/daily_journal_tutor", $data);
+			$get_id_array = array('user_id' => $this -> input -> post('user_id'));
+			$data['user_data_by_id'] = $this -> member -> user_id_get($get_id_array);
+	
+			$date = $this -> uri -> segment(3) . '-' . $this -> uri -> segment(4);
+			$data_data_array = array('user_id' => $data['user_data_by_id']['user_id'], 'date' => $date);
+			$all_data = $this -> attendance -> get_all_data($data_data_array);
+	
+			$data_get_subject = array('subject_id' => $data['user_data_by_id']['subject_id']);
+			$data['get_subject'] = $this -> attendance -> get_subject($data_get_subject);
+			$data['get_list'] = $all_data;
+			$this -> load -> view("lesson/daily_journal_tutor", $data);
 		} else if($data['name'] == "daily_journal_update"){
+			
+			/*$get_number_array = array('user_number' => $this -> input -> post('user_number'));
+			var_dump($get_number_array);
+			$data['user_data_by_number'] = $this -> member -> user_number_get($get_number_array);
+			var_dump($data['user_data_by_number']);*/
+			
 			$data_update_by_date = array('user_id' => $this -> input -> post('user_id'), 'date' => $this -> input -> post('date'));
 			$data['update_data'] = $this -> attendance -> get_data_id_date($data_update_by_date);
 			$this -> load -> view("lesson/daily_journal_update", $data);
 		} else if($data['name'] == "daily_journal_tutor"){
 			$get_id_array = array('user_id' => $this -> input -> post('user_id'));
-		$data['user_data_by_id'] = $this -> member -> user_id_get($get_id_array);
-
-		$date = $this -> uri -> segment(4) . '-' . $this -> uri -> segment(5);
-		$data_data_array = array('user_id' => $data['user_data_by_id']['user_id'], 'date' => $date);
-		$all_data = $this -> attendance -> get_all_data($data_data_array);
-
-		$data_get_subject = array('subject_id' => $data['user_data_by_id']['subject_id']);
-		$data['get_subject'] = $this -> attendance -> get_subject($data_get_subject);
-		$data['get_list'] = $all_data;
-		$this -> load -> view("lesson/daily_journal_tutor", $data);
+			$data['user_data_by_id'] = $this -> member -> user_id_get($get_id_array);
+	
+			$date = $this -> uri -> segment(4) . '-' . $this -> uri -> segment(5);
+			$data_data_array = array('user_id' => $data['user_data_by_id']['user_id'], 'date' => $date);
+			$all_data = $this -> attendance -> get_all_data($data_data_array);
+	
+			$data_get_subject = array('subject_id' => $data['user_data_by_id']['subject_id']);
+			$data['get_subject'] = $this -> attendance -> get_subject($data_get_subject);
+			$data['get_list'] = $all_data;
+			$this -> load -> view("lesson/daily_journal_tutor", $data);
 		}else {
 			$data['list_count'] = $this -> attendance -> get_all_data_count();
 			$data['subject_list'] = $this -> attendance -> get_subject_all_data();
@@ -212,6 +218,10 @@ class Lesson extends CI_Controller {
 	}
 
 	private function daily_journal_update($view_name, $data) {
+		/*$get_number_array = array('user_number' => $this -> input -> post('user_number'));
+		var_dump($get_number_array);
+		$data['user_data_by_number'] = $this -> member -> user_number_get($get_number_array);
+		var_dump($data['user_data_by_number']);*/
 		$data_update_by_date = array('user_id' => $this -> input -> post('user_id'), 'date' => $this -> input -> post('date'));
 		$data['update_data'] = $this -> attendance -> get_data_id_date($data_update_by_date);
 		$this -> load -> view($view_name, $data);
@@ -224,10 +234,17 @@ class Lesson extends CI_Controller {
 		alert_date('업데이트 되었습니다.', '/index.php/lesson/daily_journal_admin', date('Y'), date('m'));
 	}*/
 		private function daily_journal_update_ok($view_name, $data) {
+		/*$date_array=array('classroom' => $this -> input -> post('classroom'), 'subject' => $this -> input -> post('subject'), 'tutor_time' => $this -> input -> post('tutor_time'), 'date' => $this -> input -> post('date'), 'member_number' => $this -> input -> post('member_number'), 'activity' => $this -> input -> post('activity'), 'note' => $this -> input -> post('note'));
+		$this -> load -> model('attendance');
+		$date_check = $this -> attendance -> this_date($date_array);
+		var_dump($date_array['user_number']);
+		*/
+		
+		$this -> user_date_check($this -> input -> post('user_real_date'), $this -> input -> post('date'));
+		$this -> today_check($this -> input -> post('date'));
+		$this -> member_check();
 		$user_id_array = array('board_id' => $this -> input -> post('board_id'));
-		var_dump($user_id_array);
 		$update_daily_array = array('classroom' => $this -> input -> post('classroom'), 'subject' => $this -> input -> post('subject'), 'tutor_time' => $this -> input -> post('tutor_time'), 'date' => $this -> input -> post('date'), 'member_number' => $this -> input -> post('member_number'), 'activity' => $this -> input -> post('activity'), 'note' => $this -> input -> post('note'));
-		var_dump($update_daily_array);
 		$this -> attendance -> update_daily($update_daily_array, $user_id_array);
 		alert_date('업데이트 되었습니다.', '/index.php/lesson/daily_journal_admin', date('Y'), date('m'));
 	}
@@ -235,6 +252,17 @@ class Lesson extends CI_Controller {
 
 	private function daily_journal($view_name, $data) {
 		if ($data['name'] == "daily_journal_write") {
+			$data_update_by_date = array('user_id' => $data['login_data']['user_id']);
+			$data['update_data'] = $this -> attendance -> get_data_date($data_update_by_date);
+			
+			foreach($data['update_data'] as $lt){
+				$date_array=array('date' => $lt->date);
+				/*var_dump($date_array);*/
+				if($date_array['date']==$this->input->post('date')){
+					alert('이미 작성된 근무 날짜 입니다.');
+				}
+			}
+			
 			$this -> load -> view('lesson/daily_journal_write', $data);
 		}else if ($data['name'] == "daily_journal_update") {
 			$this -> load -> model('ci_board');/*
@@ -255,6 +283,8 @@ class Lesson extends CI_Controller {
 	}
 
 	private function daily_journal_write($view_name, $data) {
+		$data_update_by_date = array('user_id' => $this -> input -> post('user_id'), 'date' => $this -> input -> post('date'));
+		$data['update_data'] = $this -> attendance -> get_data_id_date($data_update_by_date);
 		$this -> load -> view('lesson/daily_journal_write', $data);
 	}
 
@@ -263,17 +293,31 @@ class Lesson extends CI_Controller {
 		$this -> attendance -> insert_daily($insert_daily_array);
 		alert_date('글이 등록되었습니다.', '/index.php/lesson/daily_journal', date('Y'), date('m'));
 	}*/
-	private function daily_journal_write_ok($view_name, $data) {
-		$pattern = '/([0-9])+/';
-		preg_match($pattern, $this -> input -> post('member_number'), $member_number_check);
-		if(($member_number_check == null) || (strlen($member_number_check[0]) != strlen($this -> input -> post('member_number')))){
-			alert('참여인원은 숫자만 입력 가능합니다.');
-		}else{
+	private function daily_journal_write_ok($view_name, $data) {/*
+		$date_array=array('date' => $data['date']);
+		$this -> load -> model('attendance');
+		$date_check = $this -> attendance -> this_date($date_array);*/
+		$data_update_by_date = array('user_id' => $data['login_data']['user_id']);
+			$data['update_data'] = $this -> attendance -> get_data_date($data_update_by_date);
+			
+			foreach($data['update_data'] as $lt){
+				$date_array=array('date' => $lt->date);
+				/*var_dump($date_array);*/
+				if($date_array['date']==$this->input->post('date')){
+					alert('이미 작성된 근무 날짜 입니다.');
+				}
+			}
+		$this -> member_check();
+		//$pattern = '/([0-9])+/';
+		//preg_match($pattern, $this -> input -> post('member_number'), $member_number_check);
+		//if(($member_number_check == null) || (strlen($member_number_check[0]) != strlen($this -> input -> post('member_number')))){
+		//	alert('참여인원은 숫자만 입력 가능합니다.');
+		//}
+		//else{
 		$insert_daily_array = array('user_id' => $this -> input -> post('user_id'), 'user_name' => $this -> input -> post('user_name'), 'user_number' => $this -> input -> post('user_number'), 'user_subject' => $this -> input -> post('user_subject'), 'classroom' => $this -> input -> post('classroom'), 'subject' => $this -> input -> post('subject'), 'tutor_time' => $this -> input -> post('tutor_time'), 'date' => $this -> input -> post('date'), 'member_number' => $this -> input -> post('member_number'), 'activity' => $this -> input -> post('activity'), 'note' => $this -> input -> post('note'));
-		echo var_dump($insert_daily_array);
 		$this -> attendance -> insert_daily($insert_daily_array);
 		alert_date('글이 등록되었습니다.', '/index.php/lesson/daily_journal', date('Y'), date('m'));
-		}
+		//}
 	}
 
 	private function attendance_record_admin($view_name, $data) {
@@ -383,7 +427,7 @@ class Lesson extends CI_Controller {
 			//페이징 처리
 			$config['base_url'] = '/index.php/lesson/enrichment_study/';
 			$config['total_rows'] = $this -> enrichment_board -> get_board_all($this -> uri -> segment(3), 'count');
-			$config['per_page'] = 5;
+			$config['per_page'] = 10;
 			$config['num_links'] = 5;
 			$config['uri_segment'] = 3;
 
@@ -402,7 +446,7 @@ class Lesson extends CI_Controller {
 
 			$this -> pagination -> initialize($config);
 
-			$page = $this -> uri -> segment(3, 0);
+			$page = $this -> uri -> segment(3, 1);
 			if ($page > 1) {
 				$start = (($page / $config['per_page'])) * $config['per_page'];
 			} else {
@@ -427,7 +471,7 @@ class Lesson extends CI_Controller {
 				$this -> load -> view('lesson/update_board', $data);
 
 			} else if ($data['name'] == "update_admin_ok") {
-				$board_update_array = array('board_id' => $data['req_id'], 'subject_title' => $this -> input -> post('subject_title'), 'reason' => $this -> input -> post('reason'), 'subject' => $this -> input -> post('subject'), 'date' => $this -> input -> post('date'), 'time' => $this -> input -> post('time'), 'classroom' => $this -> input -> post('classroom'));
+				$board_update_array = array('board_id' => $data['req_id'],'admin_check' => $this -> input -> post('admin_check'), 'subject_title' => $this -> input -> post('subject_title'), 'reason' => $this -> input -> post('reason'), 'subject' => $this -> input -> post('subject'), 'date' => $this -> input -> post('date'), 'time' => $this -> input -> post('time'), 'classroom' => $this -> input -> post('classroom'));
 				$data['list'] = $this -> enrichment_board -> update_board($board_update_array);
 				alert_url('글이 업데이트 되었습니다.', '/index.php', $data['view_name']);
 
@@ -456,7 +500,7 @@ class Lesson extends CI_Controller {
 			//페이징 처리
 			$config['base_url'] = '/index.php/lesson/enrichment_study_admin/';
 			$config['total_rows'] = $this -> enrichment_board -> get_board_all($this -> uri -> segment(3), 'count');
-			$config['per_page'] = 5;
+			$config['per_page'] = 10;
 			$config['num_links'] = 5;
 			$config['uri_segment'] = 3;
 
@@ -475,14 +519,14 @@ class Lesson extends CI_Controller {
 
 			$this -> pagination -> initialize($config);
 
-			$page = $this -> uri -> segment(3, 0);
+			$page = $this -> uri -> segment(3, 1);
 			if ($page > 1) {
 				$start = (($page / $config['per_page'])) * $config['per_page'];
 			} else {
 				$start = ($page - 1) * $config['per_page'];
 			}
 			$limit = $config['per_page'];
-
+			
 			$data['page'] = $page;
 			$data['list'] = $this -> enrichment_board -> get_board_all($this -> uri -> segment(3), '', $start, $limit);
 			$data['get_list_count'] = $config['total_rows'];
@@ -493,6 +537,66 @@ class Lesson extends CI_Controller {
 
 	private function tutor_report($view_name, $data) {
 		$this -> load -> view($view_name, $data);
+	}
+	private function user_date_check($check_date,$date){
+		$date_array = array('date' => $date);
+		$this -> load -> model('attendance');
+		$data = $this -> attendance -> date_check($date_array);
+		/*var_dump($check_date);
+		var_dump($data['date']);
+		var_dump($this->input->post('user_id'));
+		var_dump($data['user_id']);*/
+		//$user_id = $this -> attendance -> id_check($date_array);
+		if ($data != null) {
+			/*alert($check_date.". ".$data['date'].". ".$user_number.". ".$data['user_number']);*/
+			
+			if (($check_date == $data['date'])/* && ($this -> input -> post('user_id') != $data['user_id'])*/) {
+				return TRUE;
+			}else if(/*($check_date != $data['date']) &&*/ ($this->input->post('user_id') != $data['user_id'])){
+				return TRUE;
+			}/* else if(($check_date != $data['date']) && ($this -> input -> post('user_id') == $data['user_id'])){
+				return TRUE;
+			} else if(($check_date != $data['date']) && ($this -> input -> post('user_id') != $data['user_id'])){
+				return TRUE;
+			}*/ else {
+				alert('이미 작성된 근무 날짜 입니다.');
+				return FALSE;
+			}
+		} else {
+			return TRUE;
+		}
+	}
+
+	private function user_date_check2($date){
+		
+		$date_array = array('date' => $date);
+		$this -> load -> model('attendance');
+		$data = $this -> attendance -> date_check($date_array);
+		
+		$this -> input -> post('date');
+		$data_update_by_date = array('user_id' => $data['login_data']['user_id']);
+		$data['update_data'] = $this -> attendance -> get_data_date($data_update_by_date);
+		var_dump($data['update_data']);
+		
+	}
+	private function member_check(){
+		$pattern = '/([0-9])+/';
+		preg_match($pattern, $this -> input -> post('member_number'), $member_number_check);
+		if(($member_number_check == null) || (strlen($member_number_check[0]) != strlen($this -> input -> post('member_number')))){
+			alert('참여인원은 숫자만 입력 가능합니다.');
+		}
+	}
+	
+	private function today_check($check_date){
+		
+		$explode_check_date = explode("-",$check_date);
+		$explode_today = explode("-",date("Y-m-d"));
+		
+		if(($explode_check_date[0]>$explode_today[0]) ||
+		($explode_check_date[0]==$explode_today[0] && $explode_check_date[1]>$explode_today[1]) ||
+		($explode_check_date[0]==$explode_today[0] && $explode_check_date[1]==$explode_today[1] && $explode_check_date[2]>$explode_today[2])){
+			alert('날짜가 올바르지 않습니다.');
+		}
 	}
 
 }

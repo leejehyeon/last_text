@@ -46,6 +46,14 @@ class Attendance extends CI_Model {
 	function get_data_id_date($data_update_by_date){
 		return $this -> db -> get_where('journal_board',$data_update_by_date) -> row_array();
 	}
+	function get_data_date($data_update_by_date){
+		$this -> db -> select('date');
+		$this -> db -> from('journal_board');
+		$this -> db -> where($data_update_by_date);
+		return $this -> db -> get() -> result();
+		
+		
+	}
 
 	function update_daily($update_daily_array,$user_id_array){
 		$this -> db -> where(array('board_id' => $user_id_array['board_id']));
@@ -68,6 +76,15 @@ class Attendance extends CI_Model {
 		$this -> db -> like('date',$bydate);
 		$this -> db -> from('attendance_record');
 		return $this -> db -> get() -> result();
+	}
+
+	function date_check($date_array){
+		$form_array = array('date' => $date_array['date']);
+		return $this -> db -> get_where('journal_board', $form_array) -> row_array();
+	}
+	function id_check($date_array){
+		$form_array = array('date' => $date_array['date']);
+		return $this -> db -> get_where('journal_board', $form_array) -> row_array();
 	}
 }
 ?>

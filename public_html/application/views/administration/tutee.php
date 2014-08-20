@@ -113,15 +113,24 @@
 							<label class="styled_select3">
 								<select name="user_subject" id="user_subject<?echo $i?>">
 								<?foreach($get_subject as $st){?>
-									<option value="<?echo $st->subject_id;?>"><? echo $st->subject;?>
+									<option value="<?echo $st->subject_id;?>"><?echo $st->subject;?>
 								<?}?>
 								</select>
 							</label>
 							<label class="styled_select3">
 								<select class="tutee_subject_select" name="user_divide" id="user_divide<?echo $i?>">
 								<?foreach($get_sub_list as $yt){?>
-									<option class="<?echo $yt->subject_id?>" value="<?echo $yt->subject_level?>"><?echo $yt->subject_level?>
+									<option class="<?echo $yt->subject_id;?>" value="<?echo $yt->subject_level;?>"><?echo $yt->subject_level;?>
 								<?} ?>
+								</select>
+							</label>
+							<label class="styled_select3">
+								<select name="user_time" id="user_time" style="width : 107px;">
+									<option>선택하세요
+									<option>월수(18:30~20:00)
+									<option>월수(20:00~21:30)
+									<option>화목(18:30~20:00)
+									<option>화목(20:00~21:30)
 								</select>
 							</label>
 							<!--

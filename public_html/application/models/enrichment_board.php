@@ -8,14 +8,15 @@ class enrichment_board extends CI_Model {
 	/*
 	 *  
 	 */
-	public function get_board_all($table='ci_board',$type='',$offset='',$limit='') {
-		$get_all = $this -> db -> get('enrichment_board');
-		$this -> db -> order_by("reg_date", "asc");
+	public function get_board_all($table = 'enrichment_board' , $type ='', $offset='', $limit='') {
+		$this -> db -> order_by('board_id', 'desc');
+		$this -> db -> limit($limit, $offset);
+		$board_list = $this -> db -> get('enrichment_board');
 		
 		if( $type == 'count'){
-			return $this -> db -> count_all_results('enrichment_board');
+			$result = $this -> db -> count_all_results('enrichment_board');
 		}else{
-			$result = $get_all -> result();
+			$result = $board_list -> result();
 		}
 		return $result; 
 	}

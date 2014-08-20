@@ -87,14 +87,17 @@ class Administration extends CI_Controller {
 	}
 	
 	public function tutee_grade_up($view_name, $data){
-		if($this -> input -> post('user_subject')=="선택하세요"){
+		if($this -> input -> post('user_subject')=="1"){
 			alert('과목을 선택하세요.', '/index.php/administration/tutee');
 		}else if($this -> input -> post('user_divide')=="선택하세요"){
 			alert('분반을 선택하세요.', '/index.php/administration/tutee');
+		}else if($this -> input -> post('user_time')=="선택하세요"){
+			alert('시간을 선택하세요.', '/index.php/administration/tutee');
 		}else{
 		$update_data = array('user_id' => $this -> input -> post('user_id'),
 							 'subject_id' => $this -> input -> post('user_subject'),
 							 'user_divide' => $this -> input -> post('user_divide'),
+							 'user_time' => $this -> input -> post('user_time'),
 							 'user_application_subject' => $this -> input -> post('user_application_subject'),
 							 'grade' => "3"
 							);
@@ -107,14 +110,17 @@ class Administration extends CI_Controller {
 	}
 	
 	public function tutor_grade_up($view_name, $data){
-		if($this -> input -> post('user_subject')=="선택하세요"){
+		if($this -> input -> post('user_subject')=="1"){
 			alert('과목을 선택하세요.', '/index.php/administration/tutee');
 		}else if($this -> input -> post('user_divide')=="선택하세요"){
 			alert('분반을 선택하세요.', '/index.php/administration/tutee');
+		}else if($this -> input -> post('user_time')=="선택하세요"){
+			alert('시간을 선택하세요.', '/index.php/administration/tutee');
 		}else{
 		$update_data = array('user_id' => $this -> input -> post('user_id'),
 							 'subject_id' => $this -> input -> post('user_subject'),
 							 'user_divide' => $this -> input -> post('user_divide'),
+							 'user_time' => $this -> input -> post('user_time'),
 							 'user_application_subject' => $this -> input -> post('user_application_subject'),
 							 'grade' => "2"
 							);

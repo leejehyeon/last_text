@@ -56,6 +56,23 @@ class Login_process extends CI_Controller {
 	 alert('회원가입이 완료되었습니다.', '/index.php/');
 	 }
 	 }*/
+	/*public function sign_up_check() {
+		$this -> id_form_check();
+		$this -> user_id_check();
+		$this -> pw_form_check();
+		$this -> pw_check_form_check();
+		$this -> name_form_check();
+		$this -> number_form_check();
+		$this -> phoneNumber_form_check();
+		$this -> email_form_check();
+		
+		$join_array = array('user_id' => $this -> input -> post('user_id'), 'user_pw' => $this -> input -> post('user_pw'), 'user_name' => $this -> input -> post('user_name'), 'user_year' => $this -> input -> post('user_year'), 'user_number' => $this -> input -> post('user_number'), 'user_department' => $this -> input -> post('user_department'), 'user_phonenumber' => $this -> input -> post('user_phonenumber1') . " - " . $this -> input -> post('user_phonenumber2') . " - " . $this -> input -> post('user_phonenumber3'), 'user_email' => $this -> input -> post('user_email1') . "@" . $this -> input -> post('user_email2'));
+		$this -> load -> model('member');
+		if ($join_array != null) {
+			$data = $this -> member -> joining($join_array);
+			alert('회원가입이 완료되었습니다.', '/index.php/');
+		}
+	}*/
 	public function sign_up_check() {
 		$this -> id_form_check();
 		$this -> user_id_check();
@@ -66,8 +83,10 @@ class Login_process extends CI_Controller {
 		$this -> phoneNumber_form_check();
 		$this -> email_form_check();
 		$this -> user_email_check();
+		$user_email = $this -> input -> post('user_email1')."@".$this -> input -> post('user_email2');
+		$this -> user_email_check3($user_email);
 		
-		$join_array = array('user_id' => $this -> input -> post('user_id'), 'user_pw' => $this -> input -> post('user_pw'), 'user_name' => $this -> input -> post('user_name'), 'user_year' => $this -> input -> post('user_year'), 'user_number' => $this -> input -> post('user_number'), 'user_department' => $this -> input -> post('user_department'), 'user_phonenumber' => $this -> input -> post('user_phonenumber1') . " - " . $this -> input -> post('user_phonenumber2') . " - " . $this -> input -> post('user_phonenumber3'), 'user_email' => $this -> input -> post('user_email1') . "@" . $this -> input -> post('user_email2'));
+		$join_array = array('user_id' => $this -> input -> post('user_id'), 'user_pw' => $this -> input -> post('user_pw'), 'user_name' => $this -> input -> post('user_name'), 'user_year' => $this -> input -> post('user_year'), 'user_number' => $this -> input -> post('user_number'), 'user_department' => $this -> input -> post('user_department'), 'user_phonenumber' => $this -> input -> post('user_phonenumber1') . " - " . $user_phonenumber2 . " - " . $this -> input -> post('user_phonenumber3'), 'user_email' => $this -> input -> post('user_email1') . "@" . $this -> input -> post('user_email2'));
 		$this -> load -> model('member');
 		if ($join_array != null) {
 			$data = $this -> member -> joining($join_array);
