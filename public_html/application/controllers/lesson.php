@@ -24,9 +24,6 @@ class Lesson extends CI_Controller {
 		$req_id = $this -> input -> get('req_id');
 		$title_name = implode(",", $name);
 		$login_data = $this -> session -> userdata('login_data');
-		$this -> load -> model('ci_board');
-		$journal_list = $this -> ci_board -> get_journal_list_title5();
-		$data['journal_list5'] = $journal_list;
 
 		if ($login_data != NULL) {
 			$data['login_data'] = $login_data;
@@ -117,14 +114,13 @@ class Lesson extends CI_Controller {
 		$year = $this -> uri -> segment(3);
 		$month = $this -> uri -> segment(4);
 		$day = $this -> uri -> segment(5);
-		$subject_id = $_GET['subject_id'];
-		$user_divide = $_GET['user_divide'];
 		$bydate = $_GET['bydate'];
 		$grade = 3;
 
 		$subject_array = array('subject_id' => $_GET['subject_id'],
-							  'user_divide' => $_GET['user_divide'],
-							  'grade' => $grade);
+							   'user_divide' => $_GET['user_divide'],
+							   'user_time' => $_GET['user_time'],
+							   'grade' => $grade);
 		$this -> load -> model('member');
 		$data['divide'] = $this -> member -> select_subject($subject_array);
 		$data['date'] = $this -> attendance -> get_data_by_date($bydate);
@@ -137,11 +133,11 @@ class Lesson extends CI_Controller {
 	 */
 	private function insert_attendance() {
 		$user_id = explode(",",$this -> input -> post('user_id'));
-		var_dump($this -> input -> post('date'));
+		var_dump($this -> input -> post('time'));
 		for($i=0;$i<=($this ->input -> post('check_length')-1);$i++){
 			$subject_array = array('user_id' => $user_id[$i],
 							       'attendance' => $this -> input -> post('attendance'),
-							       'date' => $this -> input -> post('date'));
+							       'date' => $this -> input -> post('time'));
 			$this -> attendance -> insert_data($subject_array);    
 		}
 		$alert_url = "/index.php/lesson/attendance_record/" + $this -> input -> post('date_url');
@@ -153,11 +149,9 @@ class Lesson extends CI_Controller {
 		if ($this -> uri -> segment(5) == "daily_journal_tutor") {
 			$get_id_array = array('user_id' => $this -> input -> post('user_id'));
 			$data['user_data_by_id'] = $this -> member -> user_id_get($get_id_array);
-	
 			$date = $this -> uri -> segment(3) . '-' . $this -> uri -> segment(4);
 			$data_data_array = array('user_id' => $data['user_data_by_id']['user_id'], 'date' => $date);
 			$all_data = $this -> attendance -> get_all_data($data_data_array);
-	
 			$data_get_subject = array('subject_id' => $data['user_data_by_id']['subject_id']);
 			$data['get_subject'] = $this -> attendance -> get_subject($data_get_subject);
 			$data['get_list'] = $all_data;
@@ -244,7 +238,7 @@ class Lesson extends CI_Controller {
 		$this -> today_check($this -> input -> post('date'));
 		$this -> member_check();
 		$user_id_array = array('board_id' => $this -> input -> post('board_id'));
-		$update_daily_array = array('classroom' => $this -> input -> post('classroom'), 'subject' => $this -> input -> post('subject'), 'tutor_time' => $this -> input -> post('tutor_time'), 'date' => $this -> input -> post('date'), 'member_number' => $this -> input -> post('member_number'), 'activity' => $this -> input -> post('activity'), 'note' => $this -> input -> post('note'));
+		$update_daily_array = array('classroom' => $this -> input -> post('classroom'), 'tutor_time' => $this -> input -> post('tutor_time'), 'date' => $this -> input -> post('date'), 'member_number' => $this -> input -> post('member_number'), 'activity' => $this -> input -> post('activity'), 'note' => $this -> input -> post('note'));
 		$this -> attendance -> update_daily($update_daily_array, $user_id_array);
 		alert_date('업데이트 되었습니다.', '/index.php/lesson/daily_journal_admin', date('Y'), date('m'));
 	}
@@ -314,7 +308,7 @@ class Lesson extends CI_Controller {
 		//	alert('참여인원은 숫자만 입력 가능합니다.');
 		//}
 		//else{
-		$insert_daily_array = array('user_id' => $this -> input -> post('user_id'), 'user_name' => $this -> input -> post('user_name'), 'user_number' => $this -> input -> post('user_number'), 'user_subject' => $this -> input -> post('user_subject'), 'classroom' => $this -> input -> post('classroom'), 'subject' => $this -> input -> post('subject'), 'tutor_time' => $this -> input -> post('tutor_time'), 'date' => $this -> input -> post('date'), 'member_number' => $this -> input -> post('member_number'), 'activity' => $this -> input -> post('activity'), 'note' => $this -> input -> post('note'));
+		$insert_daily_array = array('user_id' => $this -> input -> post('user_id'), 'user_name' => $this -> input -> post('user_name'), 'user_number' => $this -> input -> post('user_number'), 'subject_id' => $this -> input -> post('subject_id'), 'classroom' => $this -> input -> post('classroom'), 'tutor_time' => $this -> input -> post('tutor_time'), 'date' => $this -> input -> post('date'), 'member_number' => $this -> input -> post('member_number'), 'activity' => $this -> input -> post('activity'), 'note' => $this -> input -> post('note'));
 		$this -> attendance -> insert_daily($insert_daily_array);
 		alert_date('글이 등록되었습니다.', '/index.php/lesson/daily_journal', date('Y'), date('m'));
 		//}
@@ -324,9 +318,11 @@ class Lesson extends CI_Controller {
 		$this -> load -> model('tutor_tutee');
 		$get_list = $this -> tutor_tutee -> select_list();
 		$get_sub_list = $this -> tutor_tutee -> select_list_sub();
+		$get_sub_time = $this -> tutor_tutee -> select_time();
 		
 		$data['get_list'] = $get_list;
 		$data['get_sub_list'] = $get_sub_list;
+		
 		$this -> load -> view($view_name, $data);
 	}
 
@@ -341,6 +337,7 @@ class Lesson extends CI_Controller {
 		$this -> load -> model('member');
 		
 		$data['sub_list'] = $this -> member -> select_list_by_sub($subject_array);
+		$data['get_sub_time'] = $this -> tutor_tutee -> select_time();
 		$data['get_list'] = $this -> tutor_tutee -> select_list();
 		
 		
@@ -354,9 +351,11 @@ class Lesson extends CI_Controller {
 		$this -> load -> model('tutor_tutee');
 		$get_list = $this -> tutor_tutee -> select_list();
 		$get_sub_list = $this -> tutor_tutee -> select_list_sub();
+		$get_sub_time = $this -> tutor_tutee -> select_time();
 		
 		$data['get_list'] = $get_list;
 		$data['get_sub_list'] = $get_sub_list;
+		$data['get_sub_time'] = $get_sub_time;
 		$this -> load -> view($view_name, $data);
 	}
 
@@ -427,7 +426,7 @@ class Lesson extends CI_Controller {
 			//페이징 처리
 			$config['base_url'] = '/index.php/lesson/enrichment_study/';
 			$config['total_rows'] = $this -> enrichment_board -> get_board_all($this -> uri -> segment(3), 'count');
-			$config['per_page'] = 10;
+			$config['per_page'] = 5;
 			$config['num_links'] = 5;
 			$config['uri_segment'] = 3;
 
@@ -542,6 +541,7 @@ class Lesson extends CI_Controller {
 		$date_array = array('date' => $date);
 		$this -> load -> model('attendance');
 		$data = $this -> attendance -> date_check($date_array);
+		var_dump($data);
 		/*var_dump($check_date);
 		var_dump($data['date']);
 		var_dump($this->input->post('user_id'));

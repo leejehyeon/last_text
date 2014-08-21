@@ -38,6 +38,11 @@ class Tutor_tutee extends CI_Model {
 		return $this -> db -> get('subject_sub') -> result();
 	}
 	
+	public function select_time(){
+		$this -> db ->order_by("subject_time", "asc");
+		return $this -> db -> get('subject_time') -> result();
+	}
+	
 	public function select_id_tutee($user_number){
 		$this -> db -> where('user_number',$user_number);
 		return $this -> db -> get('tutor_application') -> row();
